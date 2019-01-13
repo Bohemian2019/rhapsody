@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_12_082617) do
+ActiveRecord::Schema.define(version: 2019_01_12_083355) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,12 @@ ActiveRecord::Schema.define(version: 2019_01_12_082617) do
     t.integer "question_id", null: false
     t.integer "user_id", null: false
     t.text "answer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "artists", force: :cascade do |t|
+    t.string "artist_name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -50,6 +56,16 @@ ActiveRecord::Schema.define(version: 2019_01_12_082617) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "credit_cards", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "name", null: false
+    t.string "card_number", null: false
+    t.integer "month", null: false
+    t.integer "year", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "items", force: :cascade do |t|
     t.integer "artist_id", null: false
     t.string "item_name", null: false
@@ -58,6 +74,22 @@ ActiveRecord::Schema.define(version: 2019_01_12_082617) do
     t.integer "label_id"
     t.string "genre", null: false
     t.integer "stock", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "labels", force: :cascade do |t|
+    t.string "label_name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "shopping_cart_id", null: false
+    t.integer "payment", null: false
+    t.integer "status", null: false
+    t.string "postal_code", null: false
+    t.text "address", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -73,6 +105,21 @@ ActiveRecord::Schema.define(version: 2019_01_12_082617) do
   create_table "shopping_carts", force: :cascade do |t|
     t.integer "user_id", null: false
     t.boolean "is_active", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "songs", force: :cascade do |t|
+    t.integer "item_id", null: false
+    t.integer "disc_number", null: false
+    t.integer "song_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "artist_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
