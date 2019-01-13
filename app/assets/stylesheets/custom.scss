@@ -1,1 +1,9 @@
-$enable-shadows: true;
+main {
+  background-color: #957623;
+}
+.container {
+  max-width: 1000px;
+}
+.navbar {
+  background: linear-gradient(0deg, #C69E2F, #BF1DD7);
+}
