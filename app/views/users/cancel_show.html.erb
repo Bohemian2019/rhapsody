@@ -1,2 +1,27 @@
-<h1>Users#cancel_show</h1>
-<p>Find me in app/views/users/cancel_show.html.erb</p>
+
+<div class="container">
+
+  <div class="row">
+    <div class="col-lg-2 offset-lg-2">
+      <h3>退会</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <p class="col-lg-7 offset-lg-3">退会されると今までのユーザ・コミュニティ情報、<br>
+    付与されたポイントは失われますがよろしいでしょうか？
+    </p>
+  </div>
+
+  <div class="row">
+      <div class="col-lg-2 offset-lg-4">
+      <%= link_to '退会する', root_path, class: 'btn btn-light' %>
+      </div>
+      <div class="col-lg-2">
+
+      <!-- リンク先変更あり -->
+      <%= link_to '退会しない', users_show_path, class: 'btn btn-light' %>
+      </div>
+  </div>
+
+</div>
