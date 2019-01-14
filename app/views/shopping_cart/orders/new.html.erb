@@ -1,2 +1,60 @@
-<h1>ShoppingCart::Orders#new</h1>
-<p>Find me in app/views/shopping_cart/orders/new.html.erb</p>
+<div class="container">
+
+  <h2>注文確認</h2>
+ 
+ <!-- 住所表示部分 -->
+  <div>
+    <h3><u>住所</u></h3>
+    <p><span>〒</span><span>（郵便番号を表示）</span></p>
+    <p>(住所を表示)</p>
+  </div>
+
+
+
+<!-- 支払い、アーティスト,シングル,アルバム表示部分 -->
+  <div class="row">
+  	<div class="col-lg-3">
+  	  <h3><u>支払い方法</u></h3>
+
+  	  <!-- あとで記入変更 -->
+  	  <div>
+  	    <input type="checkbox" name="riyu" value="1">銀行振り込み
+      </div>
+      <div>
+  	    <input type="checkbox" name="riyu" value="2">クレジットカード
+      </div>
+    </div>
+  
+    <div class="col-lg-9">
+      <table class="table">
+        <thead>
+          <tr>
+      	    <th>アーティスト名</th>
+      	    <th>アルバム名/シングル名</th>
+          </tr>
+        </thead>
+        <tbody>
+  	      <tr>
+  	        <td>（アーティスト名表示）</td>
+  	        <td>（アルバム/シングル名表示）</td>
+  	      </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+<!-- 合計 -->
+　<div class="col-lg-5 offset-lg-8">
+　  <h3><u><span>合計¥　</span><span>（値段表示）</span><span>円</span></u></h3>
+  </div>
+
+
+ <!-- 注文は銀行振込とクレジットで遷移先異なる -->
+  <div class="row">
+  	<div class="col-lg-4 offset-lg-10">
+      <%= link_to '戻る', shopping_carts_show_path, class: 'btn btn-light' %>
+      <%= link_to '注文', orders_show_path, class: 'btn btn-light' %>
+    </div>
+  </div>
+
+</div>
