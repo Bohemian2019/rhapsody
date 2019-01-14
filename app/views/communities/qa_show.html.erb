@@ -1,2 +1,69 @@
-<h1>Communities#qa_show</h1>
-<p>Find me in app/views/communities/qa_show.html.erb</p>
+<div class="container">
+
+  <h4><span>コミュニティ名</span><span>（コミュニティ名表示）</span></h4>
+
+
+<!-- 質問者部分 -->
+    <div class="row">
+      <div class="col-lg-10">
+        <h3><span>Q. </span><span>(質問内容を表示)</span></h3>
+      </div>
+    </div>
+    <div class="col-lg-4 offset-lg-7">
+      <h4><span>ユーザー名</span><span>(質問者の名前を表示)</span><h4>
+    </div>
+
+
+
+     <!-- ライン -->
+    <div class="col-lg-11" style="border-bottom: solid 2px #C0C0C0;"></div>
+
+
+<!-- 回答者部分　 -->
+    <div class="row">
+      <div class="col-lg-10">
+        <h4><span>A.  </span><span>(答え内容を表示)</span></h4>
+      </div>
+
+      <!-- 削除ボタンは管理者のみ表示 -->
+      <!-- リンク先は後で変更する -->
+      <%= link_to '削除', communities_qa_show_path, class: 'btn btn-link' %>
+    </div>
+    <div class="col-lg-4 offset-lg-7">
+      <h5><span>ユーザー名</span><span>（解答者の名前を表示）</span></h5>
+    </div>
+
+</div>
+
+
+
+<!-- ページネーション -->
+<div class="container">
+  <div class="col-lg-6 offset-lg-4">
+
+  	<!-- kaminariより後で実装記入に変更 -->
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" href="#"><<</a></li>
+    <li class="page-item"><a class="page-link" href="#"><</a></li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">></a></li>
+    <li class="page-item"><a class="page-link" href="#">>></a></li>
+  </ul>
+  </div>
+</div>
+
+
+
+
+<!-- アンサー記入欄 -->
+<div class="container">
+  <h5>アンサー記入欄</h5>
+
+  <!-- 後で変更あり アンサー投稿部分　-->
+  <textarea class="col-lg-11">
+  </textarea>
+　<p class="col-lg-2 offset-lg-10"><input type="submit" value="送信"></p>
+
+</div>
