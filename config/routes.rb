@@ -1,56 +1,100 @@
 Rails.application.routes.draw do
+
+  # admin/
   namespace :admin do
-    get 'orders/edit'
-    get 'orders/search'
-    get 'orders/show'
-  end
-  namespace :admin do
-    get 'subscriptions/index'
-    get 'subscriptions/artist'
-  end
-  namespace :admin do
+    # subscriptions
+    get 'subscription/index', to: 'subscriptions#index', as: :subscription_index
+    get 'subscription/artist/:id', to: 'subscriptions#artist', as: :subscription_artist
+    post 'subscription/artist/:id', to: 'subscriptions#order_send'
+    # communities
     get 'communities/new'
     get 'communities/request_index'
+    # orders
+    resources :orders, only: [:show, :edit, :update]
+    get 'orders/index', to: 'orders#search'
+    patch 'orders/index', to: 'orders#update'
   end
-  get 'admins/index'
-  get 'orders/show'
+
+  # shopping_carts
+  get 'shopping_cart/:id', to: 'shopping_carts#show', as: :shopping_cart_show
+  post'shopping_cart/:id', to: 'shopping_carts#increment'
+  post 'shopping_cart/:id', to: 'shopping_carts#decrement'
+  post 'shopping_cart/:id', to: 'shopping_carts#pass'
+  delete 'shopping_cart/:id', to: 'shopping_carts#delete'
+
+  # shopping_cart/
   namespace :shopping_cart do
-    get 'orders/new'
+    # orders
+    get ':id/order', to: 'orders#new', as: :order_new
+    post ':id/order', to: 'orders#send'
   end
-  get 'shopping_carts/show'
-  namespace :order do
-    get 'subscriptions/new'
+
+  # admins
+  get '/admin', to: 'admins#index', as: :admin_index
+
+  # orders
+  get '/orders/:id/confirm', to: 'orders#show', as: :orders_confirmation
+
+  # order/
+  namespace :order, path: '/' do
+    # subscriptions
+    get '/artist/subscriptions', to: 'subscriptions#new', as: :subscription_new
+    post '/artist/subscriptions', to: 'subscriptions#add'
   end
+
+  # search
+  get 'search', to: 'search#index', as: :search_index
+
+   # community/
   namespace :community do
-    get 'requests/new'
+    # comments
+    post ':id', to: 'comments#add'
+    delete ':id', to: 'comments#delete'
+    # questions
+    get ':id/question', to: 'qustions#index', as: :question_index
+    delete ':id/question', to: 'qustions#delete'
+    get ':id/question/new', to: 'qustions#new', as: :question_new
+    post ':id/question/new', to: 'qustions#add'
+    # answers
+    post ':id/question/:question_id', to: 'answers#add'
+    delete ':id/question/:question_id', to: 'answers#delete'
+    # requests
+    get 'new', to: 'requests#new', as: :request_new
+    post 'new', to: 'requests#add'
   end
-  namespace :community do
-    get 'questions/index'
-    get 'questions/new'
-  end
-  get 'items/show'
-  get 'items/new'
-  get 'items/edit'
-  get 'communities/show'
-  get 'communities/qa_show'
-  get 'search/index'
-  get 'users/show'
-  get 'users/edit'
-  get 'users/cancel_show'
-  get 'users/ranking_show'
-  get 'users/my_community_index'
-  get '/users/cancel', to: 'users#cancel_show'
-  post '/users/cancel', to: 'useers#cancel_update'
+
+  # communities
+  get 'community/:id', to: 'communities#show', as: :communities_show
+  get 'community/:id/question/:question_id', to: 'communities#qa_show', as: :community_qa_show
+  delete 'search', to: 'communities#delete', as: :delete_community
+
+  # items
+  resources :items, only: [:show, :update]
+  get '/admin/item/new', to: 'items#new', as: :admin_new_item
+  post '/admin/item/new', to: 'items#create', as: :admin_create_item
+  get '/admin/item/edit', to: 'items#edit', as: :admin_edit_item
+  patch '/admin/item/edit', to: 'items#update'
+
+  # users
+  resources :users, only: [:show, :edit, :update]
+  get 'ranking', to: 'users#ranking_show', as: :users_ranking
+  get 'users/:id/my_community', to: 'users#my_community_index', as: :users_my_community
+  get '/users/cancel', to: 'users#cancel_show', as: :users_cancel_show
+  patch '/users/cancel', to: 'useers#cancel_update'
+
+  # user/
   namespace :user do
+    # credits
     resources :credits, only: [:new, :create]
+    # histories
+    get 'history/:order_id/:id', to: 'histories#show', as: :history
+    get 'history/:id', to: 'histories#index', as: :histories
+    get 'history', to: 'histories#all', as: :histories_all
   end
-  namespace :user do
-    get 'histories/all'
-    get 'histories/index'
-    get 'histories/show'
-  end
+
+
   devise_for :users
   get 'admin/sign_in', action: :new, controller: 'devise/sessions'
   post 'admin/sign_in', action: :create, controller: 'devise/sessions'
-	root to: 'home#index'
+  root to: 'home#index'
 end
