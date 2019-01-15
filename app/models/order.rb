@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
 
-  belongs_to :shopping_cart
+  has_one :shopping_cart
 
 end

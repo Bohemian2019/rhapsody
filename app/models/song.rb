@@ -1,5 +1,5 @@
 class Song < ApplicationRecord
 
-  belongs_to :items
+  belongs_to :item
 
 end
