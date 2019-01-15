@@ -92,7 +92,6 @@ Rails.application.routes.draw do
     get 'history', to: 'histories#all', as: :histories_all
   end
 
-
   devise_for :users
   get 'admin/sign_in', action: :new, controller: 'devise/sessions'
   post 'admin/sign_in', action: :create, controller: 'devise/sessions'

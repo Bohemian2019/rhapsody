@@ -1,62 +1,60 @@
 <div class="container">
-<div class="row">
-<h1>アーティスト名：Mr.Children</h1>
-</div>
+  <div class="row">
+    <h1>アーティスト名：Mr.Children</h1>
+  </div>
+<br>
+  <div class="row">
+    <table>
+      <thead>
+        <tr>
+           <th>User名　　</th>
+           <th>     </th>
+        </tr>
+      </thead>
+      <tbody>
+       <tr>
+            <td>
+            	<a>山田太郎　　</a>
+            </td>
+            <td>
+            	<%= link_to "受注情報編集", admin_orders_edit_path, class: 'btn btn-light' %>
+            </td>
+      </tr>
+       <tr>
+            <td>
+            	<a>山田二郎　　</a>
+            </td>
+            <td>
+            	<%= link_to "受注情報編集", admin_orders_edit_path, class: 'btn btn-light' %>
+            </td>
+      </tr>
+       <tr>
+            <td>
+            	<a>山田三郎　　</a>
+            </td>
+            <td>
+            	<%= link_to "受注情報編集", admin_orders_edit_path, class: 'btn btn-light' %>
+            </td>
+      </tr>
+      </tbody>
+    </table>
+<br>
+  </div>
 
-<br>
-
-<div class="row">
-<table>
-<thead>
-  <tr>
-     <th>User名　　</th>
-     <th>     </th>
-  </tr>
-</thead>
-<tbody>
- <tr>
-      <td>
-      	<a>山田太郎　　</a>
-      </td>
-      <td>
-      	<%= link_to "受注情報編集", admin_orders_edit_path, class: 'btn btn-light' %>
-      </td>
-</tr>
- <tr>
-      <td>
-      	<a>山田二郎　　</a>
-      </td>
-      <td>
-      	<%= link_to "受注情報編集", admin_orders_edit_path, class: 'btn btn-light' %>
-      </td>
-</tr>
- <tr>
-      <td>
-      	<a>山田三郎　　</a>
-      </td>
-      <td>
-      	<%= link_to "受注情報編集", admin_orders_edit_path, class: 'btn btn-light' %>
-      </td>
-</tr>
-</tbody>
-</table>
-<br>
-</div>
-
-<div class="row">
-<div class="col-md-7 offset-5">
-<%= link_to "購買受付", admin_orders_edit_path, class: 'btn btn-light' %>
+  <div class="row">
+    <div class="col-md-7 offset-5">
+      <%= link_to "購買受付", admin_orders_edit_path, class: 'btn btn-light' %>
 <br>
 <br>
-</div>
-</div>
-<ul class="pagination">
-	<li class="page-item"><a class="page-link" href="#"><<</a></li>
-	<li class="page-item"><a class="page-link" href="#"><</a></li>
-	<li class="page-item"><a class="page-link" href="#">1</a></li>
-	<li class="page-item"><a class="page-link" href="#">2</a></li>
-	<li class="page-item"><a class="page-link" href="#">3</a></li>
-	<li class="page-item"><a class="page-link" href="#">></a></li>
-	<li class="page-item"><a class="page-link" href="#">>></a></li>
-</ul>
+    </div>
+  </div>
+  <ul class="pagination">
+  	<li class="page-item"><a class="page-link" href="#"><<</a></li>
+  	<li class="page-item"><a class="page-link" href="#"><</a></li>
+  	<li class="page-item"><a class="page-link" href="#">1</a></li>
+  	<li class="page-item"><a class="page-link" href="#">2</a></li>
+  	<li class="page-item"><a class="page-link" href="#">3</a></li>
+  	<li class="page-item"><a class="page-link" href="#">></a></li>
+  	<li class="page-item"><a class="page-link" href="#">>></a></li>
+  </ul>
 </div>
