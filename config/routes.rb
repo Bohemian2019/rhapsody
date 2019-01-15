@@ -97,5 +97,6 @@ Rails.application.routes.draw do
     get 'history', to: 'histories#all', as: :histories_all
   end
 
+  # home
   root to: 'home#index'
 end
