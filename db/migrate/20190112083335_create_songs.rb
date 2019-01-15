@@ -2,9 +2,10 @@ class CreateSongs < ActiveRecord::Migration[5.2]
   def change
     create_table :songs do |t|
 
-      t.integer :item_id, null: false
+      t.integer :item_id, null: false, foreign_key: true
       t.integer :disc_number, null: false, defaul: 1
       t.integer :song_number
+      t.string :name, null: false
       t.timestamps
     end
   end
