@@ -15,7 +15,7 @@ Item.create(:artist_id => '1',:item_name => 'lalala',:price => '100',:label_id =
 Song.create(:item_id => '1',:disc_number => '1',:song_number => '1',:name => 'lalala')
 
 
-CartItem.create(:cart_id => '1',:item_id => '1',:price => '100',:quantity => '2')
+CartItem.create(:shopping_cart_id => '1',:item_id => '1',:price => '100',:quantity => '2')
 
 Community.create(:name => 'Mr.Children',:artist_id => '1',:introduction => 'Hello',:is_active => 'TRUE')
 
