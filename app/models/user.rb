@@ -14,4 +14,12 @@ class User < ApplicationRecord
   has_many :questions, dependent: :destroy
   has_many :answers, dependent: :destroy
 
+  # Search method
+  def self.search(keyword)
+    if keyword
+      where(['name LIKE ?', "%#{keyword}%"])
+    else
+      all
+    end
+  end
 end

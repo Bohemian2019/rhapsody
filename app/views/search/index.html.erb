@@ -19,11 +19,11 @@
             <!-- Item List -->
             <li class="row my-lg-5 py-3">
               <div class="col-sm-2 pr-0 pl-5">
-              <%= attachment_image_tag s, :image, :fill, 40, 40, :size => "60x60", fallback: "no-item-image.jpg" %>
+                <%= attachment_image_tag s, :image, :fill, 40, 40, :size => "60x60", fallback: "no-item-image.jpg" %>
               </div>
               <div class="col-sm-5 px-0">
-              <h5>アーティスト名:  <%= @artist.find(s.artist_id).artist_name %></h5><br>
-              <h5>アルバム/シングル名:  <%= s.item_name %></h5><br>
+                <h5>アーティスト名:  <%= @artist.find(s.artist_id).artist_name %></h5><br>
+                <h5>アルバム/シングル名:  <%= s.item_name %></h5><br>
               </div>
               <div class="col-sm-3 pl-0">
                 <%= link_to '詳細', item_path(s.id), class: "btn btn-outline-secondary" %>
@@ -33,11 +33,11 @@
             <!-- User List -->
             <li class="row my-lg-5 py-3">
               <div class="col-sm-2 pr-0 pl-5">
-              <%= attachment_image_tag s, :image, :fill, 40, 40, :size => "60x60", fallback: "no-user-image.jpg" %>
+                <%= attachment_image_tag s, :image, :fill, 40, 40, :size => "60x60", fallback: "no-user-image.jpg" %>
               </div>
               <div class="col-sm-5 px-0">
-              <h5>ユーザー名:  <%= s.name %></h5><br>
-              <h5>紹介文:  <%= s.introduction %></h5><br>
+                <h5>ユーザー名:  <%= s.name %></h5><br>
+                <h5>紹介文:  <%= s.introduction %></h5><br>
               </div>
               <div class="col-sm-3 pl-0">
                 <%= link_to '詳細', user_path(s.id), class: "btn btn-outline-secondary" %>
@@ -47,11 +47,11 @@
             <!-- Community List -->
             <li class="row my-lg-5 py-3">
               <div class="col-sm-2 pr-0 pl-5">
-              <%= attachment_image_tag s, :image, :fill, 40, 40, :size => "60x60", fallback: "no-user-image.jpg" %>
+                <%= attachment_image_tag s, :image, :fill, 40, 40, :size => "60x60", fallback: "no-user-image.jpg" %>
               </div>
               <div class="col-sm-5 px-0">
-              <h5>コミュニティ名:  <%= s.name %></h5><br>
-              <h5>紹介文:  <%= s.introduction %></h5><br>
+                <h5>コミュニティ名:  <%= s.name %></h5><br>
+                <h5>紹介文:  <%= s.introduction %></h5><br>
               </div>
               <div class="col-sm-3 pl-0">
                 <%= link_to '詳細', communities_show_path(s.id), class: "btn btn-outline-secondary" %>
@@ -62,36 +62,7 @@
       </ul>
     </div>
   </div>
-
-  <%#
-      <div class="row">
-  <div class="col-md-3">
+  <div class="row justify-content-center">
+    <%= paginate @searched, class: "pagenate" %>
   </div>
-
-  <div class="col-md-7">
-  <p><span>ユーザー名 </span><span><u>(ユーザー名表示)</u></span></p>
-  <p>intoroduction</p>
-  <p>（ユーザー紹介文表示)</p>
-  </div>
-
-  <div class="col-md-1">
-  </div>
-  </div>
-
-  <!-- pagination -->
-  <div class="row">
-  <div class="col-lg-6 offset-lg-4">
-
-  <ul class="pagination">
-  <li class="page-item"><a class="page-link" href="#"><<</a></li>
-  <li class="page-item"><a class="page-link" href="#"><</a></li>
-  <li class="page-item"><a class="page-link" href="#">1</a></li>
-  <li class="page-item"><a class="page-link" href="#">2</a></li>
-  <li class="page-item"><a class="page-link" href="#">3</a></li>
-  <li class="page-item"><a class="page-link" href="#">></a></li>
-  <li class="page-item"><a class="page-link" href="#">>></a></li>
-  </ul>
-  </div>
-  </div>
-%>
 </div>

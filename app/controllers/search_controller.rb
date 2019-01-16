@@ -4,11 +4,11 @@ class SearchController < ApplicationController
 
     if @table_name == 'Item'
       @artist = Artist
-      @searched = Item.all
+      @searched = Item.search(params[:keyword]).page(params[:page])
     elsif @table_name == 'User'
-      @searched = User.all
+      @searched = User.search(params[:keyword]).page(params[:page])
     else
-      @searched = Community.all
+      @searched = Community.search(params[:keyword]).page(params[:page])
     end
   end
 end
