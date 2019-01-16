@@ -31,7 +31,7 @@ CreditCard.create(:user_id => '1',:name => 'Abe',:card_number => '123456789',:mo
 
 Subscription.create(:user_id => '1',:artist_id => '1')
 
-Order.create(:shopping_cart_id => '1',:payment => 'credit',:status => '受注',:postal_code => '1234567',:address => '東京都渋谷区')
+Order.create(:shopping_cart_id => '1',:payment => '1',:status => '1',:postal_code => '1234567',:address => '東京都渋谷区')
 
 
 
