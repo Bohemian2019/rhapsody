@@ -27,3 +27,6 @@
 /config/master.key
 
 .DS_Store
+
+# Ignore seed file.
+#/db/seeds.rb
