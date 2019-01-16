@@ -29,4 +29,4 @@
 .DS_Store
 
 # Ignore seed file.
-/db/seeds.rb
+#/db/seeds.rb
