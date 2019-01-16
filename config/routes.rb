@@ -56,10 +56,10 @@ Rails.application.routes.draw do
     post ':id', to: 'comments#add'
     delete ':id', to: 'comments#delete'
     # questions
-    get ':id/question', to: 'qustions#index', as: :question_index
-    delete ':id/question', to: 'qustions#delete'
-    get ':id/question/new', to: 'qustions#new', as: :question_new
-    post ':id/question/new', to: 'qustions#add'
+    get ':id/question', to: 'questions#index', as: :question_index
+    delete ':id/question', to: 'questions#delete'
+    get ':id/question/new', to: 'questions#new', as: :question_new
+    post ':id/question/new', to: 'questions#add'
     # answers
     post ':id/question/:question_id', to: 'answers#add'
     delete ':id/question/:question_id', to: 'answers#delete'
