@@ -1,2 +1,102 @@
-<h1>Search#index</h1>
-<p>Find me in app/views/search/index.html.erb</p>
+
+	<!-- （商品/コミュニティ/ユーザー）表示部分はあとで変更 -->
+  <h4><span>検索結果:</span><sapn>（商品/コミュニティ/ユーザー）表示</sapn></h4>
+
+
+
+<!-- 検索結果：商品　 -->
+<div class="container">
+  <div class="row">
+
+    <div class="col-lg-3">
+      <!-- attachment_image_tag ジャケット画像 -->
+    </div>
+
+      <!-- （表示部分）はあとで変更 　　　　 -->
+    <div class="col-lg-7">
+      <p><span>アーティスト名 </span><span>(アーティスト名前表示)</span></p>
+      <p><span>シングル/アルバム名 </span><span>（シングル・アルバム名表示）</span></p>
+    </div>
+
+     <!-- リンク先は後で変更 -->
+    <div class="col-lg-1">
+      <%= link_to '詳細', item_path(.id), class: 'btn btn-light' %>
+    </div>
+
+  </div>
+</div>
+
+
+
+<!-- 検索結果：ユーザー -->
+<div class="container">
+  <div class="row">
+
+  	<div class="col-lg-3">
+  	 <!-- attachment_image_tag ジャケット画像 -->
+  	</div>
+
+  	  <!-- （表示部分）はあとで変更 　　　　 -->
+    <div class="col-lg-7">
+      <p><span>ユーザー名 </span><span><u>(ユーザー名表示)</u></span></p>
+      <p>intoroduction</p>
+      <p>（ユーザー紹介文表示)</p>
+    </div>
+
+      <!-- リンク先は後で変更 -->
+    <div class="col-lg-1">
+      <%= link_to '詳細', users_show_path, class: 'btn btn-light' %>
+    </div>
+
+  </div>
+</div>
+
+
+
+<!-- 検索結果：コミュニティ -->
+<div class="container">
+  <div class="row">
+
+  	<div class="col-lg-3">
+  	 <!-- attachment_image_tag ジャケット画像 -->
+  	</div>
+
+  	  <!-- （表示部分）はあとで変更 　　　　 -->
+    <div class="col-lg-5">
+      <p><span>コミュニティ名 </span><span>(コミュニティ名表示)</span></p>
+      <p>intoroduction</p>
+      <p>（コミュニティ紹介文2行目まで表示)</p>
+    </div>
+
+      <!-- リンク先は後で変更 -->
+    <div class="col-lg-1">
+      <%= link_to '詳細', communities_show_path, class: 'btn btn-light' %>
+    </div>
+
+      <!-- 管理者のみ表示 -->
+      <!-- リンク先は後で変更 -->
+    <div class="col-lg-3">
+      <%= link_to 'コミュニティ削除', communities_show_path, class: 'btn btn-link' %>
+    </div>
+
+  </div>
+</div>
+
+
+
+<!-- ページネーション -->
+<div class="container">
+  <div class="col-lg-6 offset-lg-4">
+
+  	<!-- kaminariより後で実装記入に変更 -->
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" href="#"><<</a></li>
+    <li class="page-item"><a class="page-link" href="#"><</a></li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">></a></li>
+    <li class="page-item"><a class="page-link" href="#">>></a></li>
+  </ul>
+  </div>
+</div>

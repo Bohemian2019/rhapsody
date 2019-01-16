@@ -8,7 +8,10 @@ class User < ApplicationRecord
 
   has_many :credit_cards, dependent: :destroy
   has_many :subscriptions, dependent: :destroy
-  has_many :users_cummunities, dependent: :destroy
+  has_many :communities, through: :users_cummunities, dependent: :destroy
   has_many :shopping_carts, dependent: :destroy
+  has_many :board_comments, dependent: :destroy
+  has_many :questions, dependent: :destroy
+  has_many :answers, dependent: :destroy
 
 end

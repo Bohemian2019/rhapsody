@@ -6,5 +6,6 @@ class User::HistoriesController < ApplicationController
   end
 
   def show
+  	@history = CartItem.find(params[:id])
   end
 end

@@ -1,2 +1,51 @@
-<h1>Admin::Communities#request_index</h1>
-<p>Find me in app/views/admin/communities/request_index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-3">
+      <h1>コミュニティリクエスト一覧</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-3">
+      <table>
+        <thead>
+          <tr>
+             <th>日付</th>
+             <th>User名</th>
+             <th>コミュニティ名</th>
+             <th></th>
+             <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <a>2019/3/20　　</a>
+            </td>
+            <td>
+              <a>山田太郎　　</a>
+            </td>
+            <td>
+              <a>Mr.Children  </a> 
+            </td>
+            <td>
+              <button type="button" class="btn btn-info"><%= link_to "確認", admin_communities_new_path %></button>
+            </td>
+            <td>
+              <button type="button" class="btn btn-danger"><%= link_to "削除",admin_communities_request_index_path,method: :delete, class: "destroy_community_#{community.id}", "data-confirm" => "Are you sure?" %></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<br>
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" href="#"><<</a></li>
+    <li class="page-item"><a class="page-link" href="#"><</a></li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">></a></li>
+    <li class="page-item"><a class="page-link" href="#">>></a></li>
+  </ul>
+</div>
