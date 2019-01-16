@@ -1,2 +1,54 @@
 <h1>Admin::Orders#edit</h1>
 <p>Find me in app/views/admin/orders/edit.html.erb</p>
+
+
+<div class="container" >
+	<h2>受注情報編集</h2>
+
+	--------------------------------------------------------------------------------------------------------------------------------------
+	<div class="row">
+		<div class="col-lg-10 offset-lg-1">
+			<div class="row" style="padding: 50px 0 0 0 " >
+
+				<div class="person_days" >
+					<p>注文者名：
+					<input type="text/submit/hidden/button/etc" name="" value="山田太郎"></p>
+					<p>注文日時：
+					<input type="text/submit/hidden/button/etc" name="" value="2019年2月3日"></p>
+				</div>
+			</div>
+
+			<div class="row" >
+
+				<div class="input" style="padding: 50px 0 200px 0 ">
+					<!-- form_for置き換え -->
+					<h3>注文者住所</h3>
+					<div class="input_postnum" >
+						<p>郵便番号（ハイフンなし）</p>
+						<textarea name="postnum" autofocus="" cols="30" rows="1" ></textarea>
+					</div>
+
+					<div class="input_address">
+						<p>住所</p>
+						<textarea name="address" autofocus="" cols="60" rows="2"></textarea>
+					</div>
+
+					<div class="select_status" >
+						<p>受注ステータス</p>
+							<select name="order_status">
+								<option>受付中</option>
+								<option>商品準備中</option>
+								<option>出荷済み</option>
+							</select></form>
+					</div>
+
+					<div class="submit col-lg-1 offset-lg-8" style="padding-top: 30px">
+						<!-- コミュニティ登録処理後、コミュニティ一覧へ遷移 -->
+						<!-- admin/orders updateアクション　/admin/order/:id/edit -->
+						<%= link_to '更新', admin_communities_request_index_path, class: 'btn btn-light' %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
