@@ -2,18 +2,25 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-lg-5">
-      <!-- attachment_image_tag ジャケット画像 -->
+
+<!-- サイドバー -->
+    <div class="col-md-4">
+    <%= render "layouts/sidebar" %>
     </div>
 
-      <!-- 表示部分は後で変更する -->
-    <div class="col-lg-5">
-      <p><%= @hitory.item.artist.artist_name %></p>
-      <p>（アルバム名/シングル名表示）</p>
-      <p><span>価格:</span><span>（値段表示）</span></p>
-      <p><sapn>購入日:</span><span>（購入日表示）</sapn></p>
-      <p><span>送付先:</span><span>（住所表示）</span></p>
-      <p><span>ステータス:</span><span>（ステータス表示）</span></p>
+<!-- ジャケット画像 -->
+    <div class="col-lg-4">
+      <%= attachment_image_tag @history.item, :image, :fill, 100, 100, :size => "300x300", fallback: "no-user-image.jpg" %>
+    </div>
+
+      <!-- ステータス部分は後で変更する -->
+    <div class="col-lg-4">
+      <p><%= @history.item.artist.artist_name %></p>
+      <p><%= @history.item.item_name %></p>
+      <p><span>価格:¥</span><span><%= @history.price %></span></p>
+      <p><sapn>購入日:</span><span><%= @history.shopping_cart.order.created_at.strftime('%Y年%m月%d日') %></sapn></p>
+      <p><span>送付先:</span><span><%= @history.shopping_cart.order.address %></span></p>
+      <p><span>ステータス:</span><span><%= @history.shopping_cart.order.status %></span></p>
     </div>
   </div>
 
