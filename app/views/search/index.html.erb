@@ -1,102 +1,97 @@
-
-	<!-- （商品/コミュニティ/ユーザー）表示部分はあとで変更 -->
-  <h4><span>検索結果:</span><sapn>（商品/コミュニティ/ユーザー）表示</sapn></h4>
-
-
-
-<!-- 検索結果：商品　 -->
 <div class="container">
   <div class="row">
-
-    <div class="col-lg-3">
-      <!-- attachment_image_tag ジャケット画像 -->
+    <div class="col">
+      <% if @table_name == 'Item' %>
+        <h4>検索結果: 商品</h4>
+      <% elsif @table_name == 'User' %> 
+        <h4>検索結果: ユーザー</h4>
+      <% else %>
+        <h4>検索結果: コミュニティ</h4>
+      <% end %>
     </div>
-
-      <!-- （表示部分）はあとで変更 　　　　 -->
-    <div class="col-lg-7">
-      <p><span>アーティスト名 </span><span>(アーティスト名前表示)</span></p>
-      <p><span>シングル/アルバム名 </span><span>（シングル・アルバム名表示）</span></p>
-    </div>
-
-     <!-- リンク先は後で変更 -->
-    <div class="col-lg-1">
-      <%= link_to '詳細', items_show_path, class: 'btn btn-light' %>
-    </div>
-
   </div>
-</div>
 
+  <div class="row justify-content-md-center">
+    <div class="col-md-10">
+      <ul>
+        <% @searched.each do |s| %>
+          <% if @table_name == 'Item' %>
+            <!-- Item List -->
+            <li class="row my-lg-5 py-3">
+              <div class="col-sm-2 pr-0 pl-5">
+              <%= attachment_image_tag s, :image, :fill, 40, 40, :size => "60x60", fallback: "no-item-image.jpg" %>
+              </div>
+              <div class="col-sm-5 px-0">
+              <h5>アーティスト名:  <%= @artist.find(s.artist_id).artist_name %></h5><br>
+              <h5>アルバム/シングル名:  <%= s.item_name %></h5><br>
+              </div>
+              <div class="col-sm-3 pl-0">
+                <%= link_to '詳細', item_path(s.id), class: "btn btn-outline-secondary" %>
+              </div>
+            </li>
+          <% elsif @table_name == 'User' %>
+            <!-- User List -->
+            <li class="row my-lg-5 py-3">
+              <div class="col-sm-2 pr-0 pl-5">
+              <%= attachment_image_tag s, :image, :fill, 40, 40, :size => "60x60", fallback: "no-user-image.jpg" %>
+              </div>
+              <div class="col-sm-5 px-0">
+              <h5>ユーザー名:  <%= s.name %></h5><br>
+              <h5>紹介文:  <%= s.introduction %></h5><br>
+              </div>
+              <div class="col-sm-3 pl-0">
+                <%= link_to '詳細', user_path(s.id), class: "btn btn-outline-secondary" %>
+              </div>
+            </li>
+          <% else %>
+            <!-- Community List -->
+            <li class="row my-lg-5 py-3">
+              <div class="col-sm-2 pr-0 pl-5">
+              <%= attachment_image_tag s, :image, :fill, 40, 40, :size => "60x60", fallback: "no-user-image.jpg" %>
+              </div>
+              <div class="col-sm-5 px-0">
+              <h5>コミュニティ名:  <%= s.name %></h5><br>
+              <h5>紹介文:  <%= s.introduction %></h5><br>
+              </div>
+              <div class="col-sm-3 pl-0">
+                <%= link_to '詳細', communities_show_path(s.id), class: "btn btn-outline-secondary" %>
+              </div>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 
+  <%#
+      <div class="row">
+  <div class="col-md-3">
+  </div>
 
-<!-- 検索結果：ユーザー -->
-<div class="container">
+  <div class="col-md-7">
+  <p><span>ユーザー名 </span><span><u>(ユーザー名表示)</u></span></p>
+  <p>intoroduction</p>
+  <p>（ユーザー紹介文表示)</p>
+  </div>
+
+  <div class="col-md-1">
+  </div>
+  </div>
+
+  <!-- pagination -->
   <div class="row">
-
-  	<div class="col-lg-3">
-  	 <!-- attachment_image_tag ジャケット画像 -->
-  	</div>
-
-  	  <!-- （表示部分）はあとで変更 　　　　 -->
-    <div class="col-lg-7">
-      <p><span>ユーザー名 </span><span><u>(ユーザー名表示)</u></span></p>
-      <p>intoroduction</p>
-      <p>（ユーザー紹介文表示)</p>
-    </div>
-
-      <!-- リンク先は後で変更 -->
-    <div class="col-lg-1">
-      <%= link_to '詳細', users_show_path, class: 'btn btn-light' %>
-    </div>
-
-  </div>
-</div>
-
-
-
-<!-- 検索結果：コミュニティ -->
-<div class="container">
-  <div class="row">
-
-  	<div class="col-lg-3">
-  	 <!-- attachment_image_tag ジャケット画像 -->
-  	</div>
-
-  	  <!-- （表示部分）はあとで変更 　　　　 -->
-    <div class="col-lg-5">
-      <p><span>コミュニティ名 </span><span>(コミュニティ名表示)</span></p>
-      <p>intoroduction</p>
-      <p>（コミュニティ紹介文2行目まで表示)</p>
-    </div>
-
-      <!-- リンク先は後で変更 -->
-    <div class="col-lg-1">
-      <%= link_to '詳細', communities_show_path, class: 'btn btn-light' %>
-    </div>
-
-      <!-- 管理者のみ表示 -->
-      <!-- リンク先は後で変更 -->
-    <div class="col-lg-3">
-      <%= link_to 'コミュニティ削除', communities_show_path, class: 'btn btn-link' %>
-    </div>
-
-  </div>
-</div>
-
-
-
-<!-- ページネーション -->
-<div class="container">
   <div class="col-lg-6 offset-lg-4">
 
-  	<!-- kaminariより後で実装記入に変更 -->
   <ul class="pagination">
-    <li class="page-item"><a class="page-link" href="#"><<</a></li>
-    <li class="page-item"><a class="page-link" href="#"><</a></li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#">></a></li>
-    <li class="page-item"><a class="page-link" href="#">>></a></li>
+  <li class="page-item"><a class="page-link" href="#"><<</a></li>
+  <li class="page-item"><a class="page-link" href="#"><</a></li>
+  <li class="page-item"><a class="page-link" href="#">1</a></li>
+  <li class="page-item"><a class="page-link" href="#">2</a></li>
+  <li class="page-item"><a class="page-link" href="#">3</a></li>
+  <li class="page-item"><a class="page-link" href="#">></a></li>
+  <li class="page-item"><a class="page-link" href="#">>></a></li>
   </ul>
   </div>
+  </div>
+%>
 </div>

@@ -5,4 +5,5 @@ class Item < ApplicationRecord
   belongs_to :artist
   belongs_to :label
 
+  attachment :image
 end
