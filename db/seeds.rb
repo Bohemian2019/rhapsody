@@ -172,8 +172,7 @@ Item.create(
 Song.create(:item_id => '1',:disc_number => '1',:song_number => '1',:name => 'lalala')
 
 
-CartItem.create(:cart_id => '1',:item_id => '1',:price => '100',:quantity => '2')
-CartItem.create(:cart_id => '2',:item_id => '2',:price => '1000',:quantity => '1')
+CartItem.create(:shopping_cart_id => '1',:cart_id => '1',:item_id => '1',:price => '100',:quantity => '2')
 
 Community.create(:name => 'Mr.Children',:artist_id => '1',:introduction => 'Hello',:is_active => 'TRUE')
 Community.create(:name => 'Robert Glasper',:artist_id => '2',:introduction => 'Hi',:is_active => 'TRUE')
