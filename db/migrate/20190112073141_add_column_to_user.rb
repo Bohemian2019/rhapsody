@@ -10,6 +10,6 @@ class AddColumnToUser < ActiveRecord::Migration[5.2]
   add_column :users, :point, :integer, default: 0
   add_column :users, :image_id, :string
   add_column :users, :is_active, :boolean, null: false, default: true
-  add_column :users, :admin, :boolean, null: false, default: false
+  add_column :users, :admin, :boolean, default: false
   end
 end
