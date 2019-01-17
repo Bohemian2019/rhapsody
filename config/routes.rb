@@ -16,8 +16,8 @@ Rails.application.routes.draw do
     get 'communities/request_index'
     # orders
     resources :orders, only: [:show, :edit, :update]
-    get 'orders/index', to: 'orders#search'
-    patch 'orders/index', to: 'orders#update'
+    get 'orders', to: 'orders#search'
+    patch 'orders', to: 'orders#update'
   end
 
   # shopping_carts
@@ -84,8 +84,8 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update]
   get 'ranking', to: 'users#ranking_show', as: :users_ranking
   get 'users/:id/my_community', to: 'users#my_community_index', as: :users_my_community
-  get '/users/cancel-show', to: 'users#cancel_show', as: :users_cancel_show
-  patch '/users/cancel-show', to: 'useers#cancel_update'
+  get '/users/cancel/show', to: 'users#cancel_show', as: :users_cancel_show
+  patch '/users/cancel/show', to: 'useers#cancel_update'
 
   # user/
   namespace :user do
