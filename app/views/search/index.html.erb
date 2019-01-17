@@ -50,12 +50,18 @@
                 <%= attachment_image_tag s, :image, :fill, 40, 40, :size => "60x60", fallback: "no-user-image.jpg" %>
               </div>
               <div class="col-sm-5 px-0">
+                <h3><%= s.id %></h3>
                 <h5>コミュニティ名:  <%= s.name %></h5><br>
                 <h5>紹介文:  <%= s.introduction %></h5><br>
               </div>
-              <div class="col-sm-3 pl-0">
+              <div class="col-sm-2 pl-0">
                 <%= link_to '詳細', communities_show_path(s.id), class: "btn btn-outline-secondary" %>
               </div>
+              <% if current_user.admin == true %>
+              <div class="col-sm-1">
+                <%= link_to '削除', delete_community_path(s.id), method: :delete, class: "btn btn-outline-danger", "data-confirm" => "Are you sure?" %>
+              </div>
+            <% end %>
             </li>
           <% end %>
         <% end %>

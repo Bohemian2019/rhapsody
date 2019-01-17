@@ -177,6 +177,9 @@ CartItem.create(:shopping_cart_id => '1',:item_id => '1',:price => '100',:quanti
 Community.create(:name => 'Mr.Children',:artist_id => '1',:introduction => 'Hello',:is_active => 'TRUE')
 Community.create(:name => 'Robert Glasper',:artist_id => '2',:introduction => 'Hi',:is_active => 'TRUE')
 Community.create(:name => 'Queen',:artist_id => '3',:introduction => 'Hey',:is_active => 'TRUE')
+Community.create(:name => 'Led Zeppelin',:artist_id => '4',:introduction => 'Hey',:is_active => 'TRUE')
+Community.create(:name => 'Rolling Stones',:artist_id => '5',:introduction => 'Hey',:is_active => 'TRUE')
+Community.create(:name => 'RHCP',:artist_id => '6',:introduction => 'Hey',:is_active => 'TRUE')
 
 Question.create(:community_id => '1',:user_id => '1',:question => 'YES?')
 
