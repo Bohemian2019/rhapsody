@@ -61,7 +61,7 @@ Rails.application.routes.draw do
     get ':id/question/new', to: 'questions#new', as: :question_new
     post ':id/question/new', to: 'questions#add'
     # answers
-    post ':id/question/:question_id', to: 'answers#add'
+    post ':id/question/:question_id', to: 'answers#add', as: :question
     delete ':id/question/:question_id', to: 'answers#delete'
     # requests
     get 'new', to: 'requests#new', as: :request_new

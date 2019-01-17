@@ -1,16 +1,16 @@
 <div class="container">
 
-  <h4><span>コミュニティ名</span><span>（コミュニティ名表示）</span></h4>
+  <h4><span>コミュニティ名 </span><span><%= @qa.community.name %></span></h4>
 
 
 <!-- 質問者部分 -->
     <div class="row">
       <div class="col-lg-10">
-        <h3><span>Q. </span><span>(質問内容を表示)</span></h3>
+        <h3><span>Q. </span><span><%= @qa.question %></span></h3>
       </div>
     </div>
     <div class="col-lg-4 offset-lg-7">
-      <h4><span>ユーザー名</span><span>(質問者の名前を表示)</span><h4>
+      <h4><span>ユーザー名 </span><span><%= @qa.user.name %></span><h4>
     </div>
 
 
@@ -21,16 +21,29 @@
 
 <!-- 回答者部分　 -->
     <div class="row">
-      <div class="col-lg-10">
-        <h4><span>A.  </span><span>(答え内容を表示)</span></h4>
-      </div>
+      <div class="col-lg-12">
+        <% @answers.each do |post| %>
 
+
+              <h4><span>A </span>
+              <span>
+                <div class="row">
+                  <div class="col-lg-9">
+                    <p><%= post.answer %></p>
+                  </div>
+                  <%= link_to '削除', community_qa_show_path, class: 'btn btn-link' %>
+                </div>
+              </span>
+              </h4>
+
+              <div class="col-lg-4 offset-lg-7">
+                  <h5><span>ユーザー名</span><span>（解答者の名前を表示）</span></h5>
+              </div>
+
+        <% end %>
+      </div>
       <!-- 削除ボタンは管理者のみ表示 -->
       <!-- リンク先は後で変更する -->
-      <%= link_to '削除', community_qa_show_path, class: 'btn btn-link' %>
-    </div>
-    <div class="col-lg-4 offset-lg-7">
-      <h5><span>ユーザー名</span><span>（解答者の名前を表示）</span></h5>
     </div>
 
 </div>
@@ -62,8 +75,11 @@
   <h5>アンサー記入欄</h5>
 
   <!-- 後で変更あり アンサー投稿部分　-->
-  <textarea class="col-lg-11">
-  </textarea>
-　<p class="col-lg-2 offset-lg-10"><input type="submit" value="送信"></p>
+
+  <%= form_for @answer, url: community_question_path(@qa.id) do |f| %>
+  <%= f.text_field :answer %>
+  <%= f.submit "送信"%>
+  <% end %>
+
 
 </div>

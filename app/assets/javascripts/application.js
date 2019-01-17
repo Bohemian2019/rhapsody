@@ -17,3 +17,16 @@
 //= require popper
 //= require bootstrap
 //= require_tree .
+
+$(function() {
+	$(document).on('ajax:success', 'form', function(e) {
+    $('#post_comment').val('');
+    $('.post_wrapper').prepend('<p>' + e.detail[0] + '</p>');
+  })
+  
+  $(document).on('click', 'input[type=submit]', function() {
+    if ($('input[type=text]').val() == '') {
+      return false;
+    }
+  })
+})
