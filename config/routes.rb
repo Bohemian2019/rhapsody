@@ -71,7 +71,7 @@ Rails.application.routes.draw do
   # communities
   get 'community/:id', to: 'communities#show', as: :communities_show
   get 'community/:id/question/:question_id', to: 'communities#qa_show', as: :community_qa_show
-  delete 'search', to: 'communities#delete', as: :delete_community
+  delete 'search/:id', to: 'communities#delete', as: :delete_community
 
   # items
   resources :items, only: [:show, :update]
@@ -84,8 +84,8 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update]
   get 'ranking', to: 'users#ranking_show', as: :users_ranking
   get 'users/:id/my_community', to: 'users#my_community_index', as: :users_my_community
-  get '/users/cancel', to: 'users#cancel_show', as: :users_cancel_show
-  patch '/users/cancel', to: 'useers#cancel_update'
+  get '/users/cancel-show', to: 'users#cancel_show', as: :users_cancel_show
+  patch '/users/cancel-show', to: 'useers#cancel_update'
 
   # user/
   namespace :user do
