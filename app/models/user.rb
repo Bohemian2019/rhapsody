@@ -8,11 +8,11 @@ class User < ApplicationRecord
 
   has_many :credit_cards, dependent: :destroy
   has_many :subscriptions, dependent: :destroy
-  has_many :communities, through: :users_cummunities, dependent: :destroy
+  has_many :communities, through: :users_cummunities
   has_many :shopping_carts, dependent: :destroy
-  has_many :board_comments, dependent: :destroy
-  has_many :questions, dependent: :destroy
-  has_many :answers, dependent: :destroy
+  has_many :board_comments
+  has_many :questions
+  has_many :answers
 
   # Search method
   def self.search(keyword)
@@ -21,5 +21,10 @@ class User < ApplicationRecord
     else
       all
     end
+  end
+
+  # Devise method override
+  def active_for_authentication?
+    super && !admin?
   end
 end
