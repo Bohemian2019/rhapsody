@@ -1,2 +1,32 @@
 <h1>Admin::Communities#new</h1>
 <p>Find me in app/views/admin/communities/new.html.erb</p>
+
+<div class="container" >
+	<h2>コミュニティ新規登録</h2>
+
+	--------------------------------------------------------------------------------------------------------------------------------------
+	<div class="row" >
+		<div class="col-lg-8 offset-lg-2" style="padding: 50px 0 200px 0 ">
+			<div class="input_artist_name" >
+				<h4>アーティスト名</h4>
+				<textarea name="artist_name" autofocus="" cols="60" rows="1"></textarea>
+			</div>
+
+			<div class="input_community_name" style="padding: 30px 0 30px 0 ">
+				<h4>コミュニティ名</h4>
+				<textarea name="community_name" autofocus="" cols="60" rows="1"></textarea>
+			</div>
+
+			<div class="input_introduction" >
+				<h4>紹介文</h4>
+				<textarea name="introduction" autofocus="" cols="60" rows="6"></textarea>
+			</div>
+
+			<div class="submit col-lg-1 offset-lg-8" style="padding-top: 30px">
+				<!-- コミュニティ登録処理後、コミュニティ一覧へ遷移 -->
+				<%= link_to '登録', admin_communities_request_index_path, class: 'btn btn-light' %>
+			</div>
+		</div>
+	</div>
+
+</div>
