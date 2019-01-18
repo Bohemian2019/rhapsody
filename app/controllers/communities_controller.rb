@@ -4,8 +4,9 @@ class CommunitiesController < ApplicationController
 
   def qa_show
   	@qa = Question.find(params[:question_id])
+    @community = Community.find(params[:id])
   	@answer = Answer.new
-  	@answers = Answer.order(id: "DESC")
+  	@answers = @qa.answers.page(params[:page]).per(5).order(id: "DESC")
   end
 
   def delete
