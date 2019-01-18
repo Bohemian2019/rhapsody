@@ -8,7 +8,11 @@ class User < ApplicationRecord
 
   has_many :credit_cards, dependent: :destroy
   has_many :subscriptions, dependent: :destroy
-  has_many :communities, through: :users_cummunities
+  # 修正　'Fixed Association'　20190118 -----------------
+  # has_many :communities, through: :users_cummunities
+  has_many :communities, through: :users_communities
+  # --------------------------------------------------
+  has_many :users_communities # 追加　'Fixed Association'　20190118
   has_many :shopping_carts, dependent: :destroy
   has_many :board_comments
   has_many :questions
