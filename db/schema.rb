@@ -44,6 +44,8 @@ ActiveRecord::Schema.define(version: 2019_01_12_083355) do
     t.integer "quantity", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_cart_items_on_item_id"
+    t.index ["shopping_cart_id"], name: "index_cart_items_on_shopping_cart_id"
   end
 
   create_table "communities", force: :cascade do |t|
