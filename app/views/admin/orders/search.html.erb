@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <!-- Search form -->
+    <%= form_with url: admin_orders_path, method: :get, local: true, class: "form-inline my-2 my-lg-0" do |f| %>
+      <%= f.text_field :keyword_artist, class: "form-control mr-2", placeholder: "アーティスト名" %>
+      <%= f.text_field :keyword_item, class: "form-control mx-1",placeholder: "アルバム/シングル名" %>
+      <%= f.submit("検索", class: "btn btn-outline-dark my-2 my-sm-0 ml-2") %> 
+    <% end %>
+  </div>
+  <div class="row justify-content-center my-3 mt-4">
+    <h2>受注情報</h2>
+  </div>
+
+  <div class="row justify-content-md-center">
+    <div class="col-md-10">
+      <table class="table">
+        <thead>
+          <th scope="col">日付</th>
+          <th scope="col">ユーザー名</th>
+          <th scope="col">アーティスト名</th>
+          <th scope="col">アルバム/シングル名</th>
+          <th scope="col">枚数</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </thead>
+        <tbody>
+          <% @searched.each do |s| %>
+            <% s.shopping_cart.cart_items.each do |ci| %>
+              <tr>
+                <td><%= l s.created_at, format: :long %></td>
+                <td><%= s.shopping_cart.user.name %></td>
+                <td><%= ci.item.artist.artist_name %></td>
+                <td><%= ci.item.item_name %></td>
+                <td><%= ci.quantity %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <%= paginate @searched, class: "pagenate" %>
+  </div>
+  <div class="row">
+		<div class="select_status col-lg-4">
+		</div>
+		<div class="select_status col-lg-4" >
+			<p>受注ステータス
+				<select name="order_status">
+					<option>受付中</option>
+					<option>商品準備中</option>
+					<option>出荷済み</option>
+				</select></form>
+			</p>
+		</div>
+		<div class="select_status col-lg-1" >
+			<button type="button" class="btn btn-danger">一括編集</button>
+		</div>
+		</div>
+	</div>
+</div>
+</div>
