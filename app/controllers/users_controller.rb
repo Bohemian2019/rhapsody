@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   end
 
   def ranking_show
+    @users = User.where(admin: false).order("point DESC")
   end
 
   def my_community_index

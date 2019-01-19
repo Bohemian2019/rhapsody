@@ -70,7 +70,7 @@ User.create(
       :phone_number => '09012664312',
       :email => 'jiro@test.com',
       :password => 'password',
-      :point => '5',
+      :point => '132',
       :is_active => 'TRUE',
       :admin => 'FALSE'
     },
@@ -83,7 +83,7 @@ User.create(
       :phone_number => '09012312312',
       :email => 'sabu@test.com',
       :password => 'password',
-      :point => '5',
+      :point => '12',
       :is_active => 'TRUE',
       :admin => 'FALSE'
     },
