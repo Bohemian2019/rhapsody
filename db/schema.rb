@@ -44,6 +44,8 @@ ActiveRecord::Schema.define(version: 2019_01_12_083355) do
     t.integer "quantity", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_cart_items_on_item_id"
+    t.index ["shopping_cart_id"], name: "index_cart_items_on_shopping_cart_id"
   end
 
   create_table "communities", force: :cascade do |t|
@@ -147,7 +149,7 @@ ActiveRecord::Schema.define(version: 2019_01_12_083355) do
     t.integer "point", default: 0
     t.string "image_id"
     t.boolean "is_active", default: true, null: false
-    t.boolean "admin", default: false, null: false
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
