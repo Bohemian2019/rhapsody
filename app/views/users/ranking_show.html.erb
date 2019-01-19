@@ -1,2 +1,28 @@
-<h1>Users#ranking_show</h1>
-<p>Find me in app/views/users/ranking_show.html.erb</p>
+<div class="container">
+  <div class="row content-justify-center">
+    <div class="col-md-3">
+      <%= render "layouts/sidebar" %>
+    </div>
+    <div class="col-md-9">
+      <h2>User ランキング</h2><br>
+      <table class="table">
+        <thead>
+          <th scope="col">順位</th>
+          <th scope="col">ユーザー名</th>
+          <th scope="col">ポイント</th>
+          <th scope="col"></th>
+        </thead>
+        <tbody>
+          <% @users.each.with_index do |user, i| %>
+            <tr>
+              <td><%= "#{i+1}位" %></td>
+              <td><%= user.name %></td>
+              <td><%= user.point %> pt</td>
+              <td><%= link_to "詳細", user_path(user), class: "btn btn-secondary" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
