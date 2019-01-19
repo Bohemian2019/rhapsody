@@ -42,5 +42,23 @@
   <div class="row justify-content-center">
     <%= paginate @searched, class: "pagenate" %>
   </div>
+  <div class="row">
+		<div class="select_status col-lg-4">
+		</div>
+		<div class="select_status col-lg-4" >
+			<p>受注ステータス
+				<select name="order_status">
+					<option>受付中</option>
+					<option>商品準備中</option>
+					<option>出荷済み</option>
+				</select></form>
+			</p>
+		</div>
+		<div class="select_status col-lg-1" >
+			<button type="button" class="btn btn-danger">一括編集</button>
+		</div>
+		</div>
+	</div>
+</div>
 </div>
 
