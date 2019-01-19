@@ -2,7 +2,13 @@ class Community < ApplicationRecord
 
   attachment :image
 
+
+  # 修正 'Fixed Association'　20190118 ------------
+  # has_many :users, through: :users_cummunities
   has_many :users, through: :users_communities
+  # ---------------------------------------------
+  has_many :users_communities # 追加 'Fixed Association' 20190118
+
   has_many :board_comments, dependent: :destroy
   has_many :questions, dependent: :destroy
 
