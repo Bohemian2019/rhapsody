@@ -1,7 +1,7 @@
 <div class="profile">
   <% if current_user %>
     <div class="user_image">
-      <%= attachment_image_tag current_user, :image, :fill, 30, 30, :size => "100x100", fallback: "no-user-image.jpg" %>
+      <%= attachment_image_tag current_user, :image, :fill, 200, 200, :size => "100x100", fallback: "no-user-image.jpg" %>
     </div><br>
     <h5 class="user_name">Name &nbsp <u><%= current_user.name %></u></h5>
     <br>

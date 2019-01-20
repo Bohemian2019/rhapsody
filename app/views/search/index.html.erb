@@ -19,7 +19,7 @@
             <!-- Item List -->
             <li class="row my-lg-5 py-3">
               <div class="col-sm-2 pr-0 pl-5">
-                <%= attachment_image_tag s, :image, :fill, 40, 40, :size => "60x60", fallback: "no-item-image.jpg" %>
+                <%= attachment_image_tag s, :image, :fill, 100, 100, :size => "60x60", fallback: "no-item-image.jpg" %>
               </div>
               <div class="col-sm-5 px-0">
                 <h5>アーティスト名:  <%= @artist.find(s.artist_id).artist_name %></h5><br>
@@ -33,7 +33,7 @@
             <!-- User List -->
             <li class="row my-lg-5 py-3">
               <div class="col-sm-2 pr-0 pl-5">
-                <%= attachment_image_tag s, :image, :fill, 40, 40, :size => "60x60", fallback: "no-user-image.jpg" %>
+                <%= attachment_image_tag s, :image, :fill, 100, 100, :size => "60x60", fallback: "no-user-image.jpg" %>
               </div>
               <div class="col-sm-5 px-0">
                 <h5>ユーザー名:  <%= s.name %></h5><br>
@@ -47,7 +47,7 @@
             <!-- Community List -->
             <li class="row my-lg-5 py-3">
               <div class="col-sm-2 pr-0 pl-5">
-                <%= attachment_image_tag s, :image, :fill, 40, 40, :size => "60x60", fallback: "no-user-image.jpg" %>
+                <%= attachment_image_tag s, :image, :fill, 100, 100, :size => "60x60", fallback: "no-user-image.jpg" %>
               </div>
               <div class="col-sm-5 px-0">
                 <h3><%= s.id %></h3>
