@@ -1,5 +1,6 @@
 class User::HistoriesController < ApplicationController
   def all
+    @histories = Order.includes(:shopping_cart => :user).where(users: {id: current_user.id}).page(params[:page])
   end
 
   def index
