@@ -1,12 +1,42 @@
-<div class="profile">
-  <div class="user_image">
-    <%= attachment_image_tag current_user, :image, :fill, 30, 30, :size => "100x100", fallback: "no-user-image.jpg" %>
-  </div><br>
-  <h3 class="user_name">Name &nbsp <u>John Smith</u></h3>
-  <br>
-  <h3>Introduction</h3>
-  <div class="box1">
-    <p>Hello!</p>
+<!-- サイドバー -->
+<div class="side-bar">
+
+  <!-- ユーザー情報 -->
+  <div class="profile">
+    <table class="table">
+      <tbody>
+        <tr style="padding-left: 30px"><%= attachment_image_tag current_user, :image, :fill, 30, 30, :size => "200x200", fallback: "no-user-image.jpg" %></tr>
+        <tr>
+          <th><h5>Name</h5></th>
+          <th><h4><%= user.name %></h4></th>
+        </tr>
+        <tr>
+          <th><h4>Introduction</h4></th>
+          <th><h4><%= user.introduction %></h4></th>
+        </tr>
+        <tr>
+          <th><%= link_to '編集', edit_user_path(user.id), class: "btn btn-outline-secondary" %></th>
+        </tr>
+      </tbody>
+    </table>
   </div>
-  <
+
+  <!-- 購入履歴 -->
+  <div class="history" style="padding-top: 40px">
+    <h4><strong>購入履歴</strong></h4>
+      <table class="table">
+        <tbody>
+          <% history.each do |h| %>
+          <tr>
+            <th><%= h.item_name %></th>
+            <th><%= @artist.find(h.artist_id).artist_name %></th>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="col-sm-3 pl-0">
+        <%= link_to 'more', user_histories_all_path, class: "histories_all" %> 
+      </div>
+  </div>
+
 </div>
