@@ -4,6 +4,8 @@ class User::HistoriesController < ApplicationController
   end
 
   def index
+  	@order = Order.find(params[:id])
+	@history = ShoppingCart.includes(:items => :artist).where(:id => (params[:id])).page(params[:page])
   end
 
   def show

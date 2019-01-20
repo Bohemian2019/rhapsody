@@ -1,106 +1,42 @@
-    <br>
-    <br>
-    <br>
-
-    <div class="container">
-    	<div class="row">
-
-    		<!-- 部分テンプレートで置き換え -->
-    		<div  class="col-lg-5"style="background-color: orange";>
-    			<h2>サイドバー</h2>
-    		</div>
-    		<!-- 部分テンプレートで置き換え -->
-
-    		<div class="col-lg-7">
-    			<br>
-    			<br>
-    			<!-- <div class="col-xs-6"> -->
-    				<h3>1月21日のお買い物</h3>
-    				<table class="table">
-    					<thead>
-    						<tr>
-    							<!-- ループ処理　直近10件のみ表示 -->
-    							<tr>
-    								<th><a href="/communities/show">Mr.Children</a></th>
-    								<th>商品：<a href="/items/show">MC Best!</a></th>
-    								<th>金額：¥3200</th>
-    								<th><button type="button" class="btn btn-primary">詳細</th>
-    								</tr>
-    								<tr>
-    									<th><a href="/communities/show">アーティスト名</a></th>
-    									<th>商品：<a href="/items/show">商品名</a></th>
-    									<th>金額：¥ 金額</th>
-    									<th><button type="button" class="btn btn-primary">詳細</th>
-    									</tr>
-    									<tr>
-    										<th><a href="/communities/show">アーティスト名</a></th>
-    										<th>商品：<a href="/items/show">商品名</a></th>
-    										<th>金額：¥ 金額</th>
-    										<th><button type="button" class="btn btn-primary">詳細</th>
-    										</tr>
-    										<tr>
-    											<th><a href="/communities/show">アーティスト名</a></th>
-    											<th>商品：<a href="/items/show">商品名</a></th>
-    											<th>金額：¥ 金額</th>
-    											<th><button type="button" class="btn btn-primary">詳細</th>
-    											</tr>
-    											<tr>
-    												<th><a href="/communities/show">アーティスト名</a></th>
-    												<th>商品：<a href="/items/show">商品名</a></th>
-    												<th>金額：¥ 金額</th>
-    												<th><button type="button" class="btn btn-primary">詳細</th>
-    												</tr>
-    												<tr>
-    													<th><a href="/communities/show">アーティスト名</a></th>
-    													<th>商品：<a href="/items/show">商品名</a></th>
-    													<th>金額：¥ 金額</th>
-    													<th><button type="button" class="btn btn-primary">詳細</th>
-    													</tr>
-    													<tr>
-    														<th><a href="/communities/show">アーティスト名</a></th>
-    														<th>商品：<a href="/items/show">商品名</a></th>
-    														<th>金額：¥ 金額</th>
-    														<th><button type="button" class="btn btn-primary">詳細</th>
-    														</tr>
-    														<tr>
-    															<th><a href="/communities/show">アーティスト名</a></th>
-    															<th>商品：<a href="/items/show">商品名</a></th>
-    															<th>金額：¥ 金額</th>
-    															<th><button type="button" class="btn btn-primary">詳細</th>
-    															</tr>
-    															<tr>
-    																<th><a href="/communities/show">アーティスト名</a></th>
-    																<th>商品：<a href="/items/show">商品名</a></th>
-    																<th>金額：¥ 金額</th>
-    																<th><button type="button" class="btn btn-primary">詳細</th>
-    																</tr>
-    																<tr>
-    																	<th><a href="/communities/show">アーティスト名</a></th>
-    																	<th>商品：<a href="/items/show">商品名</a></th>
-    																	<th>金額：¥ 金額</th>
-    																	<th><button type="button" class="btn btn-primary">詳細</th>
-    																	</tr>
-    																	<!-- ループ処理　直近10件のみ表示 -->
-    																</tr>
-    															</thead>
-    														</table>
-                                                            <!-- ページネーション -->
-                                                            <div class="container">
-                                                              <div class="col-lg-6 offset-lg-4">
-
-                                                                <!-- kaminariより後で実装記入に変更 -->
-                                                                <ul class="pagination">
-                                                                    <li class="page-item"><a class="page-link" href="#"><<</a></li>
-                                                                    <li class="page-item"><a class="page-link" href="#"><</a></li>
-                                                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                                    <li class="page-item"><a class="page-link" href="#">></a></li>
-                                                                    <li class="page-item"><a class="page-link" href="#">>></a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render "layouts/sidebar" %>
+    </div>
+    <div class="col-md-9">
+      <h2><%= l @order.created_at, format: :long %>のご購入</h2><br>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">商品名</th>
+            <th scope="col">点数</th>
+            <th scope="col">金額</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @history.each do |h| %>
+           <% h.cart_items.each do |c| %>
+            <tr>
+              <td>
+                <%= link_to item_path(c.item.id) do %>
+                    <%= c.item.item_name %>
+                <% end %> /
+                <%= link_to communities_show_path(c.item.artist.id) do %>
+                    <%= c.item.artist.artist_name %>
+                <% end %>
+              </td>
+              <td><%= c.quantity %> 点</td>
+              <td>¥ <%= c.price %></td>
+              <td><%= link_to "詳細", user_history_path(c.id, order_id: @order.id) ,  class: "btn btn-outline-secondary" %></td>
+          </tr>
+          <% end %>
+        <% end %>
+        </tbody>
+      </table>
+      <div class="row justify-content-center">
+        <%= paginate @history, class: "pagenate" %>
+      </div>
+    </div>
+  </div>
+</div>
