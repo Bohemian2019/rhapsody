@@ -12,3 +12,15 @@
   margin: 0;
   padding: 0;
 }
+
+.profile {
+  .user-image {
+    width: 140px;
+    height: 140px;
+    img {
+      width: 100%;
+      border: 1px solid #efefef;
+      border-radius: 50%;
+    }
+  }
+}
