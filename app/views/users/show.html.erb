@@ -1,68 +1,78 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
-
-    <br>
-    <br>
-    <br>
-
-    <div class="container">
+    <div class="container"style="padding: 80px 0px">
     	<div class="row">
+    		<div  class="col-lg-5">
+    			<%= render 'layouts/sidebar', user: @user %>
 
-    		<!-- 部分テンプレートで置き換え -->
-    		<div  class="col-lg-5"style="background-color: orange";>
-    			<h2>サイドバー</h2>
-    		</div>
-    		<!-- 部分テンプレートで置き換え -->
-    		
-    		<div class="col-lg-7 ">
-    			<br>
-    			<br>
-    			
-                <!-- 実績ポイント・ランキング -->
-                <div class="point_ranking">
-    				<table>
-    					<tbody>
-    						<tr>
-    							<th id="ranking"><h3><strong> Point</strong></h3></th>
+                <!-- 購入履歴リスト -->
+                <% if current_user.id == @user.id %>
+                <div class="history" style="padding-top: 40px">
+                    <h4><strong>購入履歴</strong></h4>
+                    <table class="table">
+                        <tbody>
+                          <% @history.each do |h| %>
+                          <tr>
+                            <th><%= h.item_name %></th>
+                            <th><%= @artist.find(h.artist_id).artist_name %></th>
+                        </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+                <div class="col-sm-3 pl-0">
+                    <%= link_to 'more', user_histories_all_path, class: "histories_all" %> 
+                </div>
+            </div>
+            <% else %>
+            <% end %>
+        </div>
 
-    							<!-- form_forに置き換え -->
-    							<th id="point"><h4>23pt</h4></th>
-    						</tr>
-    						<tr>
-    							<th id="ranking"><a href="/users/ranking_show" class="ranking"><h3><strong> Ranking</strong></h3></a></th>
+        <div class="col-lg-7 " style="padding: 40px">
+            <!-- 実績ポイント・ランキング -->
+            <div class="point_ranking" style="padding-bottom: 40px">
+                <table>
+                    <tbody>
+                        <tr>
+                            <th id="ranking"><h3><strong> Point</strong></h3></th>
+                            <th id="point"><h2><strong><%= @user.point %><strong></h2></th>
+                                <th><h3> pt</h3></th>
+                            </tr>
+                            <tr>
+                                <th id="ranking">
+                                    <h3><strong>
+                                        <%= link_to "Ranking", users_ranking_path, class: "users_ranking"%>
+                                    </strong></h3>
+                                </th>
+                                <th id="ranking"><h4><h4></th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
-    							<!-- form_forに置き換え -->
-    							<th id="ranking"><h4>5672位<h4></th>
-    						</tr>
-    					</tbody>
-    				</table>
-    			</div>
+                    <!-- マイコミュニティ表示 -->
+                    <h3><strong>マイコミュニティ</strong></h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <% @my_communities.each do |mc| %>
+                                <tr>
+                                    <th>
+                                     <%= link_to users_my_community_path, class: "histories_all" do %>
+                                     <%= @artist.find(mc.artist_id).artist_name %>
+                                     <% end %>
+                                 </th>
+                             </tr>
+                             <% end %>
+                         </tr>
+                     </thead>
+                 </table>
 
-    				<br>
-    				<br>
+                 <%= link_to "more", users_my_community_path, class: "users_my_community"%><br>
 
-    				<!-- マイコミュニティ表示 -->
-    				<h3>マイコミュニティ</h3>
-    					<table class="table">
-    						<thead>
-    							<tr>
-    								<!-- ループ処理　直近５件のみ表示 -->
-    								<tr><th><a href="/communities/show">Mr.Children</a> </th></tr>
-    								<tr><th><a href="/communities/show">アーティスト名</a> </th></tr>
-    								<tr><th><a href="/communities/show">アーティスト名</a> </th></tr>
-    								<tr><th><a href="/communities/show">アーティスト名</a> </th></tr>
-    								<tr><th><a href="/communities/show">アーティスト名</a> </th></tr>
-    								<!-- ループ処理　直近５件のみ表示 -->
-    							</tr>
-    						</thead>
-    					</table>
-    					<a href="/users/my_community_index">more</a>
-    					<br>
-    					<br>
-                        
-                        <!-- 自ユーザーのみ表示 -->
-    					<button type="button" class="btn btn-danger">退会 
-    				</div>
-    			</div>
-    		</div>
-    	</div>
+                 <!-- 自ユーザーのみ表示 -->
+                 <% if @user.id == current_user.id %>
+                 <%= link_to '退会', users_cancel_show_path, class: "btn btn-outline-secondary" %>
+                 <% else %>
+                 <% end %>
+             </div>
+         </div>
+     </div>
+ </div>
