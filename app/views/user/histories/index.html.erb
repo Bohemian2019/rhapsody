@@ -4,7 +4,7 @@
       <%= render "layouts/sidebar" %>
     </div>
     <div class="col-md-9">
-      <h2><%= l @order.created_at, format: :long %>のご購入</h2><br>
+      <h2><%= @order.created_at.strftime('%Y年%m月%d日') %>のご購入</h2><br>
       <table class="table">
         <thead>
           <tr>
@@ -15,8 +15,8 @@
           </tr>
         </thead>
         <tbody>
-          <% @history.each do |h| %>
-           <% h.cart_items.each do |c| %>
+          <% @history.each do |h| %> <!-- ① -->
+           <% h.cart_items.each do |c| %> <!-- ② -->
             <tr>
               <td>
                 <%= link_to item_path(c.item.id) do %>
@@ -30,12 +30,20 @@
               <td>¥ <%= c.price %></td>
               <td><%= link_to "詳細", user_history_path(c.id, order_id: @order.id) ,  class: "btn btn-outline-secondary" %></td>
           </tr>
-          <% end %>
-        <% end %>
+          <% end %> <!-- ② -->
         </tbody>
       </table>
       <div class="row justify-content-center">
         <%= paginate @history, class: "pagenate" %>
+      </div>
+      <div class="row float_right">
+        <div class="col-lg-9 my-lg-5 py-3 ">
+          <h4 class="text-right">点数:<u><strong><%= h.cart_items.sum(:quantity) %></strong> 点</u></h4>
+        </div>
+        <div class="col-lg-3 my-lg-5 py-3">
+          <h4>お会計:<u>¥ <strong><%= h.cart_items.sum(:price) %></strong></u></h4>
+        </div>
+        <% end %> <!-- ① -->
       </div>
     </div>
   </div>
