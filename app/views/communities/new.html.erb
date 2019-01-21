@@ -6,7 +6,7 @@
       <h2>新規コミュニティリクエスト</h2><br>
 
       <!-- form section -->
-      <%= form_for([:community, @request]) do |f| %>
+      <%= form_for @community do |f| %>
         <div class="form-group">
           <%= f.label :artist_id %><br>
           <%= f.text_field :artist_id, class: "form-control", placeholder: "アーティスト名" %>
@@ -26,3 +26,4 @@
     </div>
   </div>
 </div>
+

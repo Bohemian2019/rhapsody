@@ -3,7 +3,7 @@
     <div class="col">
       <% if @table_name == 'Item' %>
         <h4>検索結果: 商品</h4>
-      <% elsif @table_name == 'User' %> 
+      <% elsif @table_name == 'User' %>
         <h4>検索結果: ユーザー</h4>
       <% else %>
         <h4>検索結果: コミュニティ</h4>
@@ -57,10 +57,12 @@
               <div class="col-sm-2 pl-0">
                 <%= link_to '詳細', communities_show_path(s.id), class: "btn btn-outline-secondary" %>
               </div>
+              <% if user_signed_in? %>
               <% if current_user.admin == true %>
               <div class="col-sm-1">
                 <%= link_to '削除', delete_community_path(s.id), method: :delete, class: "btn btn-outline-danger", "data-confirm" => "Are you sure?" %>
               </div>
+            <% end %>
             <% end %>
             </li>
           <% end %>

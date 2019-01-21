@@ -65,14 +65,16 @@ Rails.application.routes.draw do
     post ':id/question/:question_id', to: 'answers#add', as: :question
     delete ':id/question/:question_id', to: 'answers#delete'
     # requests
-    get 'new', to: 'requests#new', as: :request_new
-    post 'new', to: 'requests#add'
+    #resources :requests, only: [:new, :create]
   end
 
   # communities
   get 'community/:id', to: 'communities#show', as: :communities_show
   get 'community/:id/question/:question_id', to: 'communities#qa_show', as: :community_qa_show
   delete 'search/:id', to: 'communities#delete', as: :delete_community
+  #resources :communities, only: [:new, :create]
+  get 'community/request/new', to: 'communities#new', as: :new_community
+  post 'communiy/requests', to: 'communities#create', as: :communities
 
   # items
   resources :items, only: [:show, :update]

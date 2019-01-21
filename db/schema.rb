@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2019_01_12_083355) do
     t.integer "artist_id", null: false
     t.text "introduction"
     t.string "image_id"
-    t.boolean "is_active", default: false, null: false
+    t.boolean "is_active", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
