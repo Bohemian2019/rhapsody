@@ -11,9 +11,10 @@
         <%= current_user.introduction %> 
       </div>
     </div><br>
-    <%= link_to "ユーザー編集", edit_user_path(current_user), class: "btn btn-dark " %><br>
+    <%= link_to "ユーザー編集", edit_user_path(current_user), class: "btn btn-dark" %><br>
     <br>
     <br>
     <br>
     <%= link_to "注文履歴", user_histories_all_path(current_user), class: "btn btn-info" %><br>
+  <% end %>
 </div>
