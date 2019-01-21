@@ -1,4 +1,9 @@
 class Community < ApplicationRecord
+  include ActiveModel::Model
+  attr_accessor :artist_name, :name, :introduction
+  validates :artist_name, presence: true
+  validates :name, presence: true
+  validates :introduction, presence: true
 
   # 修正 'Fixed Association'　20190118 ------------
   # has_many :users, through: :users_cummunities

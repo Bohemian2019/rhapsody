@@ -1,2 +1,30 @@
-<h1>Items#new</h1>
-<p>Find me in app/views/items/new.html.erb</p>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-md-10">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <h2>商品新規追加</h2><br>
+
+      <!-- form section -->
+      <%= form_for @item do |f| %>
+        <div class="form-group">
+          <%= f.label : %><br>
+          <%= f.text_field :, class: "form-control", placeholder: "アーティスト名" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :name %><br>
+          <%= f.text_field :name, class: "form-control", placeholder: "コミュニティ名" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :introduction %><br>
+          <%= f.text_area :introduction, class: "form-control", placeholder: "コミュニティ紹介文" %>
+        </div>
+        <div class="form-action">
+          <%= f.submit "リクエスト送信", class: "btn btn-outline-success" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+

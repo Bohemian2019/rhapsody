@@ -6,10 +6,10 @@
       <h2>新規コミュニティリクエスト</h2><br>
 
       <!-- form section -->
-      <%= form_for @community do |f| %>
+      <%= form_for @community, url: communities_path do |f| %>
         <div class="form-group">
-          <%= f.label :artist_id %><br>
-          <%= f.text_field :artist_id, class: "form-control", placeholder: "アーティスト名" %>
+          <%= f.label :artist_name %><br>
+          <%= f.text_field :artist_name, class: "form-control", placeholder: "アーティスト名" %>
         </div>
         <div class="form-group">
           <%= f.label :name %><br>
@@ -24,6 +24,12 @@
         </div>
       <% end %>
     </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
   </div>
 </div>
 

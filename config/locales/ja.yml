@@ -4,7 +4,7 @@ ja:
     attributes:
        community:
            name: コミュニティ名
-           artist: アーティスト名
+           artist_name: アーティスト名
            artist_id: アーティスト名
            introduction: 紹介文
 
