@@ -6,7 +6,7 @@ class CreateCommunities < ActiveRecord::Migration[5.2]
       t.integer :artist_id, null: false
       t.text :introduction
       t.string :image_id
-      t.boolean :is_active, null: false, default: false
+      t.boolean :is_active, default: false
       t.timestamps
     end
   end

@@ -8,7 +8,7 @@ class SearchController < ApplicationController
     elsif @table_name == 'User'
       @searched = User.search(params[:keyword]).page(params[:page])
     else
-      @searched = Community.search(params[:keyword]).page(params[:page])
+      @searched = Community.search(params[:keyword]).where(is_active: true).page(params[:page])
     end
   end
 end

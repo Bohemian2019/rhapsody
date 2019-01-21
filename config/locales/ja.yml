@@ -1,6 +1,13 @@
 ---
 ja:
   activerecord:
+    attributes:
+       community:
+           name: コミュニティ名
+           artist: アーティスト名
+           artist_id: アーティスト名
+           introduction: 紹介文
+
     errors:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"
