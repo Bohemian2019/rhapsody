@@ -5,7 +5,7 @@
 <br>
   <div class="row">
     <div class="col">
-    <p>日付 00年00月00日</p>
+    <p>日付 <%= @order.updated_at.strftime('%y年%m月%d日') %></p>
     </div>
   </div>
   <div class="row">
@@ -20,27 +20,29 @@
         </thead>
         <tbody>
          <tr>
+         <% @item.each do |item| %>
               <td>
-              	<a>Mr.Children　　</a>
+                <a><%= item.artist.artist_name %>　　</a>
               </td>
               <td>
-              	<a>~~~~~~~~~~~　　</a>
+                <a><%= item.item_name %>　</a>
               </td>
+        <% end %>
         </tr>
         </tbody>
       </table>
 <br>
 <br>
 
-      <p>価格 ¥2,000</p>
-      <p>枚数 1枚</p>
-      <p>ステータス　受付</p>
+      <p>価格 <%= @cart.item.price %>円</p>
+      <p>枚数 <%= @cart.quantity %>枚</p>
+      <p>ステータス　<%= @order.status %></p>
     </div>
   </div>
 
   <div class="row">
     <div class="col-md-4 offset-8">
-      <p>合計金額 ¥2,000（税込)</p>
+      <p>合計金額 ¥<%= @total %>（税込)</p>
     </div>
   </div>
 
@@ -48,24 +50,24 @@
 
   <div class="row">
     <div class="col">
-      <h4>User名　山田太郎さん</h4>
-      <p>住所</p>
-      <p>〒0000000</p>
-      <p>東京都渋谷区~~~~~~~~~~~~</p>
+      <h4>User名</h4>
+      <p><%= @user.name %>さん</p>
+      <h4>住所</h4>
+      <p>〒<%= @order.postal_code %></p>
+      <p><%= @order.address %></p>
     </div>
 
     <div class="col">
       <h4>お支払い方法</h4>
-      <p>クレジットカード</p>
-      <p>〒クレジットカード情報</p>
-      <a>No.   1111111111110000
-      有効期限　03/20
-      </a>
+      <p><%= @order.status %></p>
+      <h4>クレジットカード情報</h4>
+      <p>No. <%= @credit.card_number %></p>
+      <p>有効期限　<%= @credit.month %> / <%= @credit.year %></p>
     </div>
   </div>
   <div class="row">
     <div class="col-md-4 offset-8">
-      <%= link_to "受注情報編集", admin_orders_edit_path, class: 'btn btn-light' %>
+      <%= link_to "受注情報編集", edit_admin_order_path(@order), class: 'btn btn-light' %>
 <br>
 <br>
     </div>
