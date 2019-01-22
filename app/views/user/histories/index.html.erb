@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-lg-4">
       <%= render "layouts/sidebar" %>
     </div>
-    <div class="col-md-9">
+    <div class="col-lg-8">
       <h2><%= @order.created_at.strftime('%Y年%m月%d日') %>のご購入</h2><br>
       <table class="table">
         <thead>
@@ -28,7 +28,7 @@
               </td>
               <td><%= c.quantity %> 点</td>
               <td>¥ <%= c.price %></td>
-              <td><%= link_to "詳細", user_history_path(c.id, order_id: @order.id) ,  class: "btn btn-outline-secondary" %></td>
+              <td><%= link_to "詳細", user_history_path(c.id, order_id: @order.id) ,  class: "btn btn-light" %></td>
           </tr>
           <% end %> <!-- ② -->
         </tbody>
@@ -37,11 +37,11 @@
         <%= paginate @history, class: "pagenate" %>
       </div>
       <div class="row float_right">
-        <div class="col-lg-9 my-lg-5 py-3 ">
+        <div class="col-lg-7 my-lg-5 py-3 ">
           <h4 class="text-right">点数:<u><strong><%= h.cart_items.sum(:quantity) %></strong> 点</u></h4>
         </div>
-        <div class="col-lg-3 my-lg-5 py-3">
-          <h4>お会計:<u>¥ <strong><%= h.cart_items.sum(:price) %></strong></u></h4>
+        <div class="col-lg-5 my-lg-5 py-3">
+          <h4>支払総計:<u>¥ <strong><%= @pricesums %></strong></u></h4>
         </div>
         <% end %> <!-- ① -->
       </div>
