@@ -74,6 +74,9 @@ Rails.application.routes.draw do
   get 'community/:id/question/:question_id', to: 'communities#qa_show', as: :community_qa_show
   delete 'search/:id', to: 'communities#delete', as: :delete_community
 
+  # cart_items
+  post 'items/:id', to: 'items#cart_create', as: :cart_items
+
   # items
   resources :items, only: [:show, :update]
   get '/admin/item/new', to: 'items#new', as: :admin_new_item
