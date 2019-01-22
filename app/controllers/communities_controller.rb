@@ -33,7 +33,9 @@ class CommunitiesController < ApplicationController
     #                          introduction: @community_request.introduction)
     #formからattributesを取得して、それを元にデータベースに追加
     @community = Community.new(community_params)
-    @community[:artist_id] = Artist.find_by(artist_name: @community.artist_name).id
+    if Artist.exists?(artist_name: @community.artist_name)
+      @community[:artist_id] = Artist.find_by(artist_name: @community.artist_name).id
+    end
     @community[:name] = @community.name
     @community[:introduction] = @community.introduction
     if @community.save
