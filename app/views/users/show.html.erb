@@ -1,6 +1,6 @@
 <div class="container">
 <div class="row">
-    <div  class="col-md-3">
+    <div  class="col-md-4">
         <%= render 'layouts/sidebar', user: @user %>
         <!-- 購入履歴リスト -->
         <% if current_user.id == @user.id %>
@@ -24,7 +24,7 @@
         <% end %>
     </div>
 
-    <div class="col-md-9 ">
+    <div class="col-md-8 ">
         <!-- 実績ポイント・ランキング -->
         <div class="point_ranking">
             <table>
@@ -68,7 +68,7 @@
 
             <!-- 自ユーザーのみ表示 -->
             <% if @user.id == current_user.id %>
-            <%= link_to '退会', users_cancel_show_path, class: "btn btn-outline-secondary" %>
+            <%= link_to '退会', users_cancel_show_path, class: "btn btn-light" %>
             <% else %>
             <% end %>
         </div>

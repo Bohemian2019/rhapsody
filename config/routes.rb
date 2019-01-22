@@ -76,6 +76,9 @@ Rails.application.routes.draw do
   get 'community/request/new', to: 'communities#new', as: :new_community
   post 'communiy/requests', to: 'communities#create', as: :communities
 
+  # cart_items
+  post 'items/:id', to: 'items#cart_create', as: :cart_items
+
   # items
   resources :items, only: [:show, :update]
   get '/admin/item/new', to: 'items#new', as: :admin_new_item
