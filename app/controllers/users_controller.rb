@@ -52,6 +52,8 @@ class UsersController < ApplicationController
   end
 
   def my_community_index
+    @user = User.find(params[:id])
+    @community = UsersCommunity.where(user_id: @user.id).page(params[:page]).per(10)
   end
 
   private
