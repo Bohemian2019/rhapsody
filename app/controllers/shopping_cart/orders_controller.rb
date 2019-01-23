@@ -14,8 +14,10 @@ class ShoppingCart::OrdersController < ApplicationController
   def sent
   	@order = Order.new(order_params)
     if @order.payment == 1 && CreditCard.where(user_id: current_user.id).empty? == true
-      redirect_to new_user_credit_path
+      # クレジットカード払いで登録してない方
+      redirect_to new_user_credit_path, shopping_cart_id: params[:id]
     else
+      # 銀行振込・クレジットカード払いで登録済みの方
       # orderテーブルの保存
       @order.postal_code = current_user.postal_code
       @order.address = current_user.address
@@ -28,9 +30,16 @@ class ShoppingCart::OrdersController < ApplicationController
         f.price = f.item.price
       end
       @cartitems.update(cartitem_params)
-
+      # shppingcartテーブルis_active falseに更新
+      shoppingcart = ShoppingCart.find(params[:id])
+      shoppingcart.is_active = false
+      shoppingcart.update(shoppingcart_params)
+      # 新規shoppingcartテーブル作成
+      @shoppingcart = ShoppingCart.new
+      @shoppingcart.user_id = current_user.id
+      @shoppingcart.save
+      redirect_to orders_confirmation_path(params[:id])
     end
-
   end
 
   private
@@ -39,5 +48,8 @@ class ShoppingCart::OrdersController < ApplicationController
   end
   def cartitem_params
     params.permit(:price)
+  end
+  def shoppingcart_params
+    params.permit(:is_active)
   end
 end
