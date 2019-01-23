@@ -2,9 +2,16 @@ Rails.application.routes.draw do
 
   mount RailsAdmin::Engine => '/administrator', as: 'rails_admin'
   # devise
-  devise_for :users
+  devise_for :users, :controllers => {
+    :registrations => 'users/registrations'
+  }
   get 'admin/sign_in', action: :new, controller: 'devise/sessions'
   post 'admin/sign_in', action: :create, controller: 'devise/sessions'
+
+  # 退会ページからlogout用ルーティング
+  devise_scope :user do
+   get '/logout', to: 'devise/sessions#destroy', as: :logout
+  end
 
   # admin/
   namespace :admin do
@@ -92,7 +99,7 @@ Rails.application.routes.draw do
   get 'ranking', to: 'users#ranking_show', as: :users_ranking
   get 'users/:id/my_community', to: 'users#my_community_index', as: :users_my_community
   get '/users/cancel/show', to: 'users#cancel_show', as: :users_cancel_show
-  patch '/users/cancel/show', to: 'useers#cancel_update'
+  patch '/users/cancel/show', to: 'users#cancel_update'
 
   # user/
   namespace :user do
@@ -106,4 +113,5 @@ Rails.application.routes.draw do
 
   # home
   root to: 'home#index'
+
 end
