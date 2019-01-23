@@ -9,11 +9,11 @@
     </div>
   </div>
   <div class="row">
-    <img src="https://upload.wikimedia.org/wikipedia/ja/b/b5/Noimage_image.png">
     <div class="col">
       <table class="table">
         <thead>
           <tr>
+            <th scope="col"></th>
             <th scope="col">アーティスト</th>
             <th scope="col">シングル／アルバム名</th>
             <th scope="col">価格</th>
@@ -23,6 +23,7 @@
       <% @item.each do |item| %>
         <tbody>
          <tr>
+            <td><%= attachment_image_tag item.image_id, :image, :fill, 200, 200, :size => "50x50", fallback: "no-item-image.jpg" %></td>
             <td><%= item.artist.artist_name %></td>
             <td><%= item.item_name %></td>
             <td><%= @cart.price %>円</td>
@@ -54,7 +55,7 @@
     <div class="col">
 
       <h4>お支払い方法</h4>
-      <p><%= @order.payment %></p>
+      <p><%= @payment %></p>
       <p>クレジットカード情報</p>
       <a>No. <%= @credit.card_number %>
       有効期限　<%= @credit.month %> / <%= @credit.year %>
@@ -64,8 +65,11 @@
   <div class="row">
     <div class="col-md-4 offset-8">
       <%= link_to "受注情報編集", edit_admin_order_path(@order), class: 'btn btn-light' %>
-<br>
-<br>
     </div>
   </div>
 </div>
+<br>
+<br>
+<br>
+<br>
+<br>

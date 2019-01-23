@@ -3,6 +3,7 @@ class User::CreditsController < ApplicationController
 
   def new
   	@credit_card = CreditCard.new
+    @cart = ShoppingCart.find(params[:id])
   end
 
   def create
