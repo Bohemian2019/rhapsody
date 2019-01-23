@@ -1,30 +1,61 @@
 <div class="container">
-  <div class="row justify-content-md-center">
-    <div class="col-md-10">
+  <div class="row justify-content-md-center mb-lg-5">
+    <div class="col-md-10 mx-auto">
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
       <h2>商品新規追加</h2><br>
 
-      <!-- form section -->
-      <%= form_for @item do |f| %>
+      <!-- Form section -->
+      <%= form_for @item, url: admin_create_item_path do |f| %>
+        <!-- Error messages -->
+        <%= render "layouts/error_messages", model: f.object %>
         <div class="form-group">
           <%= f.label :artist_id %><br>
           <%= f.text_field :artist_id, class: "form-control", placeholder: "アーティスト名" %>
         </div>
         <div class="form-group">
-          <%= f.label :name %><br>
-          <%= f.text_field :name, class: "form-control", placeholder: "コミュニティ名" %>
+          <%= f.label :item_name %><br>
+          <%= f.text_field :item_name, class: "form-control", placeholder: "アルバム/シングル名" %>
         </div>
         <div class="form-group">
-          <%= f.label :introduction %><br>
-          <%= f.text_area :introduction, class: "form-control", placeholder: "コミュニティ紹介文" %>
+          <%= attachment_image_tag f.object, :image, :fill, 100, 100, format: "jpg", :size => "100x100", fallback: "no-item-image.jpg" %><br>
+          <%= f.label :image %><br>
+          <%= f.attachment_field :image, class: "form-control-file", placeholder: "item_image" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :price %><br>
+          <%= f.text_field :price, class: "form-control", placeholder: "価格" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :label_id %><br>
+          <%= f.text_field :label_id, class: "form-control", placeholder: "レーベル名" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :genre %><br>
+          <%= f.select :genre,[
+            ["J-pop", "j-pop"],
+            ["ロック", "rock"],
+            ["ジャズ", "jazz"],
+            ["クラシック", "classical"],
+            ["ダンス", "dance"],
+            ["R&B", "r&b"],
+            ["メタル", "metal"]
+          ], {}, class: "form-control", placeholder: "ジャンル名" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :stock%><br>
+          <%= f.text_field :stock, class: "form-control", placeholder: "在庫数" %>
         </div>
         <div class="form-action">
-          <%= f.submit "リクエスト送信", class: "btn btn-outline-success" %>
+          <%= f.submit "登録", class: "btn btn-lg btn-outline-success" %>
         </div>
       <% end %>
     </div>
   </div>
+  <br>
+  <br>
+  <br>
+  <br>
 </div>
 
 

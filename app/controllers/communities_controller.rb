@@ -21,23 +21,20 @@ class CommunitiesController < ApplicationController
   end
 
   def new
-    #@community_request = CommunityRequestForm.new
+    @community_request = CommunityRequestForm.new
     @community = Community.new
   end
 
   def create
-    #@community_request = CommunityRequestForm.new(community_request_params)
-    #artist_id = Artist.find_by(artist_name: @community.artist_name).id
-    #community = Community.new(name: @community_request.name,
-    #                          artist_id: artist_id,
-    #                          introduction: @community_request.introduction)
-    #formからattributesを取得して、それを元にデータベースに追加
-    @community = Community.new(community_params)
-    if Artist.exists?(artist_name: @community.artist_name)
-      @community[:artist_id] = Artist.find_by(artist_name: @community.artist_name).id
+    @community_request = CommunityRequestForm.new(community_request_form_params)
+    @community = Community.new
+    if Artist.exists?(artist_name: @community_request.artist_name)
+      @community[:artist_id] = Artist.find_by(artist_name: @community_request.artist_name).id
+    else
+      @community[:artist_id] = 0
     end
-    @community[:name] = @community.name
-    @community[:introduction] = @community.introduction
+    @community[:name] = @community_request.name
+    @community[:introduction] = @community_request.introduction
     if @community.save
       redirect_to root_path 
       flash[:notice] = "コミュニティリクエストを受け付けました"
@@ -48,7 +45,7 @@ class CommunitiesController < ApplicationController
 
   private
 
-  def community_params
-    params.require(:community).permit(:artist_name, :name, :introduction)
+  def community_request_form_params
+    params.require(:community_request_form).permit(:artist_name, :name, :introduction)
   end
 end
