@@ -4,30 +4,30 @@
 			<h1>定期購買申請</h1>
 		</div>
 	</div>
-
 	<div class="row">
-		<h4>アーティスト名 Mr.children</h4>
+		<h4>アーティスト名 <%= @community.name %></h4>
 	</div>
 <br>
 
 	<div class="row">
-		<img src="https://upload.wikimedia.org/wikipedia/ja/b/b5/Noimage_image.png">
+		<div class="image">
+      		<%= attachment_image_tag @community.image_id, :image, :fill, 200, 200, :size => "100x100", fallback: "no-user-image.jpg" %>
+    	</div>
 		<div class="col">
-			<h4><br>紹介文</h4>
-			<p>ミスチル好き集まれ！</p>
+			<h5>紹介文</h5>
+			<p><%= @community.introduction %></p>
 		</div>
 	</div>
 <br>
-		<div class="col-md-9 offset-md-3">
-			<h4>お支払い方法</h4>
-			<form action="cgi-bin/abc.cgi" method="post">
-			<p>
-			<input type="checkbox" name="payment" value="1" checked="checked">クレジットカード
-			</p>
-			<p>
-			<%= link_to "申請する", "orders_confirmation_path", class: "btn btn-light" %>
-			</p>
-			</form>
+		<%= form_for(@payment, url: user_credits_path) do |f| %>
+		<h4>お支払い方法</h4>
+		<div class="checkbox">
+			<%= form.label :chekckbox %>
+    		<%= form.check_box :checkbox, "チェックボックス" %>
+    	</div>
+  		<div class="action">
+			<%= f.submit class: "btn btn-light" %>
 		</div>
-	</div>
+		<% end %>
+
 </div>

@@ -1,7 +1,7 @@
 class Community::QuestionsController < ApplicationController
   def index
     @community = Community.find(params[:id])
-    @questions = Question.where(community_id: @community.id)
+    @questions = Question.where(community_id: @community.id).page(params[:page]).per(10)
   end
 
   def delete
