@@ -19,7 +19,7 @@
 		</div>
 	</div>
 <br>
-		<%= form_for(@payment, url: user_credits_path) do |f| %>
+		<%= form_for(@order.payment, url: user_credits_path) do |f| %>
 		<h4>お支払い方法</h4>
 		<div class="checkbox">
 			<%= form.label :chekckbox %>

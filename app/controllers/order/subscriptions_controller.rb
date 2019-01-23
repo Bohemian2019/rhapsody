@@ -1,7 +1,7 @@
 class Order::SubscriptionsController < ApplicationController
   def new
   	@subscription = Subscription.new
-    @community = Community.where(id: '1').first
+    @order = Order.find(params[:id])
   end
 
   def create

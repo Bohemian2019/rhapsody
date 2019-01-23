@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   mount RailsAdmin::Engine => '/administrator', as: 'rails_admin'
   # devise
-  devise_for :users
+  devise_for :users, :controllers => {
+    :registrations => 'users/registrations'
+  }
   get 'admin/sign_in', action: :new, controller: 'devise/sessions'
   post 'admin/sign_in', action: :create, controller: 'devise/sessions'
 
