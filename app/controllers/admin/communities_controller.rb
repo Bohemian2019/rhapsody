@@ -3,7 +3,7 @@ class Admin::CommunitiesController < ApplicationController
   end
 
   def request_index
-  	@community = Community.where(is_active: 't').page(params[:page]).per(10)
+  	@community = Community.where(is_active: 'f').page(params[:page]).per(10)
   end
 
   def delete
