@@ -1,54 +1,63 @@
 <div class="container">
 
   <h2>注文確認</h2>
- 
+
  <!-- 住所表示部分 -->
   <div>
     <h3><u>住所</u></h3>
-    <p><span>〒</span><span><%= @order.postal_code %></span></p>
-    <p><%= @order.address %></p>
+    <p>〒<%= @shoppingcart.user.postal_code %></p>
+    <p><%= @shoppingcart.user.address %></p>
   </div>
 
 
 
-<!-- 支払い、アーティスト,シングル,アルバム表示部分 -->
+<!-- 支払い方法 -->
   <div class="row">
   	<div class="col-lg-3">
   	  <h3><u>支払い方法</u></h3>
 
-  	  <!-- あとで記入変更 -->
-  	  <div>
-  	    <input type="checkbox" name="riyu" value="1">銀行振り込み
+  	  <!-- 銀行振込とクレジットカード選択 -->
+  <%= form_for @order, url:shopping_cart_path do |f| %>
+
+      <div>
+        <label><%= f.radio_button :payment, "2" ,{:checked => true} %> 銀行振込</label>
       </div>
       <div>
-  	    <input type="checkbox" name="riyu" value="2">クレジットカード
+        <label><%= f.radio_button :payment, "1" %>  クレジットカード</label>
       </div>
+
     </div>
 
-  <% @item.each do |post| %>
+<!-- アーティスト,シングル,アルバム表示部分 -->
     <div class="col-lg-9">
       <table class="table">
         <thead>
           <tr>
       	    <th>アーティスト名</th>
       	    <th>アルバム名/シングル名</th>
+            <th>値段</th>
+            <th>枚数</th>
           </tr>
         </thead>
+        <% @cartitems.each do |post| %>
         <tbody>
   	      <tr>
-  	        <td>（アーティスト名表示）</td>
-  	        <td>（アルバム/シングル名表示）</td>
+  	        <td><%= post.item.artist.artist_name %></td>
+  	        <td><%= post.item.item_name %></td>
+            <td><%= post.item.price %>円</td>
+            <td><%= post.quantity %>枚</td>
   	      </tr>
         </tbody>
+        <% end %>
       </table>
     </div>
-  <% end %>
+  
   
   </div>
 
-<!-- 合計 -->
+<!-- 商品合計 -->
 　<div class="col-lg-5 offset-lg-8">
-　  <h3><u><span>合計¥　</span><span>（値段表示）</span><span>円</span></u></h3>
+　  <h3><u>合計¥ <%= @pricesums %>円</u></h3>
   </div>
 
 
@@ -56,8 +65,10 @@
   <div class="row">
   	<div class="col-lg-4 offset-lg-10">
       <%= link_to '戻る', shopping_cart_show_path, class: 'btn btn-light' %>
-      <%= link_to '注文', orders_confirmation_path, class: 'btn btn-light' %>
+      <%= f.submit "注文", class: "col-lg-1　btn btn-light" %>
     </div>
   </div>
 
+
+  <% end %>
 </div>
