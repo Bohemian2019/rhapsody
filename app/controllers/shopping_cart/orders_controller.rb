@@ -26,10 +26,16 @@ class ShoppingCart::OrdersController < ApplicationController
       @order.save
       # cartitemテーブルのprice保存
       @cartitems = CartItem.where(shopping_cart_id: params[:id])
+      @userpoint = current_user.point
       @cartitems.each do |f|
         f.price = f.item.price
+        # point加算計算(1枚100点)
+        @userpoint += 100
       end
       @cartitems.update(cartitem_params)
+      # point合計保存
+      current_user.point = @userpoint
+      current_user.update(user_params)
       # shppingcartテーブルis_active falseに更新
       shoppingcart = ShoppingCart.find(params[:id])
       shoppingcart.is_active = false
@@ -51,5 +57,8 @@ class ShoppingCart::OrdersController < ApplicationController
   end
   def shoppingcart_params
     params.permit(:is_active)
+  end
+  def user_params
+    params.permit(:point)
   end
 end
