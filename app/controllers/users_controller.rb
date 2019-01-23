@@ -47,6 +47,13 @@ class UsersController < ApplicationController
   def cancel_show
   end
 
+  def cancel_update
+    @user = User.find(current_user.id)
+    @user.is_active = false
+    @user.update(users_params)
+    redirect_to logout_path
+  end
+
   def ranking_show
     @users = User.where(admin: false).order("point DESC")
   end
@@ -59,5 +66,8 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:postal_code, :address, :phone_number, :email, :password, :image, :introduction)
+  end
+  def users_params
+    params.permit(:is_active)
   end
 end
