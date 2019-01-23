@@ -31,7 +31,7 @@
                   <div class="col-lg-9">
                     <p><%= post.answer %></p>
                   </div>
-                  <!-- 管理者だけ表示 -->
+                  <!-- 後で管理者だけ表示させる -->
                   <%= link_to '削除', community_question_path(@community, @qa.id, :answer_id => post.id), method: :delete, class: 'btn btn-link', "data-confirm" => "Are you sure?" %>
                 </div>
               </span>

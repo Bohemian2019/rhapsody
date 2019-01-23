@@ -12,7 +12,7 @@
 <div class="row">
   <div class="col-lg-9 offset-lg-1">
 
-<!-- 質問投稿後で変更 -->
+<!-- 質問投稿 -->
     <%= form_for @question, url: community_question_new_path(@community.id) do |f| %>
     <%= f.text_field :question, class: "col-lg-8" %>
     <%= f.submit "送信", class: "col-lg-1" %>
