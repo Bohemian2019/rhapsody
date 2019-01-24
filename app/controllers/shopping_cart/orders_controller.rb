@@ -1,19 +1,21 @@
 class ShoppingCart::OrdersController < ApplicationController
 
   def new
-  	@order = Order.find(params[:id])
-  	@shoppingcarts = ShoppingCart.all
-  	@items = @shoppingcarts.user_id
-  	
+    @order = Order.new
+    @shoppingcart = ShoppingCart.find(params[:id])
+    @cartitems = CartItem.where(shopping_cart_id: @shoppingcart.id)
+    # 商品計算合計
+    @pricesums = 0
+    @cartitems.each do |f|
+      @pricesums += (f.item.price*f.quantity)
+    end
   end
 
-<<<<<<< Updated upstream
-end
-=======
   def sent
-    if @credit == 1 && CreditCard.where(user_id: current_user.id).empty? == true
+    @order = Order.new(order_params)
+    if @order.payment == 1 && CreditCard.where(user_id: current_user.id).empty? == true
       # クレジットカード払いで登録してない方
-      redirect_to new_user_credit_path(shopping_cart_id: params[:id], commuity_id: 0)
+      redirect_to new_user_credit_path, shopping_cart_id: params[:id]
     else
       # 銀行振込・クレジットカード払いで登録済みの方
       # orderテーブルの保存
@@ -60,4 +62,3 @@ end
     params.permit(:point)
   end
 end
->>>>>>> Stashed changes
