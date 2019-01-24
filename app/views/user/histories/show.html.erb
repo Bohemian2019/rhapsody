@@ -10,17 +10,17 @@
 
 <!-- ジャケット画像 -->
     <div class="col-lg-4">
-      <%= attachment_image_tag @history.item, :image, :fill, 100, 100, :size => "300x300", fallback: "no-user-image.jpg" %>
+      <%= attachment_image_tag @history.item, :image, :fill, 100, 100, :size => "300x300", fallback: "no-item-image.jpg" %>
     </div>
 
       <!-- ステータス部分は後で変更する -->
     <div class="col-lg-4">
       <p><%= @history.item.artist.artist_name %></p>
       <p><%= @history.item.item_name %></p>
-      <p><span>価格:¥</span><span><%= @history.price %></span></p>
-      <p><sapn>購入日:</span><span><%= @history.shopping_cart.order.created_at.strftime('%Y年%m月%d日') %></sapn></p>
-      <p><span>送付先:</span><span><%= @history.shopping_cart.order.address %></span></p>
-      <p><span>ステータス:</span><span><%= @history.shopping_cart.order.status %></span></p>
+      <p>価格:¥ <%= @history.price %></p>
+      <p>購入日: <%= @history.shopping_cart.order.created_at.strftime('%Y年%m月%d日') %></p>
+      <p>送付先: <%= @history.shopping_cart.order.address %></p>
+      <p>ステータス: <%= @history.shopping_cart.order.status %></p>
     </div>
   </div>
 

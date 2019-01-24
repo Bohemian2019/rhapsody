@@ -176,7 +176,14 @@ Item.create(
   ]
 )
 
-Song.create(:item_id => '1',:disc_number => '1',:song_number => '1',:name => 'lalala')
+Song.create(
+  [
+    {:item_id => '1',:disc_number => '1',:song_number => '1',:name => 'lalala'},
+    {:item_id => '1',:disc_number => '2',:song_number => '1',:name => 'gogogo'},
+    {:item_id => '2',:disc_number => '1',:song_number => '1',:name => 'kokoko'},
+
+  ]
+)
 
 
 CartItem.create(

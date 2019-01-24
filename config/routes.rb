@@ -8,6 +8,11 @@ Rails.application.routes.draw do
   get 'admin/sign_in', action: :new, controller: 'devise/sessions'
   post 'admin/sign_in', action: :create, controller: 'devise/sessions'
 
+  # 退会ページからlogout用ルーティング
+  devise_scope :user do
+   get '/logout', to: 'devise/sessions#destroy', as: :logout
+  end
+
   # admin/
   namespace :admin do
     # subscriptions
@@ -34,7 +39,7 @@ Rails.application.routes.draw do
   namespace :shopping_cart do
     # orders
     get ':id/order', to: 'orders#new', as: :order_new
-    post ':id/order', to: 'orders#send'
+    post ':id/order', to: 'orders#sent'
   end
 
   # admins
@@ -78,8 +83,12 @@ Rails.application.routes.draw do
   get 'community/request/new', to: 'communities#new', as: :new_community
   post 'communiy/requests', to: 'communities#create', as: :communities
 
+  # cart_items
+  post 'items/:id', to: 'items#cart_create', as: :cart_items
+
   # items
-  resources :items, only: [:show, :update]
+  resources :items, only: [:show]
+  post '/items/:id', to: 'items#update'
   get '/admin/item/new', to: 'items#new', as: :admin_new_item
   post '/admin/item/new', to: 'items#create', as: :admin_create_item
   get '/admin/item/edit', to: 'items#edit', as: :admin_edit_item
@@ -90,7 +99,7 @@ Rails.application.routes.draw do
   get 'ranking', to: 'users#ranking_show', as: :users_ranking
   get 'users/:id/my_community', to: 'users#my_community_index', as: :users_my_community
   get '/users/cancel/show', to: 'users#cancel_show', as: :users_cancel_show
-  patch '/users/cancel/show', to: 'useers#cancel_update'
+  patch '/users/cancel/show', to: 'users#cancel_update'
 
   # user/
   namespace :user do
@@ -104,4 +113,5 @@ Rails.application.routes.draw do
 
   # home
   root to: 'home#index'
+
 end

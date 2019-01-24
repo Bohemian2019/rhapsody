@@ -1,98 +1,106 @@
-<h1>Items#show</h1>
-<p>Find me in app/views/items/show.html.erb</p>
-
-
-<div class="container">
-	<div class="row">
-		<div class="col-lg-9">
-			<h2>商品詳細</h2>
-		</div>
-		<!-- 管理者のみ表示 -->
-		　  <div class="col-lg-1">
-			<%= link_to '編集', items_edit_path, class: 'btn btn-light' %>
-		</div>
-		<div class="col-lg-1">
-			<!-- 商品削除処理後、商品一覧画面へ遷移-->
-			<%= link_to '削除', users_show_path, class: 'btn btn-light' %>
-		</div>
-		<!-- 管理者のみ表示 -->
+<div class="container" >
+  <div class="row" >
+	<div class="col-lg-9">
+	  <h2>商品詳細</h2>
+	</div>
+	<!-- 管理者のみ表示 -->
+	<% if user_signed_in? && current_user.admin == true %>
+	  <div class="col-lg-1">
+		<%= link_to '編集', admin_edit_item_path, class: 'btn btn-light' %>
+	  </div>
+	  <div class="col-lg-1">
+		<!-- 商品削除処理後、商品一覧画面へ遷移-->
+		<%= link_to '削除', search_index_path, class: 'btn btn-light' %>
+	  </div>
+	<% end %>
 	</div>
 	<!-- 上段：画像、収録曲 -->
 	<div class="row">
-
-		<!-- 商品画像表示 -->
-		<div class="col-lg-4" style="background-color: green";>
-			<h2>商品画像</h2>
-			<!-- attachment_image_tag ジャケット画像 -->
+	  <!-- 商品画像表示 -->
+		<div class="col-lg-5">
+		  <%= attachment_image_tag @item, :image, :fill, 100, 100, :size => "300x300", fallback: "no-item-image.jpg" %>
 		</div>
-		<!-- 商品画像表示 ここまで-->
 
 		<!-- 曲表示 -->
-		<div class="col-lg-8">
-			<h5>収録曲</h5>
-
-			<table class="songs">
+		<div class="col-lg-7">
+		  <h5>収録曲</h5>
+		  <div class="row">
+		    <% @count.times do |c| %>
+		      <table class="table table-borderless table-sm col-md-4">
+			    <thead>
+				<!-- 2枚組以上の場合、Disc毎のヘッダーを表示 -->
+				<% if @count >= 2 %>
+			  	  <% num = c+1 %>
+			  	    <tr>
+			  		  <th scope="col"><%= "<Disc#{num}>" %></th>
+			  		</tr>
 				<thead>
-					<tr>
-						<!-- ループ処理　曲表示 -->
-						<tr>
-							<th>1.</th> 
-							<th>Song#1 </th>
-						</tr>
-						<tr><th>2.</th><th>Song#2 </th></tr>
-						<tr><th>3.</th><th>Song#3 </th></tr>
-						<tr><th>4.</th><th>Song#4 </th></tr>
-						<tr><th>5.</th><th>Song#5 </th></tr>
-						<tr><th>6.</th><th>Song#6 </th></tr>
-						<tr><th>7.</th><th>Song#7 </th></tr>
-						<tr><th>8.</th><th>Song#8 </th></tr>
-						<tr><th>9.</th><th>Song#9 </th></tr>
-						<!-- ループ処理　曲表示 -->
-					</tr>
-				</thead>
-			</table>
+				<tbody>
+        	  	  <% eval("@disc#{num}").each.with_index(1) do |d,i| %>
+        	  	    <tr>
+        			  <td><%= "#{i}." %><%= d.name %></td>
+        	        </tr>
+        		  <% end %>
+        		<% else %>
+        		<!-- １枚組の場合 -->
+        	  	<% @songs.each.with_index(1) do |s,i| %>
+        	 	  <tr>
+          		    <td><%= "#{i}." %><%= s.name %></td>
+        		  </tr>
+        	    <% end %>
+        	    <% end %>
+        	     </tbody>
+              </table>
+            <% end %>
 		</div>
-		<!-- 曲表示 ここまで-->
+	  </div>
 	</div>
-	<!-- 上段：画像、収録曲 ここまで-->
 
-	<br>
-	<br>
-	
 	<!-- 下段：詳細情報 -->
-	<div class="detail">
-		<table class="details">
-			<thead>
-				<tr>
-					<!-- ループ処理　曲表示 -->
-					<!-- 各rowの2つ目のヘッダーにform_forで情報挿入 -->
-					<tr>
-						<th>・アーティスト名</th> 
-						<!-- attachment_text アーティスト名 -->
-						<th>Mr.Children </th>
-					</tr>
-					<tr><th>・シングル/アルバム名</th><th>ミスターの子供 </th></tr>
-					<tr><th>・レーベル</th><th>トイズファクトリー </th></tr>
-					<tr><th>・ジャンル</th><th>J-POP </th></tr>
-					<tr><th>・発売日</th><th>2019/03/11 </th></tr>
-					<tr><th>・在庫数</th><th>残り5枚 </th></tr>
-					<!-- ループ処理　曲表示 -->
-				</tr>
-			</thead>
-		</table>
+	<div class="row">
+	  <table class="row table table-borderless col-md-12">
+	    <thead>
+		  <tr>
+	   	    <th scope="row">・アーティスト</th>
+		    <td><%= @item.artist.artist_name %></td>
+		  </tr>
+          <tr>
+            <th scope="row">・シングル/アルバム</th>
+            <td><%= @item.item_name %></td>
+          </tr>
+          <tr>
+            <th scope="row">・レーベル</th>
+            <td><%= @item.label.label_name %></td>
+          </tr>
+          <tr>
+            <th scope="row">・ジャンル</th>
+            <td><%= @item.item_name %></td>
+          </tr>
+          <tr>
+            <th scope="row">・発売日</th>
+            <td><%= l @item.created_at, format: :long %></td>
+          </tr>
+          <tr>
+            <th scope="row">・在庫数</th>
+            <td><%= @item.stock %></td>
+          </tr>
+        </thead>
+	  </table>
 	</div>
-	<!-- 下段：詳細情報 ここまで-->
 
 	<!-- 最下段：カート追加-->
-	<!-- 右端に寄せる -->
-	<div class="add_cart"  >
-		<p>
+	<% if user_signed_in? %>
+	<div class="add_cart col-lg-12 text-right">
+		<%= form_for(@cart_item) do |f| %>
+		<div >
 			<strong>購入枚数</strong>
-			<input type="text" size="5" value="0">
+			<%= f.text_field :quantity, class: "col-sm-1" %>
 			<strong>枚</strong>
-			<!-- 送信後、カート画面へ遷移 -->
-			<button type="button" class="btn btn-light">カート追加
-		</p>
+			<%= f.submit 'カート追加', :class => "btn btn-light col-lg-2" %>
 		</div>
-		<!-- 最下段：カート追加　ここまで-->
-	</div>
+		<% end %>
+    </div>
+    <%end%>
+    <br>
+    <br>
+</div>

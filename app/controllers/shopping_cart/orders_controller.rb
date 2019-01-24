@@ -2,17 +2,19 @@ class ShoppingCart::OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    @shoppingcart = ShoppingCart.find(params[:id])
-    @cartitems = CartItem.where(shopping_cart_id: @shoppingcart.id)
+
+  	@shoppingcart = ShoppingCart.find(params[:id])
+  	@cartitems = CartItem.where(shopping_cart_id: @shoppingcart.id)
     # 商品計算合計
-    @pricesums = 0
-    @cartitems.each do |f|
-      @pricesums += (f.item.price*f.quantity)
-    end
+  	@pricesums = 0
+  	@cartitems.each do |f|
+  		@pricesums += (f.item.price*f.quantity)
+  	end
   end
 
   def sent
-    @order = Order.new(order_params)
+  	@order = Order.new(order_params)
+
     if @order.payment == 1 && CreditCard.where(user_id: current_user.id).empty? == true
       # クレジットカード払いで登録してない方
       redirect_to new_user_credit_path, shopping_cart_id: params[:id]

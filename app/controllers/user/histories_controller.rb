@@ -5,10 +5,18 @@ class User::HistoriesController < ApplicationController
 
   def index
   	@order = Order.find(params[:id])
-	@history = ShoppingCart.includes(:items => :artist).where(:id => (params[:id])).page(params[:page])
+	  @history = ShoppingCart.includes(:items => :artist).where(:id => (params[:id])).page(params[:page])
+    # 価格合計
+    @pricesums = 0
+    @history.each do |h|
+      h.cart_items.each do |ci|
+        @pricesums += (ci.price * ci.quantity)
+      end
+    end
   end
 
   def show
   	@history = CartItem.find(params[:id])
   end
 end
+
