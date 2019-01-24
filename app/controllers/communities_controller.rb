@@ -36,7 +36,7 @@ class CommunitiesController < ApplicationController
     @community[:name] = @community_request.name
     @community[:introduction] = @community_request.introduction
     if @community.save
-      redirect_to root_path 
+      redirect_to root_path
       flash[:notice] = "コミュニティリクエストを受け付けました"
     else
       render :new
@@ -47,5 +47,8 @@ class CommunitiesController < ApplicationController
 
   def community_request_form_params
     params.require(:community_request_form).permit(:artist_name, :name, :introduction)
+  end
+  def community_params
+    params.require(:community).permit(:artist_name, :name, :introduction)
   end
 end

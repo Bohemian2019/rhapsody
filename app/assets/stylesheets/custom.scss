@@ -1,9 +1,19 @@
 body {
-  padding-top: 70px;
+  padding-top: 90px;
+  font-family: 'Roboto', sans-serif;
 }
 .container {
   max-width: 1000px;
 }
 .navbar {
-  background: linear-gradient(0deg, #C69E2F, #BF1DD7);
+  font-family: 'Roboto', sans-serif;
+  //background: linear-gradient(0deg, #C69E2F, #BF1DD7);
+  background-color: #9b00f5;
+}
+.navbar-brand {
+  //font-weight: 500;
+  font-size: 1.75rem;
+}
+.nav-item {
+  font-size: 1.25rem;
 }

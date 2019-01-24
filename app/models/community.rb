@@ -14,7 +14,8 @@ class Community < ApplicationRecord
   has_many :questions, dependent: :destroy
 
   attachment :image
-  validates :artist_name_exist_in_database, presence: true
+  validate :artist_name_exist_in_database
+  attribute :artist_name
 
   # Search method
   def self.search(keyword)

@@ -23,10 +23,17 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     if Artist.exists?(artist_name: @item.artist_name)
       @item[:artist_id] = Artist.find_by(artist_name: @item.artist_name).id
+    else
+      @item[:artist_id] = 0
+    end
+    if Label.exists?(label_name: @item.label_name)
+      @item[:label_id] = Label.find_by(label_name: @item.label_name).id
+    else
+      @item[:label_id] = 0
     end
     
     if @item.save
-      redirect_to root_path
+      redirect_to admin_index_path
       flash[:notice] = "商品を新たに登録しました。"
     else
       render :new
@@ -57,6 +64,6 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:artist_name, :item_name, :image, :price, :label_name, :genre, :stock, :item_id, :label_id)
+    params.require(:item).permit(:artist_name, :item_name, :image, :price, :label_name, :genre, :stock, :item_id, :label_form, :artist_id, :label_id)
   end
 end
