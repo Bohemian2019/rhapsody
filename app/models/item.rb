@@ -5,7 +5,7 @@ class Item < ApplicationRecord
   has_many :shopping_carts, through: :cart_items, dependent: :destroy
   has_many :cart_items
   has_many :songs
-  accepts_nested_attributes_for :songs, allow_destroy: true
+  accepts_nested_attributes_for :songs, reject_if: :all_blank, allow_destroy: true
   belongs_to :artist
   belongs_to :label
 

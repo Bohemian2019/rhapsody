@@ -40,34 +40,47 @@
             ["クラシック", "classical"],
             ["ダンス", "dance"],
             ["R&B", "r&b"],
+            ["ヒップホップ", "hiphop"],
             ["メタル", "metal"]
           ], {}, class: "form-control", placeholder: "ジャンル名" %>
-        </div>
-        <div class="form-group">
-          <table class="table">
-            <tbody>
-              <tr>
-                <th>曲名</th>
-                <th>ディスク番号</th>
-                <th>Action</th>
-              </tr>
-              <%= f.nested_fields_for :songs, wrapper_tag: :tr do |ff| %>
-                <td><%= ff.text_field :name, class: "form-control" %></td>
-                <td><%= ff.number_field :disc_number, class: "form-control" %></td>
-                <td><%= ff.remove_nested_fields_link 'Delete', class: "btn btn-danger", role: "button" %></td>
-              <% end %>
-            </tbody>
-          </table>
-          <%= f.add_nested_fields_link :songs, 'Add new', class: "btn btn-primary", role: "button" %>
-        </div>
-        <div class="form-group">
-          <%= f.label :stock%><br>
-          <%= f.text_field :stock, class: "form-control", placeholder: "在庫数" %>
-        </div>
-        <div class="form-action">
-          <%= f.submit "登録", class: "btn btn-lg btn-outline-success" %>
-        </div>
-      <% end %>
+      </div>
+      <div class="form-group">
+        <%= f.label :songs %><br>
+
+        <table class="table">
+          <thead>
+            <tr class="nested-fields">
+              <th scope="col">#</th>
+              <th scope="col">曲名</th>
+              <th scope="col">ディスク番号</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody id="songs">
+            <%= f.fields_for :songs do |g| %>
+              <%= render "song_fields", f: g %>
+            <% end %>
+          </tbody>
+        </table>
+
+        <div class="link">
+          <%= link_to_add_association '追加', f, :songs,
+              class: "btn btn-primary",
+              data: {
+                association_insertion_node: "#songs",
+                association_insertion_method: "append"
+              }%>
+      </div>
+
+      </div>
+      <div class="form-group">
+        <%= f.label :stock%><br>
+        <%= f.text_field :stock, class: "form-control", placeholder: "在庫数" %>
+      </div>
+      <div class="form-action">
+        <%= f.submit "登録", class: "btn btn-lg btn-outline-success" %>
+      </div>
+    <% end %>
     </div>
   </div>
   <br>

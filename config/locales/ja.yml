@@ -14,6 +14,7 @@ ja:
         label_name: レーベル名
         genre: ジャンル
         stock: 在庫数
+        songs: 曲名
   activemodel:
     attributes:
       community_request_form:
