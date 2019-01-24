@@ -1,5 +1,8 @@
 class CommunitiesController < ApplicationController
   def show
+    @community = Community.find(params[:id])
+    @boards = BoardComment.all.page(params[:page]).per(10).order(id: "DESC")
+    @board = BoardComment.new
   end
 
   def qa_show

@@ -15,7 +15,7 @@ class ShoppingCart::OrdersController < ApplicationController
   	@order = Order.new(order_params)
     if @order.payment == 1 && CreditCard.where(user_id: current_user.id).empty? == true
       # クレジットカード払いで登録してない方
-      redirect_to new_user_credit_path, shopping_cart_id: params[:id]
+      redirect_to new_user_credit_path(shopping_cart_id: params[:id], community_id: 0)
     else
       # 銀行振込・クレジットカード払いで登録済みの方
       # orderテーブルの保存
