@@ -20,11 +20,12 @@
         </div>
         <div class="form-group">
           <%= f.label :image %><br>
-          <%= f.attachment_field :image, class: "form-control-file", placeholder: "item_image" %>
+          <%= f.attachment_field :image, class: "form-file-input", placeholder: "item_image" %>
         </div>
         <div class="form-group">
           <%= f.label :price %><br>
           <%= f.text_field :price, class: "form-control", placeholder: "価格" %>
+          <small class="form-text text-muted">価格は区切り無しの数値のみを入力してください</small>
         </div>
         <div class="form-group">
           <%= f.label :label_name %><br>
@@ -41,6 +42,23 @@
             ["R&B", "r&b"],
             ["メタル", "metal"]
           ], {}, class: "form-control", placeholder: "ジャンル名" %>
+        </div>
+        <div class="form-group">
+          <table class="table">
+            <tbody>
+              <tr>
+                <th>曲名</th>
+                <th>ディスク番号</th>
+                <th>Action</th>
+              </tr>
+              <%= f.nested_fields_for :songs, wrapper_tag: :tr do |ff| %>
+                <td><%= ff.text_field :name, class: "form-control" %></td>
+                <td><%= ff.number_field :disc_number, class: "form-control" %></td>
+                <td><%= ff.remove_nested_fields_link 'Delete', class: "btn btn-danger", role: "button" %></td>
+              <% end %>
+            </tbody>
+          </table>
+          <%= f.add_nested_fields_link :songs, 'Add new', class: "btn btn-primary", role: "button" %>
         </div>
         <div class="form-group">
           <%= f.label :stock%><br>
