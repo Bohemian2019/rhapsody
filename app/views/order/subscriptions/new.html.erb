@@ -27,7 +27,7 @@
     </div>
     <div class="row">
 		<div class="col">
-			<%= link_to "申請する", order_artist_subscriptions_path(@community), class: "btn btn-light" %>
+			<%= link_to "申請する", order_artist_subscriptions_path(community_id: @community.id, shopping_cart_id: 0), method: :post, class: "btn btn-light" %>
 		</div>
 	</div>
 </div>

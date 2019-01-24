@@ -1,24 +1,21 @@
 class Order::SubscriptionsController < ApplicationController
   def new
-    @community = Community.find(params[:id])
+    @community = Community.find(params[:community_id])
   end
 
-  def create
-    community = Community.find(params[:id])
+  def add
+    community = Community.find(params[:community_id])
     if CreditCard.where(user_id: current_user.id).empty? == true
-      redirect_to new_user_credit_path(shopping_cart_id: 0, commuity_id: params[:id])
+      redirect_to new_user_credit_path(shopping_cart_id: 0, community_id: community.id)
     else
-    subscripiton = Subscription.new(subscripiton_params)
-  	subscripiton.user_id = current_user.id
-    subscripiton.artist_id = community.artist_id
+    subscription = Subscription.new
+  	subscription.user_id = current_user.id
+    subscription.artist_id = community.artist_id
     subscription.save
     #ポップアップで定期購買承りましたを表示
-    redirect_to community_show_path(@community)
+    redirect_to communities_show_path(community.id)
     end
   end
 
-  private
-  def subscription_params
-    params.require(:subscription).permit(:user_id, :artist_id)
-  end
+
 end
