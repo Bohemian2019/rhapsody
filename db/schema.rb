@@ -38,8 +38,8 @@ ActiveRecord::Schema.define(version: 2019_01_12_083355) do
   end
 
   create_table "cart_items", force: :cascade do |t|
-    t.integer "shopping_cart_id", null: false
-    t.integer "item_id", null: false
+    t.bigint "item_id", null: false
+    t.bigint "shopping_cart_id", null: false
     t.integer "price"
     t.integer "quantity", default: 1, null: false
     t.datetime "created_at", null: false
@@ -161,4 +161,6 @@ ActiveRecord::Schema.define(version: 2019_01_12_083355) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "cart_items", "items"
+  add_foreign_key "cart_items", "shopping_carts"
 end

@@ -106,7 +106,8 @@ Artist.create(
 Label.create(
   [
     {:label_name => 'Infratop'},
-    {:label_name => 'Bluenote'}
+    {:label_name => 'Bluenote'},
+    {:label_name => 'Universal Music'}
   ]
 )
 
