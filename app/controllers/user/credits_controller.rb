@@ -16,7 +16,7 @@ class User::CreditsController < ApplicationController
     if community.nil? == true
       redirect_to shopping_cart_order_new_path(shopping)
     else
-      redirect_to order_subscription_new_path(community)
+      redirect_to order_subscription_new_path(community_id: community)
     end
   end
 
