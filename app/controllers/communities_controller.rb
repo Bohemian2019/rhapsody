@@ -2,6 +2,12 @@ class CommunitiesController < ApplicationController
   def show
     @community = Community.find(params[:id])
     @boards = BoardComment.all.page(params[:page]).per(10).order(id: "DESC")
+    @pagenum = params[:page]
+    if 2 > @pagenum.to_i
+      @page = 1
+    else
+      @page = (10 * @pagenum.to_i) - 10
+    end
     @board = BoardComment.new
   end
 

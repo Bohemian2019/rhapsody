@@ -32,11 +32,11 @@
   <!-- 掲示板一覧 -->
   <h4>コミュニティ掲示板</h4>
 
-  <% @boards.each do |com| %>
+  <% @boards.each.with_index(@page)	 do |com, i| %>
 
-  <ol class="row">
-  	<div class="col-lg-1">
-    <li><strong><%= com.user.name %>.</strong></li>
+  <div class="row">
+  	<div class="col-lg-2">
+    <p><strong><%= i %>.<%= com.user.name %>.</strong></p>
     </div>
     <div class="col-lg-9">
     <p><%= com.comment %></p>
@@ -44,7 +44,7 @@
     <div class="col-lg-1">
     <%= link_to '削除', community_path(@community.id, :board_comment_id => com.id), method: :delete, class: 'btn btn-link', "data-confirm" => "Are you sure?" %>
     </div>
-  </ol>
+  </div>
 
   <% end %>
 <!-- ページネーション -->
