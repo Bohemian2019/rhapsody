@@ -11,10 +11,11 @@ class ArtistsController < ApplicationController
     @artist = Artist.new(artist_params)
 
     if @artist.save
-      render json: { result: "ok", artist: @artist }
-      
+      #render json: { result: "ok", artist: @artist }
+      flash[:notice] = "アーティストが登録されました。"
     else
-      render json: { result: "ng", msg: @artist.errors.messages }
+      #render json: { result: "ng", msg: @artist.errors.messages }
+      render :new
     end
   end
 
