@@ -7,6 +7,12 @@ class Community::CommentsController < ApplicationController
     redirect_to communities_show_path(params[:id])
   end
 
+  def delete
+    boardcomment = BoardComment.find_by(id: params[:board_comment_id])
+    boardcomment.destroy
+    redirect_to communities_show_path(params[:id])
+  end
+
 
   private
   def boardcomment_params
