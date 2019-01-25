@@ -1,0 +1,21 @@
+class ArtistsController < ApplicationController
+  def new
+    @artist = Artist.new
+  end
+
+  def create
+    @artist = Artist.new(artist_params)
+
+    if @artist.save
+      render json: { result: "ok", artist: @artist }
+    else
+      render json: { result: "ng", msg: @artist.errors.messages }
+    end
+  end
+
+  private
+
+  def artist_params
+    params.require(:artist).permit(:artist_name)
+  end
+end
