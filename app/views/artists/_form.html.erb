@@ -5,7 +5,7 @@
   </button>
 </div>
 <div class="modal-body">
-  <%= form_with model: @artist, url: artists_path, id: "artist-create-form" do |ff| %>
+  <%= form_with model: @artist, remote: true, url: artists_path, id: "artist-create-form" do |ff| %>
     <%= render "layouts/error_messages", model: @artist %>
 
     <%= ff.label :artist_name, class: "form-control-label" %>

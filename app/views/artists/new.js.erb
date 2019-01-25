@@ -1,7 +1,9 @@
-$("#artist-modal").find(".modal-content").html("<%= escape_javascript(render 'form') %>");
+$(function() {
+  $("#artist-modal").find(".modal-content").html("<%= escape_javascript(render 'form') %>");
 
-$("#artist-modal").modal("show");
+  $("#artist-modal").modal();
 
-$("#artist-submit").on("click", function() {
-  Rails.fire($("artist-create-form")[0], "submit");
-})
+  $("#artist-submit").on("click", function() {
+    Rails.fire($("#artist-create-form")[0], "submit");
+  });
+});

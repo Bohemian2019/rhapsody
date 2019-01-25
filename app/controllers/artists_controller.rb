@@ -1,6 +1,10 @@
 class ArtistsController < ApplicationController
   def new
     @artist = Artist.new
+
+    #respond_to do |format|
+    #  format.js
+    #end
   end
 
   def create
@@ -8,6 +12,7 @@ class ArtistsController < ApplicationController
 
     if @artist.save
       render json: { result: "ok", artist: @artist }
+      
     else
       render json: { result: "ng", msg: @artist.errors.messages }
     end
