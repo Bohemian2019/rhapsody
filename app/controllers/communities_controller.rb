@@ -1,7 +1,8 @@
 class CommunitiesController < ApplicationController
   def show
     @community = Community.find(params[:id])
-    @boards = BoardComment.all.page(params[:page]).per(10).order(id: "DESC")
+    @boards = BoardComment.all.where(community_id: @community.id).page(params[:page]).per(10).order(id: "DESC")
+    # 番号表示
     @pagenum = params[:page]
     if 2 > @pagenum.to_i
       @page = 1

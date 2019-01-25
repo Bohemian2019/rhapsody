@@ -32,7 +32,9 @@
                     <p><%= post.answer %></p>
                   </div>
                   <!-- 後で管理者だけ表示させる -->
+                  <% if current_user.admin == true %>
                   <%= link_to '削除', community_question_path(@community, @qa.id, :answer_id => post.id), method: :delete, class: 'btn btn-link', "data-confirm" => "Are you sure?" %>
+                  <% end %>
                 </div>
               </span>
               </h4>
