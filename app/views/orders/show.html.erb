@@ -3,6 +3,13 @@
     <div class="col-md-10 mx-auto my-lg-4">
       <h3>ご注文番号: <%= @order.id %></h3><br>
       <h1>ご注文ありがとうございました。</h1>
+      <% if @order.payment == 2 %>
+        <h2>お支払い方法: 銀行振込</h2>
+        <h2>お支払い期限: <%= l @order.created_at.since(7.days), format: :long %></h2>
+        <h2>お支払い先</h2>
+        <h3>クイーン銀行 ボヘミアン支店</h3>
+        <h3>普通 123456 カ)ボヘミアン</h3>
+      <% end %>
     </div>
   </div>
   <br>
