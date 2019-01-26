@@ -1,5 +1,9 @@
 class Order < ApplicationRecord
 
+  validates :postal_code, length: { in: 6..8 }
+  validates :address, presence: true
+  validates :postal_code, presence: true
+
   belongs_to :shopping_cart
 
   # Search method

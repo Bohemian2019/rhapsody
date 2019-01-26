@@ -20,7 +20,7 @@
       <p>価格:¥ <%= @history.price %></p>
       <p>購入日: <%= @history.shopping_cart.order.created_at.strftime('%Y年%m月%d日') %></p>
       <p>送付先: <%= @history.shopping_cart.order.address %></p>
-      <p>ステータス: <%= @history.shopping_cart.order.status %></p>
+      <p>ステータス: <%= @status %></p>
     </div>
   </div>
 
