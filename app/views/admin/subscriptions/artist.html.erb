@@ -11,26 +11,25 @@
           <th>     </th>
         </tr>
       </thead>
-      <% @user.each do |user| %>
+      <% @subscription.each do |subscription| %>
       <tbody>
         <tr>
-          <td><%= user.name %></td>
-          <td><%= link_to "詳細", user_path(user.id), class: "btn btn-light" %></td>
+          <td><%= subscription.user.name %></td>
+          <td><%= link_to "詳細", user_path(subscription.user.id), class: "btn btn-light" %></td>
         </tr>
       </tbody>
       <% end %>
     </table>
-    <%= paginate @user, class: "pagenate" %>
+    <%= paginate @subscription, class: "pagenate" %>
   </div>
-
-    <div class="row">
-      <div class="col-md-5 offset-7">
-      <%= link_to "定期購買受付", user_path(@user), class: "btn btn-light" %>
-      </div>
+  <div class="row">
+    <div class="col-md-5 offset-7">
+      <%= link_to "定期購買受付", admin_path(aritst_id: @artist.id), method: :post, class: "btn btn-light" %>
     </div>
-<br>
-<br>
-<br>
-<br>
-<br>
+  </div>
 </div>
+<br>
+<br>
+<br>
+<br>
+<br>
