@@ -1,0 +1,10 @@
+$(function() {
+  $("#artist-modal").find(".modal-content").html("<%= escape_javascript(render 'form') %>");
+
+  $("#artist-modal").modal();
+
+  $("#artist-submit").on("click", function() {
+    Rails.fire($("#artist-create-form")[0], "submit");
+    $("#artist-modal").modal("hide");
+  });
+});

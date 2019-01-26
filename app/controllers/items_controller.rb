@@ -41,6 +41,17 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    @item = Item.find(params[:id])
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to admin_index_path
+      flash[:notice] = "商品情報を更新しました。"
+    else
+      render :edit
+    end
   end
 
   def cart_create
@@ -64,6 +75,10 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:artist_name, :item_name, :image, :price, :label_name, :genre, :stock, :item_id, :label_form, :artist_id, :label_id)
+    params.require(:item).permit(
+      :artist_name, :item_name, :image, :price, :label_name,
+      :genre, :stock, :item_id, :label_form, :artist_id, :label_id,
+      songs_attributes: [:id, :item_id, :disc_number, :song_number, :name, :_destroy]
+    )
   end
 end

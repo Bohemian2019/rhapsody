@@ -6,6 +6,15 @@ ja:
         artist_name: アーティスト名
         artist_id: アーティスト名
         introduction: 紹介文
+      item:
+        artist_name: アーティスト名
+        item_name: アルバム/シングル名
+        image: 商品画像
+        price: 価格
+        label_name: レーベル名
+        genre: ジャンル
+        stock: 在庫数
+        songs: 曲名
   activemodel:
     attributes:
       community_request_form:

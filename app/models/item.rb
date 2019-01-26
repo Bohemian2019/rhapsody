@@ -1,8 +1,11 @@
 class Item < ApplicationRecord
+  attribute :artist_name
+  attribute :label_name
 
   has_many :shopping_carts, through: :cart_items, dependent: :destroy
   has_many :cart_items
-  has_many :songs, dependent: :destroy
+  has_many :songs
+  accepts_nested_attributes_for :songs, reject_if: :all_blank, allow_destroy: true
   belongs_to :artist
   belongs_to :label
 
@@ -10,8 +13,10 @@ class Item < ApplicationRecord
 
   validate :artist_name_exist_in_database
   validate :label_name_exist_in_database
-  attribute :artist_name
-  attribute :label_name
+  validates :item_name, presence: true
+  validates :price, presence: true, numericality: { only_integer: true }
+  validates :genre, presence: true
+  validates :stock, numericality: { only_integer: true }
 
   # Search method
   def self.search(keyword)
