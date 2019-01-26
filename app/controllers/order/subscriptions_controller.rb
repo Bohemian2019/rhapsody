@@ -12,10 +12,11 @@ class Order::SubscriptionsController < ApplicationController
   	subscription.user_id = current_user.id
     subscription.artist_id = community.artist_id
     subscription.save
-    #ポップアップで定期購買承りましたを表示
-    redirect_to communities_show_path(community.id)
+    my_community = UsersCommunity.new
+    my_community.user_id = current_user.id
+    my_community.artist_id = community.artist_id
+    my_community.save
+    redirect_to communities_show_path(community.id),flash: {notice: "定期購買を承りました"}
     end
   end
-
-
 end

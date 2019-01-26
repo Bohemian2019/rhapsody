@@ -1,4 +1,7 @@
 <div class="container">
+  <% if flash[:notice] %>
+   <%= flash[:notice] %>
+<% end %>
   <div class="col-lg-6 offset-lg-4">
     <%= link_to '商品新規追加', admin_new_item_path, class: 'btn btn-light' %>
   </div>
