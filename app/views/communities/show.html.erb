@@ -28,6 +28,8 @@
   <div class="col-lg-10 offset-lg-1" style="border-bottom: solid 2px #C0C0C0;"></div>
   <br>
 
+  
+  
 
   <!-- 掲示板一覧 -->
   <h4>コミュニティ掲示板</h4>
@@ -60,6 +62,8 @@
   <!-- 掲示板投稿 -->
   <p class="col-lg-3 offset-lg-2"><strong>掲示板投稿</strong></p>
   <%= form_for @board, url: community_path(@community.id) do |f| %>
+  <!-- エラーメッセージ -->
+  <%= render "layouts/error_messages", model: @board %>
   <div class="row">
   <%= f.text_field :comment, class: "col-lg-8 offset-lg-2" %>
   </div>
