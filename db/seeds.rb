@@ -196,14 +196,14 @@ CartItem.create(
     {:shopping_cart_id => '2',:item_id => '2',:price => '100',:quantity => '2'},
     {:shopping_cart_id => '2',:item_id => '3',:price => '100',:quantity => '2'},
     {:shopping_cart_id => '2',:item_id => '4',:price => '100',:quantity => '2'},
-    {:shopping_cart_id => '3',:item_id => '3',:price => '300',:quantity => '2'},
+    {:shopping_cart_id => '3',:item_id => '6',:price => '300',:quantity => '2'},
     {:shopping_cart_id => '4',:item_id => '2',:price => '300',:quantity => '2'},
-    {:shopping_cart_id => '5',:item_id => '4',:price => '200',:quantity => '2'},
+    {:shopping_cart_id => '5',:item_id => '5',:price => '200',:quantity => '2'},
     {:shopping_cart_id => '6',:item_id => '1',:price => '100',:quantity => '2'},
   ]
 )
 
-Community.create(:name => 'Mr.Children',:artist_id => '1',:introduction => 'Hello',:is_active => 'TRUE')
+Community.create(:name => 'Mr.Children',:artist_id => '1',:introduction => 'Hello',:is_active => 'TRUE', :artist_name => "")
 Community.create(:name => 'Robert Glasper',:artist_id => '2',:introduction => 'Hi',:is_active => 'TRUE')
 Community.create(:name => 'Queen',:artist_id => '3',:introduction => 'Hey',:is_active => 'TRUE')
 Community.create(:name => 'Led Zeppelin',:artist_id => '4',:introduction => 'Hey',:is_active => 'TRUE')
