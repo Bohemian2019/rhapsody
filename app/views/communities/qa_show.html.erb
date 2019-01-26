@@ -1,7 +1,12 @@
 <div class="container">
+  <div class="row">
+    <div class="col-lg-9">
+    <h4><span>コミュニティ名 </span><span><%= @qa.community.name %></span></h4>
+    </div>
+    <%= link_to "Q一覧", community_question_index_path(@community.id), class: "btn btn-light" %>
+  </div>
 
-  <h4><span>コミュニティ名 </span><span><%= @qa.community.name %></span></h4>
-
+  <!-- エラーメッセージ -->
   <%= render "layouts/error_messages", model: @answer %>
 
 <!-- 質問者部分 -->

@@ -1,5 +1,15 @@
 class Admin::OrdersController < ApplicationController
   def edit
+    @order = Order.find(params[:id])
+  end
+
+  def update
+    @order = Order.find(params[:id])
+    if @order.update(order_params)
+       redirect_to admin_order_path(params[:id])
+    else
+       render :edit
+    end
   end
 
   def search
@@ -29,5 +39,10 @@ class Admin::OrdersController < ApplicationController
       puts "銀行振込"
     end
     @total = @cart.price * @cart.quantity
+  end
+
+  private
+  def order_params
+    params.require(:order).permit(:postal_code, :address, :status)
   end
 end
