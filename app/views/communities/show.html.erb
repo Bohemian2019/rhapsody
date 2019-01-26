@@ -30,23 +30,28 @@
   <div class="col-lg-10 offset-lg-1" style="border-bottom: solid 2px #C0C0C0;"></div>
   <br>
 
+  
+  
 
   <!-- 掲示板一覧 -->
   <h4>コミュニティ掲示板</h4>
 
-  <% @boards.each do |com| %>
+  <% @boards.each.with_index(@page)	 do |com, i| %>
 
-  <ol class="row">
-  	<div class="col-lg-1">
-    <li><strong><%= com.user.name %>.</strong></li>
+  <div class="row">
+  	<div class="col-lg-2">
+    <p><strong><%= i %>.<%= com.user.name %>.</strong></p>
     </div>
     <div class="col-lg-9">
     <p><%= com.comment %></p>
     </div>
-    <div class="col-lg-1">
-    <%= link_to '削除', community_path(@community.id, :board_comment_id => com.id), method: :delete, class: 'btn btn-link', "data-confirm" => "Are you sure?" %>
-    </div>
-  </ol>
+    <!-- 投稿削除　管理者・投稿者のみ表示 -->
+    <% if com.user.id == current_user.id || current_user.admin == true %>
+      <div class="col-lg-1">
+      <%= link_to '削除', community_path(@community.id, :board_comment_id => com.id), method: :delete, class: 'btn btn-link', "data-confirm" => "Are you sure?" %>
+      </div>
+    <% end %>
+  </div>
 
   <% end %>
 <!-- ページネーション -->
@@ -57,8 +62,10 @@
   </div>
 
   <!-- 掲示板投稿 -->
-  <p class="col-lg-3 offset-lg-2">掲示板投稿</p>
+  <p class="col-lg-3 offset-lg-2"><strong>掲示板投稿</strong></p>
   <%= form_for @board, url: community_path(@community.id) do |f| %>
+  <!-- エラーメッセージ -->
+  <%= render "layouts/error_messages", model: @board %>
   <div class="row">
   <%= f.text_field :comment, class: "col-lg-8 offset-lg-2" %>
   </div>

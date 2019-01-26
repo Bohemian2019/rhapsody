@@ -1,10 +1,20 @@
 class Admin::OrdersController < ApplicationController
   def edit
+    @order = Order.find(params[:id])
+  end
+
+  def update
+    @order = Order.find(params[:id])
+    if @order.update(order_params)
+       redirect_to admin_order_path(params[:id])
+    else
+       render :edit
+    end
   end
 
   def search
-    #@searched = Order.includes({:shopping_cart => {:items => :artist}},:shopping_cart =>  :user).page(params[:page])
-    @searched = Order.search(params[:keyword_item]).page(params[:page])
+    #@searched = Order.search(params[:keyword_artist], params[:keyword_item]).page(params[:page])
+    @searched = CartItem.search(params[:keyword_artist], params[:keyword_item]).page(params[:page])
   end
 
   def show
@@ -15,5 +25,10 @@ class Admin::OrdersController < ApplicationController
     @user = User.where(id: @shopping.user_id).first
     @credit = CreditCard.where(user_id: @user.id).first
     @total = @cart.price * @cart.quantity
+  end
+
+  private
+  def order_params
+    params.require(:order).permit(:postal_code, :address, :status)
   end
 end

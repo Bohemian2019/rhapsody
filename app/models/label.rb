@@ -6,6 +6,13 @@ class Label < ApplicationRecord
   # ---------------------------------------
 
 
+  validates :label_name, presence: true
+  validate :label_name_not_in_database
 
-
+  # Custom validation
+  def label_name_not_in_database
+    if Label.exists?(label_name: label_name)
+      errors.add(:label_name, ": このレーベル名はすでに登録されています。")
+    end
+  end
 end

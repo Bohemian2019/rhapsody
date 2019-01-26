@@ -1,11 +1,11 @@
 <div class="container">
-  <div class="row justify-content-md-center">
+  <div class="row justify-content-md-center mb-lg-5">
     <div class="col-md-10">
       <h2>新規コミュニティリクエスト</h2><br>
 
       <!-- form section -->
-      <%= form_for @community, url: communities_path do |f| %>
-        <%= render "layouts/error_messages", model: f.object %>
+      <%= form_for @community_request, url: communities_path do |f| %>
+        <%= render "layouts/error_messages", model: @community %>
         <div class="form-group">
           <%= f.label :artist_name %><br>
           <%= f.text_field :artist_name, class: "form-control", placeholder: "アーティスト名" %>
@@ -23,12 +23,17 @@
         </div>
       <% end %>
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
   </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 </div>
 

@@ -14,6 +14,8 @@
 
 <!-- 質問投稿 -->
     <%= form_for @question, url: community_question_new_path(@community.id) do |f| %>
+    <!-- エラーメッセージ -->
+    <%= render "layouts/error_messages", model: @question %>
     <%= f.text_field :question, class: "col-lg-8" %>
     <%= f.submit "送信", class: "col-lg-1" %>
     <% end %>

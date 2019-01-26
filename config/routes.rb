@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  #get 'artists/new'
+  #get 'artists/create'
   mount RailsAdmin::Engine => '/administrator', as: 'rails_admin'
   # devise
   devise_for :users, :controllers => {
@@ -44,6 +46,12 @@ Rails.application.routes.draw do
 
   # admins
   get '/admin', to: 'admins#index', as: :admin_index
+
+  #artists
+  resources :artists, only: [:new, :create]
+
+  #labels
+  resources :labels, only: [:new, :create]
 
   # orders
   get '/orders/:id/confirm', to: 'orders#show', as: :orders_confirmation
@@ -91,8 +99,8 @@ Rails.application.routes.draw do
   post '/items/:id', to: 'items#update'
   get '/admin/item/new', to: 'items#new', as: :admin_new_item
   post '/admin/item/new', to: 'items#create', as: :admin_create_item
-  get '/admin/item/edit', to: 'items#edit', as: :admin_edit_item
-  patch '/admin/item/edit', to: 'items#update'
+  get '/admin/item/:id/edit', to: 'items#edit', as: :admin_edit_item
+  patch '/admin/item/:id/edit', to: 'items#update', as: :admin_update_item
 
   # users
   resources :users, only: [:show, :edit, :update]

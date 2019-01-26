@@ -1,0 +1,19 @@
+<div class="modal-header">
+  <h5 class="modal-title">新規レーベル登録</h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <%= form_with model: @label, remote: true, url: labels_path, id: "label-create-form" do |ff| %>
+    <%= render "layouts/error_messages", model: @label %>
+
+    <%= ff.label :label_name, class: "form-control-label" %>
+    <%= ff.text_field :label_name, class: "form-control" %>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+  <%= ff.submit "登録", class: "btn btn-light", id: "label-submit" %>
+<% end %>
+</div>
+

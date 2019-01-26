@@ -1,12 +1,12 @@
 <header>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light bd-navbar shadow fixed-top">
-    <a class="navbar-brand" href="<%= root_path %>">Rhapsody</a>
+  <nav class="navbar navbar-expand-lg navbar-dark bd-navbar shadow fixed-top py-3">
+    <a class="navbar-brand mb-0 h1 ml-4" href="<%= root_path %>">Rhapsody</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto ml-3">
+      <ul class="navbar-nav mr-auto ml-5">
         <!-- Common -->
         <li class="nav-item">
           <a class="nav-link" href="<%= root_path %>">
@@ -22,12 +22,12 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<%= user_path(current_user.id) %>">
-              Mypage 
+              Mypage
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<%= shopping_cart_show_path(current_user.id) %>">
-              Cart 
+              Cart
             </a>
           </li>
         <% else %>
@@ -47,7 +47,7 @@
       <%= form_with url: search_index_path, method: :get, local: true, class: "form-inline my-2 my-lg-0" do |f| %>
         <%= f.select :table_name, [["商品", "Item"], ["ユーザー", "User"], ["コミュニティ", "Community"]],{}, class: "form-control form-control-sm mr-2" %>
         <%= f.text_field :keyword, palceholder: "search" %>
-        <%= f.submit("検索", class: "btn btn-secondary my-2 my-sm-0 ml-2") %> 
+        <%= f.submit("検索", class: "btn btn-secondary my-2 my-sm-0 ml-2") %>
       <% end %>
     </div>
   </nav>

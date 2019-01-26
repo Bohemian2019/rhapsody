@@ -1,7 +1,13 @@
 <div class="container">
+  <div class="row">
+    <div class="col-lg-9">
+    <h4><span>コミュニティ名 </span><span><%= @qa.community.name %></span></h4>
+    </div>
+    <%= link_to "Q一覧", community_question_index_path(@community.id), class: "btn btn-light" %>
+  </div>
 
-  <h4><span>コミュニティ名 </span><span><%= @qa.community.name %></span></h4>
-
+  <!-- エラーメッセージ -->
+  <%= render "layouts/error_messages", model: @answer %>
 
 <!-- 質問者部分 -->
     <div class="row">
@@ -32,7 +38,9 @@
                     <p><%= post.answer %></p>
                   </div>
                   <!-- 後で管理者だけ表示させる -->
+                  <% if current_user.admin == true %>
                   <%= link_to '削除', community_question_path(@community, @qa.id, :answer_id => post.id), method: :delete, class: 'btn btn-link', "data-confirm" => "Are you sure?" %>
+                  <% end %>
                 </div>
               </span>
               </h4>
@@ -63,6 +71,7 @@
 
   <!--  アンサー投稿部分　-->
   <%= form_for @answer, url: community_question_path(@community, @qa.id) do |f| %>
+
   <div class="row">
   <%= f.text_field :answer, class: "col-lg-8" %>
   <%= f.submit "送信", class: "col-lg-1" %>
