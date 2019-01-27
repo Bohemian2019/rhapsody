@@ -7,7 +7,7 @@ class Admin::OrdersController < ApplicationController
     @orders = Order.search(params[:keyword_artist], params[:keyword_item])
   end
 
-  def update
+  def update_status
     @orders = Order.search(params[:keyword_artist], params[:keyword_item])
     
     if @orders.update_all(status: params[:order][:status])
@@ -47,4 +47,3 @@ class Admin::OrdersController < ApplicationController
     params.require(:order).permit(:postal_code, :address, :status)
   end
 end
-

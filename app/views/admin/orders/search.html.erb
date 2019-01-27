@@ -42,7 +42,7 @@
     <%= paginate @searched, class: "pagenate" %>
   </div>
 
-  <%= form_with model: @orders, url: admin_update_order_path, method: :patch do |f| %>
+  <%= form_with model: @orders, url: admin_update_order_status_path, method: :patch do |f| %>
     <div class="form-row align-items-center justify-content-center my-lg-4">
       <div class="col-auto">
         <p>受注ステータス</p>
