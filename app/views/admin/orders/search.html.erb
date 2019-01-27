@@ -51,7 +51,7 @@
         <%= f.select :status, [["受付中", 1], ["出荷準備中", 2], ["出荷済み", 3]], {}, class: "form-control mx-2" %>
       </div>
       <div class="col-auto">
-        <%= f.submit("一括編集", class: "btn btn-danger ml-4") %>
+        <%= f.submit("一括編集", class: "btn btn-danger ml-4", data: { confirm: "Are you sure?"}) %>
       </div>
     </div>
   <% end %>
