@@ -47,3 +47,4 @@ class Admin::OrdersController < ApplicationController
     params.require(:order).permit(:postal_code, :address, :status)
   end
 end
+
