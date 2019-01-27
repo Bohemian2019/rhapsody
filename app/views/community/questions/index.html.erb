@@ -1,4 +1,7 @@
 <div class="container">
+  	<% if flash[:notice] %>
+   		<%= flash[:notice] %>
+	<% end %>
 	<h2>コミュニティ名　<%= @community.name %></h2>
 	<br>
 	<div class="row">
@@ -14,13 +17,17 @@
         		<tbody>
            		<% @questions.each do |question| %>
        			    <tr>
-            			<td><strong>Q. <%= question.question %></strong></td>
-            			<td><%= link_to "詳細", community_qa_show_path(@community,question.id), class: "btn btn-light" %></td>
-						<% if defined? show %>
-						<% if @questions.user_id == current_user.id %>
-	    				<td><%= link_to "削除", community_question_index_path(@community),method: :delete,"data-confirm" => "Are you sure?" %></td>
-	    				<% end %>
-						<% end %>
+            			<td>
+            				<strong>Q. <%= question.question %></strong>
+            			</td>
+            			<td>
+            				<%= link_to "詳細", community_qa_show_path(@community,question.id), class: "btn btn-light" %>
+            			</td>
+					<% if current_user.id == question.user_id %>
+	    				<td>
+	    					<%= link_to "削除", community_question_index_path(question_id: question.id,community_id: @community.id),method: :delete, class: "btn btn-light", "data-confirm" => "Are you sure?" %>
+	    				</td>
+	    			<% end %>
 					</tr>
 				<% end %>
 				</tbody>
