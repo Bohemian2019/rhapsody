@@ -30,3 +30,5 @@
 
 # Ignore seed file.
 #/db/seeds.rb
+
+.env

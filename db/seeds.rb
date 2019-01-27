@@ -1,10 +1,8 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+require 'rspotify'
+require 'dotenv'
+Dotenv.load
+
+RSpotify.authenticate(ENV["SPOTIFY_CLIENT_ID"], ENV["SPOTIFY_CLIENT_SECRET"])
 
 # User data
 User.create(
@@ -93,7 +91,7 @@ User.create(
 # Artist data
 Artist.create(
   [
-    {:artist_name => 'Mr.Children'},
+    {:artist_name => RSpotify::Artist.search('Mr.Children').first.name},
     {:artist_name => 'Robert Glasper'},
     {:artist_name => 'Queen'},
     {:artist_name => 'Led Zeppelin'},
