@@ -16,7 +16,7 @@
           <% @community.each do |community| %>
           <tr>
             <td><%= community.community.name %></td>
-            <td><%= link_to "詳細", communities_show_path(community), class: "btn btn-light" %></td>
+            <td><%= link_to "詳細", communities_show_path(community.community.id), class: "btn btn-light" %></td>
           </tr>
         <% end %>
         </tbody>
