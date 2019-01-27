@@ -1,6 +1,6 @@
 class Community < ApplicationRecord
   include ActiveModel::Model
-  attr_accessor :artist_name, :name, :introduction
+  attr_accessor :artist_name, :name, :introduction, :artist_id, :is_active
   validates :artist_name, presence: true
   validates :name, presence: true
   validates :introduction, presence: true
@@ -13,6 +13,7 @@ class Community < ApplicationRecord
   has_many :users, through: :users_communities
   has_many :board_comments, dependent: :destroy
   has_many :questions, dependent: :destroy
+  belongs_to :artist
 
   attachment :image
 
