@@ -28,7 +28,7 @@ Rails.application.routes.draw do
     # orders
     resources :orders, only: [:show, :edit, :update]
     get 'orders', to: 'orders#search'
-    patch 'orders', to: 'orders#update'
+    patch 'orders', to: 'orders#update_status', as: :update_order_status
   end
 
   # shopping_carts

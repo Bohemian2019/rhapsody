@@ -13,8 +13,19 @@ class Admin::OrdersController < ApplicationController
   end
 
   def search
-    #@searched = Order.search(params[:keyword_artist], params[:keyword_item]).page(params[:page])
     @searched = CartItem.search(params[:keyword_artist], params[:keyword_item]).page(params[:page])
+    @orders = Order.search(params[:keyword_artist], params[:keyword_item])
+  end
+
+  def update_status
+    @orders = Order.search(params[:keyword_artist], params[:keyword_item])
+    
+    if @orders.update_all(status: params[:order][:status])
+      redirect_to admin_index_path
+      flash[:notice] = "受注ステータスを更新しました。"
+    else
+      render :search
+    end
   end
 
   def show

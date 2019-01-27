@@ -15,4 +15,7 @@ class Order < ApplicationRecord
       all
     end
   end
+
+  #def self.multi_update(orders_params)
+  #  orders_params.to_h.map do
 end
