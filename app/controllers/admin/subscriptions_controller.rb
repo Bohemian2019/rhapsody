@@ -19,8 +19,9 @@ class Admin::SubscriptionsController < ApplicationController
   	 shopping.is_active = false
   	 shopping.save
     end
-    shopping_carts = ShoppingCart.where(user_id: subs).where(is_active: false).pluck(:id)
-    shopping_carts.each do |shopping|
+    count = subs.count
+    shopping_carts = ShoppingCart.where(user_id: subs).where(is_active: false).order(created_at: :asc)
+    shopping_carts.last(count).each do |shopping|
      cart_item = CartItem.new
      cart_item.shopping_cart_id = shopping.id
      cart_item.item_id = item.id
@@ -28,7 +29,7 @@ class Admin::SubscriptionsController < ApplicationController
      cart_item.quantity = 1
      cart_item.save
     end
-    shopping_carts.each do |shopping|
+    shopping_carts.last(count).each do |shopping|
       order = Order.new
       order.shopping_cart_id = shopping.id
       order.postal_code = shopping.user.postal_code
@@ -37,5 +38,6 @@ class Admin::SubscriptionsController < ApplicationController
       order.status = 1
       order.save
     end
+    redirect_to admin_index_path,flash: {notice: "定期購買を完了しました"}
   end
 end
