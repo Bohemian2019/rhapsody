@@ -1,18 +1,32 @@
 <div class="container">
-  <div>
-    <%= link_to '商品新規追加', admin_new_item_path, class: 'btn btn-light' %>
+  <p class="notice"><%= notice %></p>
+  <div class="row mt-lg-5 justify-content-center">
+    <div class="col-lg-6">
+      <%= link_to '商品新規追加', admin_new_item_path, class: 'btn btn-lg btn-info btn-block' %>
+    </div>
   </div>
 
-  <div>
-    <%= link_to 'コミュニティリクエスト一覧', admin_communities_request_index_path, class: 'btn btn-light' %>
+  <div class="row my-3 justify-content-center">
+    <div class="col-lg-6">
+      <%= link_to 'コミュニティリクエスト一覧', admin_communities_request_index_path, class: 'btn btn-lg  btn-info btn-block' %>
+    </div>
   </div>
 
-  <div>
-    <%= link_to '定期購買申請者一覧', admin_subscription_index_path, class: 'btn btn-light' %>
+  <div class="row my-3 justify-content-center">
+    <div class="col-lg-6">
+      <%= link_to '定期購買申請者一覧', admin_subscription_index_path, class: 'btn btn-lg  btn-info btn-block' %>
+    </div>
   </div>
 
-  <div>
-    <%= link_to '受注情報検索', admin_orders_index_path, class: 'btn btn-light' %>
+  <div class="row my-3 justify-content-center">
+    <div class="col-lg-6">
+      <%= link_to '受注情報検索', admin_orders_path, class: 'btn btn-lg  btn-info btn-block' %>
+    </div>
   </div>
-
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
 </div>

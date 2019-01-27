@@ -37,7 +37,11 @@
 
   <div class="row">
     <div class="col-lg-3 offset-9">
-      <p>ステータス　<%= @order.status %></p>
+      <p>ステータス 
+        <% if @order.status == 1 %>受注
+        <% elsif @order.status == 2 %>準備中
+        <% else %>完了
+        <% end %></p>
       <p>合計金額 <%= @total %>円（税込)</p>
     </div>
   </div>
@@ -55,11 +59,17 @@
     <div class="col">
 
       <h4>お支払い方法</h4>
-      <p><%= @payment %></p>
-      <p>クレジットカード情報</p>
-      <a>No. <%= @credit.card_number %>
-      有効期限　<%= @credit.month %> / <%= @credit.year %>
-      </a>
+        <p>
+          <% if @order.payment == 1 %>クレジットカード支払い
+          <% else %>銀行振込
+          <% end %>
+        </p>
+      <% if @order.payment == 1 %>
+        <p>クレジットカード情報</p>
+        <p>カード名義 <%= @credit.name %></p>
+        <p>No. <%= @credit.card_number %></p>
+        <p>有効期限　<%= @credit.month %> / <%= @credit.year %></p>
+      <% end %>
     </div>
   </div>
   <div class="row">

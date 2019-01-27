@@ -1,2 +1,77 @@
-<h1>Communities#show</h1>
-<p>Find me in app/views/communities/show.html.erb</p>
+<div class="container">
+  <% if flash[:notice] %>
+    <%= flash[:notice] %>
+  <% end %>
+  <div class="row">
+  	<div class="col-lg-7 offset-lg-1">
+    <h4>コミュニティ名 <%= @community.name %></h4>
+    </div>
+    <div class="col-lg-1">
+    <%= link_to "Q&A", community_question_index_path(@community.id), class: "btn btn-light" %>
+    </div>
+    <div class="col-lg-3">
+    <%= link_to "定期購買", order_subscription_new_path(community_id: @community.id), class: "btn btn-light" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-4 offset-lg-1">
+    <%= attachment_image_tag @community.image_id, :image, :fill, 100, 100, :size => "200x200", fallback: "no-item-image.jpg" %>
+    </div>
+    <div class="col-lg-4">
+    <h5>introduction</h5>
+    <h5><strong><%= @community.introduction %></strong></h5>
+    </div>
+  </div>
+  <br>
+
+
+  <!-- ライン -->
+  <div class="col-lg-10 offset-lg-1" style="border-bottom: solid 2px #C0C0C0;"></div>
+  <br>
+
+  
+  
+
+  <!-- 掲示板一覧 -->
+  <h4>コミュニティ掲示板</h4>
+
+  <% @boards.each.with_index(@page)	 do |com, i| %>
+
+  <div class="row">
+  	<div class="col-lg-2 comment_index">
+    <p><strong><%= i %>.<%= com.user.name %>.</strong></p>
+    </div>
+    <div class="col-lg-9">
+    <p><%= com.comment %></p>
+    </div>
+    <!-- 投稿削除　管理者・投稿者のみ表示 -->
+    <% if com.user.id == current_user.id || current_user.admin == true %>
+      <div class="col-lg-1">
+      <%= link_to '削除', community_path(@community.id, :board_comment_id => com.id), method: :delete, class: 'btn btn-link', "data-confirm" => "Are you sure?" %>
+      </div>
+    <% end %>
+  </div>
+
+  <% end %>
+<!-- ページネーション -->
+  <div class="container">
+    <div class="col-lg-4 offset-lg-3">
+    <%= paginate @boards %>
+    </div>
+  </div>
+
+  <!-- 掲示板投稿 -->
+  <p class="col-lg-3 offset-lg-2"><strong>掲示板投稿</strong></p>
+  <%= form_for @board, url: community_path(@community.id) do |f| %>
+  <!-- エラーメッセージ -->
+  <%= render "layouts/error_messages", model: @board %>
+  <div class="row">
+  <%= f.text_field :comment, class: "col-lg-8 offset-lg-2" %>
+  </div>
+  <div class="row">
+  <%= f.submit "投稿", class: "col-lg-1 offset-lg-9" %>
+  </div>
+  <% end %>
+
+</div>

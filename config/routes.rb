@@ -1,10 +1,19 @@
 Rails.application.routes.draw do
 
+  #get 'artists/new'
+  #get 'artists/create'
   mount RailsAdmin::Engine => '/administrator', as: 'rails_admin'
   # devise
-  devise_for :users
+  devise_for :users, :controllers => {
+    :registrations => 'users/registrations'
+  }
   get 'admin/sign_in', action: :new, controller: 'devise/sessions'
   post 'admin/sign_in', action: :create, controller: 'devise/sessions'
+
+  # 退会ページからlogout用ルーティング
+  devise_scope :user do
+   get '/logout', to: 'devise/sessions#destroy', as: :logout
+  end
 
   # admin/
   namespace :admin do
@@ -15,10 +24,11 @@ Rails.application.routes.draw do
     # communities
     get 'communities/new'
     get 'communities/request_index'
+    delete 'communities/destroy', to: 'communities#destroy', as: :destroy_community
     # orders
     resources :orders, only: [:show, :edit, :update]
     get 'orders', to: 'orders#search'
-    patch 'orders', to: 'orders#update'
+    patch 'orders', to: 'orders#update_status', as: :update_order_status
   end
 
   # shopping_carts
@@ -39,6 +49,12 @@ Rails.application.routes.draw do
 
   # admins
   get '/admin', to: 'admins#index', as: :admin_index
+
+  #artists
+  resources :artists, only: [:new, :create]
+
+  #labels
+  resources :labels, only: [:new, :create]
 
   # orders
   get '/orders/:id/confirm', to: 'orders#show', as: :orders_confirmation
@@ -86,15 +102,15 @@ Rails.application.routes.draw do
   post '/items/:id', to: 'items#update'
   get '/admin/item/new', to: 'items#new', as: :admin_new_item
   post '/admin/item/new', to: 'items#create', as: :admin_create_item
-  get '/admin/item/edit', to: 'items#edit', as: :admin_edit_item
-  patch '/admin/item/edit', to: 'items#update'
+  get '/admin/item/:id/edit', to: 'items#edit', as: :admin_edit_item
+  patch '/admin/item/:id/edit', to: 'items#update', as: :admin_update_item
 
   # users
   resources :users, only: [:show, :edit, :update]
   get 'ranking', to: 'users#ranking_show', as: :users_ranking
   get 'users/:id/my_community', to: 'users#my_community_index', as: :users_my_community
   get '/users/cancel/show', to: 'users#cancel_show', as: :users_cancel_show
-  patch '/users/cancel/show', to: 'useers#cancel_update'
+  patch '/users/cancel/show', to: 'users#cancel_update'
 
   # user/
   namespace :user do
@@ -108,4 +124,5 @@ Rails.application.routes.draw do
 
   # home
   root to: 'home#index'
+
 end

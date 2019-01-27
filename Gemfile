@@ -57,6 +57,9 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
+  gem 'rspec-rails'
+  gem 'faker'
+  gem 'launchy'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -73,3 +76,5 @@ gem 'refile-mini_magick'
 gem 'rails-i18n', '~> 5.1'
 gem 'devise-i18n'
 gem 'pry-byebug'
+gem 'cocoon'
+gem 'ransack'

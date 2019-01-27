@@ -9,7 +9,7 @@
 
 	<div class="row">
 		<div class="col-xs-3">
-			<%= form_for(@credit_card, url: user_credits_path) do |f| %>
+			<%= form_for(@credit_card, url: user_credits_path(shopping_cart_id: @shopping, community_id: @community)) do |f| %>
 				カード名義人（半角ローマ字）
 				<div class="field">
 			    	<%= f.text_field :name %>
@@ -37,7 +37,6 @@
 					<%= f.submit class: "btn btn-light" %>
 			 	</div>
 			<% end %>
-			<br>
 		</div>
 	</div>
 </div>

@@ -1,0 +1,11 @@
+$(function() {
+  $("#label-modal").find(".modal-content").html("<%= escape_javascript(render 'form') %>");
+
+  $("#label-modal").modal();
+
+  $("#label-submit").on("click", function() {
+    Rails.fire($("#label-create-form")[0], "submit");
+    $("#label-modal").modal("hide");
+  });
+});
+

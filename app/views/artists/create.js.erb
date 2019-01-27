@@ -1,0 +1,8 @@
+$(document).on("ajax:success", "#artist-create-form", function(e) {
+  console.log(e.detail[0]);
+});
+
+$(document).on("ajax:error", "#artist-create-form", function(e) {
+  console.log(e.detail[2]);
+});
+

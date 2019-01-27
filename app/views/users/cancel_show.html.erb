@@ -15,11 +15,10 @@
 
   <div class="row">
       <div class="col-lg-2 offset-lg-4">
-      <%= link_to '退会する', root_path, class: 'btn btn-light' %>
+      <%= link_to '退会する', users_cancel_show_path, method: :patch, class: 'btn btn-light' %>
       </div>
       <div class="col-lg-2">
 
-      <!-- リンク先変更あり -->
       <%= link_to '退会しない', user_path(current_user.id), class: 'btn btn-light' %>
       </div>
   </div>

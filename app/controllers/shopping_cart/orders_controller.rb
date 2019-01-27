@@ -2,6 +2,7 @@ class ShoppingCart::OrdersController < ApplicationController
 
   def new
     @order = Order.new
+
   	@shoppingcart = ShoppingCart.find(params[:id])
   	@cartitems = CartItem.where(shopping_cart_id: @shoppingcart.id)
     # 商品計算合計
@@ -13,9 +14,10 @@ class ShoppingCart::OrdersController < ApplicationController
 
   def sent
   	@order = Order.new(order_params)
+
     if @order.payment == 1 && CreditCard.where(user_id: current_user.id).empty? == true
       # クレジットカード払いで登録してない方
-      redirect_to new_user_credit_path, shopping_cart_id: params[:id]
+      redirect_to new_user_credit_path(shopping_cart_id: params[:id], community_id: 0)
     else
       # 銀行振込・クレジットカード払いで登録済みの方
       # orderテーブルの保存
@@ -26,10 +28,16 @@ class ShoppingCart::OrdersController < ApplicationController
       @order.save
       # cartitemテーブルのprice保存
       @cartitems = CartItem.where(shopping_cart_id: params[:id])
+      @userpoint = current_user.point
       @cartitems.each do |f|
         f.price = f.item.price
+        # point加算計算(1枚100点)
+        @userpoint += 100
       end
       @cartitems.update(cartitem_params)
+      # point合計保存
+      current_user.point = @userpoint
+      current_user.update(user_params)
       # shppingcartテーブルis_active falseに更新
       shoppingcart = ShoppingCart.find(params[:id])
       shoppingcart.is_active = false
@@ -51,5 +59,8 @@ class ShoppingCart::OrdersController < ApplicationController
   end
   def shoppingcart_params
     params.permit(:is_active)
+  end
+  def user_params
+    params.permit(:point)
   end
 end

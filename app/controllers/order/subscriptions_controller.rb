@@ -1,23 +1,22 @@
 class Order::SubscriptionsController < ApplicationController
   def new
-  	@subscription = Subscription.new
-    @community = Community.where(id: '1').first
+    @community = Community.find(params[:community_id])
   end
 
-  def create
-  	@subscripiton = Subsctiption.new(subscription_params)
-  	@subscripiton.user_id = current_user.id
-     if @credit_card.save
-    flash[:success] = "登録しました"
-      redirect_to orders_confirmation_path(orders[:id])
+  def add
+    community = Community.find(params[:community_id])
+    if CreditCard.where(user_id: current_user.id).empty? == true
+      redirect_to new_user_credit_path(shopping_cart_id: 0, community_id: community.id)
     else
-      flash[:danger] = "登録に失敗しました"
-      render :new
-  	end
-  end
-
-  private
-  def credit_card_params
-    params.require(:credit_card).permit(:name, :card_number, :month, :year)
+    subscription = Subscription.new
+  	subscription.user_id = current_user.id
+    subscription.artist_id = community.artist_id
+    subscription.save
+    my_community = UsersCommunity.new
+    my_community.user_id = current_user.id
+    my_community.community_id = community.id
+    my_community.save
+    redirect_to communities_show_path(community.id),flash: {notice: "定期購買を承りました"}
+    end
   end
 end
