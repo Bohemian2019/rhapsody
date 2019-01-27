@@ -25,9 +25,9 @@ Rails.application.routes.draw do
     get 'communities/new'
     get 'communities/request_index'
     # orders
-    resources :orders, only: [:show, :edit, :update]
+    resources :orders, only: [:show, :edit]
     get 'orders', to: 'orders#search'
-    patch 'orders', to: 'orders#update'
+    patch 'orders', to: 'orders#update', as: :update_order
   end
 
   # shopping_carts

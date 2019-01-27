@@ -30,6 +30,11 @@
               Cart
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">
+              <%= current_user.name %>
+            </a>
+          </li>
         <% else %>
           <li class="nav-item">
             <a class="nav-link" href="<%= new_user_session_path %>">
