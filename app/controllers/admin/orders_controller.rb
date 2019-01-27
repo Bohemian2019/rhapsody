@@ -43,8 +43,7 @@ class Admin::OrdersController < ApplicationController
   end
 
   private
-
   def order_params
-    params.require(:order).permit(:status)
+    params.require(:order).permit(:postal_code, :address, :status)
   end
 end
