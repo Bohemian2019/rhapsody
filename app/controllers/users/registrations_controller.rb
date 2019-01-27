@@ -16,10 +16,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @cart_t.user_id = current_user.id
     @cart_t.is_active = "TRUE"
     @cart_t.save
-    @cart_f = ShoppingCart.new
-    @cart_f.user_id = current_user.id
-    @cart_f.is_active = "FALSE"
-    @cart_f.save
   end
 
   # GET /resource/edit

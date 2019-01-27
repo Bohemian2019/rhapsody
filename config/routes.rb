@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     # communities
     get 'communities/new'
     get 'communities/request_index'
+    delete 'communities/destroy', to: 'communities#destroy', as: :destroy_community
     # orders
     resources :orders, only: [:show, :edit, :update]
     get 'orders', to: 'orders#search'

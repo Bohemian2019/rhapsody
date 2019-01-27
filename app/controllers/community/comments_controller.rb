@@ -1,10 +1,15 @@
 class Community::CommentsController < ApplicationController
   def add
-    @comment = BoardComment.new(boardcomment_params)
-    @comment.user_id = current_user.id
-    @comment.community_id = params[:id]
-    @comment.save
-    redirect_to communities_show_path(params[:id])
+    @board = BoardComment.new(boardcomment_params)
+    @board.user_id = current_user.id
+    @board.community_id = params[:id]
+    if @board.save
+       redirect_to communities_show_path(params[:id])
+    else
+       @community = Community.find(params[:id])
+       @boards = BoardComment.all.where(community_id: @community.id).page(params[:page]).per(10).order(id: "DESC")
+       render template: "communities/show"
+    end
   end
 
   def delete

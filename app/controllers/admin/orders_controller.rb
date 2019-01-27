@@ -1,5 +1,15 @@
 class Admin::OrdersController < ApplicationController
   def edit
+    @order = Order.find(params[:id])
+  end
+
+  def update
+    @order = Order.find(params[:id])
+    if @order.update(order_params)
+       redirect_to admin_order_path(params[:id])
+    else
+       render :edit
+    end
   end
 
   def search
@@ -25,20 +35,6 @@ class Admin::OrdersController < ApplicationController
     @item = Item.where(id: @cart.item_id)
     @user = User.where(id: @shopping.user_id).first
     @credit = CreditCard.where(user_id: @user.id).first
-    @status = @order.status
-    if @status == 1
-      puts "受注"
-    elsif @status == 2
-      puts "準備中"
-    else
-      puts "完了"
-    end
-    @payment = @order.payment
-    if @payment == 1
-      puts "クレジットカード"
-    else
-      puts "銀行振込"
-    end
     @total = @cart.price * @cart.quantity
   end
 
