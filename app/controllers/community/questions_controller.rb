@@ -5,13 +5,13 @@ class Community::QuestionsController < ApplicationController
   end
 
   def delete
-    @question = Question.find(params[:id])
-    if @question.destroy
-      flash[:notice] = "successfully access"
-      redirect_to community_question_index_path(params[:id])
+    question = Question.find(params[:question_id])
+    if question.destroy
+      flash[:notice] = "質問を削除しました"
+      redirect_to community_question_index_path(params[:community_id])
     else
-      flash[:notice] = "can't successfully access"
-      redirect_to user_path(current_user.id)
+      flash[:notice] = "質問の削除に失敗しました"
+      redirect_to community_question_index_path(params[:community_id])
     end
   end
 

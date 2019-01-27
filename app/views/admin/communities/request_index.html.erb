@@ -21,7 +21,7 @@
             <td><%= community.created_at.strftime('%y年%m月%d日') %></td>
             <td><%= community.name %></td>
             <td><%= link_to "確認", admin_communities_new_path(community.id), class: "btn btn-light" %></td>
-            <td><%= link_to "削除", delete_community_path(community.id), method: :delete, class: "btn btn-light", "data-confirm" => "Are you sure?" %></td>
+            <td><%= link_to "削除", admin_destroy_community_path(community_id: community.id), method: :delete, class: "btn btn-light", "data-confirm" => "Are you sure?" %></td>
           </tr>
         </tbody>
         <% end %>

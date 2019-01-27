@@ -59,9 +59,11 @@
     <div class="col">
 
       <h4>お支払い方法</h4>
-        <p><% if @order.payment == 1 %>クレジットカード支払い
-        <% else %>銀行振込
-        <% end %></p>
+        <p>
+          <% if @order.payment == 1 %>クレジットカード支払い
+          <% else %>銀行振込
+          <% end %>
+        </p>
       <% if @order.payment == 1 %>
         <p>クレジットカード情報</p>
         <p>カード名義 <%= @credit.name %></p>
