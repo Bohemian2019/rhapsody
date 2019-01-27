@@ -9,7 +9,7 @@ class CreateCartItems < ActiveRecord::Migration[5.2]
       t.references :shopping_cart, foreign_key: true, null: false
       # modified 20190120 -------------------------
       t.integer :price
-      t. integer :quantity, null: false, default: 1
+      t.integer :quantity, null: false, default: 1
       t.timestamps
     end
   end
