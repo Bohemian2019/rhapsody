@@ -3,7 +3,7 @@
 <!-- 定期購買申請者一覧 -->
 <h4>定期購買者申請者</h4>
 
-<% @subscriptions.each do |post| %>
+
   <table class="table">
     <thead>
       <tr>
@@ -12,6 +12,7 @@
         <th>アーティスト名</th>
       </tr>
     </thead>
+   <% @subscriptions.each do |post| %>
     <tbody>
       <tr>
         <td><%= post.created_at.strftime('%Y年%m月%d日') %></td>
@@ -22,8 +23,9 @@
         </td>
       </tr>
     </tbody>
+  <% end %>
   </table>
-<% end %>
+
 
 
 <!-- ページネーション -->

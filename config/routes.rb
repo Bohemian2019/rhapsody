@@ -33,10 +33,12 @@ Rails.application.routes.draw do
 
   # shopping_carts
   get 'shopping_cart/:id', to: 'shopping_carts#show', as: :shopping_cart_show
-  post'shopping_cart/:id', to: 'shopping_carts#increment'
-  post 'shopping_cart/:id', to: 'shopping_carts#decrement'
+  # post'shopping_cart/:id', to: 'shopping_carts#increment'
+  # post 'shopping_cart/:id', to: 'shopping_carts#decrement'
+  # postメソッドの重複を避けるため、patchメソッドを作成
+  patch'shopping_cart/:id', to: 'shopping_carts#update'
   post 'shopping_cart/:id', to: 'shopping_carts#pass'
-  delete 'shopping_cart/:id', to: 'shopping_carts#delete'
+  delete 'shopping_cart/:id', to: 'shopping_carts#destroy'
 
   # shopping_cart/
   namespace :shopping_cart do

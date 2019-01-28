@@ -1,7 +1,8 @@
 class Artist < ApplicationRecord
 
-  has_many :items, dependent: :destroy
-  has_many :subscriptions, dependent: :destroy
+has_many :items, dependent: :destroy
+has_many :subscriptions, dependent: :destroy
+has_one :community
 
   validates :artist_name, presence: true
   validate :artist_name_not_in_database

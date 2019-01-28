@@ -1,95 +1,71 @@
-<h1>ShoppingCarts#show</h1>
-<p>Find me in app/views/shopping_carts/show.html.erb</p>
-
-
 <div class="container">
 	<h2>カート</h2>
 	<!-- 商品ごとにループ処理 -->
-	<div class="row">
-
+	<% if @cart_items.empty? %>
+	<div class="justify-content-md-center">
+	<p>カートに追加された商品はありません</p>
+	</div>
+	<%else%>
+	<% @cart_items.each do |ci| %>
+	<div class="row detail justify-content-md-center">
 		<!-- 左側：商品画像 -->
-		<div class="col-lg-3" style="background-color: orange";>
-			<h2>商品画像</h2>
+		<div class="col-lg-2 text-right">
+			<%= attachment_image_tag ci.item, :image, :fill, 100, 100, :size => "150x150", fallback: "no-item-image.jpg" %>
 		</div>
-		<!-- 左側：商品画像 ここまで-->
-
 		<!-- 右側：商品説明 -->
-		<!-- form_forで商品情報置き換え -->
-		<div class="col-lg-9" >
-
-			<!-- 右側上段：商品ディティール -->
-			<div class="item_detail">
-				<table class="table">
+		<div class="col-lg-7" >
+			<div class="item_detail" >
+				<table class="table table-sm">
 					<tr>
 						<th>アーティスト名</th>
 						<th>アルバム/シングル名</th>
 					</tr>
 					<tr>
-						<td>Mr.Children</td>
-						<td>ミスターの子供</td>
+						<td><%= ci.item.artist.artist_name %></td>
+						<td><%= ci.item.item_name %></td>
 					</tr>
 				</table>
 			</div>
-			<!-- 右側上段：商品ディティール ここまで-->
 
-			<!-- 右側下段：金額、枚数情報 -->
 			<div class="row">
-				<!-- 商品金額（数量分） -->
-				<div class="col-lg-6" >
+				<div class="col-lg-4 py-1 pl-5">
 					<p>   ¥
-					<!-- form_for置き換え -->
-					<input type="text" size="10"></p>
-				</div>
-				<!-- 商品点数表示・変更 -->
-				<div class="col-lg-5" >
-					<p>
-						<!-- 商品点数変更　置き換え -->
-						枚数：<input type="text" size="5">枚
-						<button type="button" class="btn btn-light">+</button>
-						<button type="button" class="btn btn-light">-</button>
+						<%= ci.quantity * ci.item.price %>
 					</p>
 				</div>
-				<!-- カート内商品削除ボタン -->
-				<div class="col-lg-1" >
-					<button type="button" class="btn btn-light">削除</button>
+				<div class="col-lg-8 text-lg-center">
+					<div class="form-group form-inline">
+						枚数：<%= ci.quantity %>
+						<div class="pl-3">
+							<%= link_to '+', shopping_cart_show_path(params[:id], ci_id: ci.id, status: 0), class:"btn-sm btn-light ", method: :patch %>
+							<% if ci.quantity >= 2 %>
+							  <%= link_to '-', shopping_cart_show_path(params[:id], ci_id: ci.id, status: 1), class:"btn-sm btn-light ", method: :patch %>
+							<% else %>
+							  <%= link_to '-', shopping_cart_show_path(params[:id], ci_id: ci.id), class:"btn-sm btn-light ", method: :delete, data: { confirm: 'カートから商品を削除しますか？' } %>
+							<% end %>
+						</div>
+							<%= link_to 'Destroy', shopping_cart_show_path(params[:id], ci_id: ci.id), class:"btn-sm btn-danger ", method: :delete, data: { confirm: 'カートから商品を削除しますか？' } %>
+					</div>
 				</div>
 			</div>
-			<!-- 右側下段：金額、枚数情報　ここまで-->
 		</div>
-		<!-- 右側：商品説明 ここまで-->
 	</div>
-	<!--row 商品ごとにループ処理 ここまで-->
-
 	<br>
-	<br>
-	<br>
+	<% end %>
 
 	<!-- 最下段：合計額・注文確認 -->
-	<div class="row">
+	<div class="row text-right">
 		<div class="col-lg-9">
-			<h2>blanc</h2>
-		</div>
-
-		<!-- カート内商品合計金額 -->
-		<div class="col-lg-3">
 			<p>合計　　¥
-					<!-- form_for置き換え -->
-					<input type="text" size="10">  円</p>
-			<div class="row">
-				<div class="col-lg-9">
-					<h2>blanc</h2>
-				</div>
-				<div class="col-lg-1">
-					<!-- 置き換え　カート内商品データを確定画面に渡す -->
-					<%= link_to '注文確定', shopping_cart_orders_new_path, class: 'btn btn-light' %>
-				</div>
-			</div>
+				<%= @pricesums %>
+			</p>
 		</div>
-
+		<div class="col-lg-2">
+		<%= link_to '注文確認', shopping_cart_order_new_path(params[:id]), class:"btn-sm btn-light ", method: :get %>
+		</div>
 	</div>
-	<!-- 最下段：合計額・注文確認 ここまで-->
+	<%end%>
 </div>
-
 <br>
 <br>
 <br>

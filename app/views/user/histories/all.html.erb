@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3">
-      <%= render "layouts/sidebar" %>
+      <%= render "layouts/sidebar", user: current_user %>
     </div>
     <div class="col-md-9">
       <h2>User購入履歴</h2><br>
@@ -15,12 +15,12 @@
           </tr>
         </thead>
         <tbody>
-          <% @histories.each do |history| %>
+          <% @shopping.each do |shopping| %>
           <tr>
-            <td><%= l history.created_at, format: :long %></td>
-            <td><%= history.shopping_cart.cart_items.sum(:quantity) %> 点</td>
-            <td>¥ <%= history.shopping_cart.cart_items.sum(:price) %></td>
-            <td><%= link_to "詳細", user_histories_path(history.id), class: "btn btn-outline-secondary" %></td>
+            <td><%= shopping.order.created_at.strftime('%Y年%m月%d日') %></td>
+            <td><%= shopping.cart_items.sum(:quantity) %> 点</td>
+            <td>¥ <%= shopping.cart_items.sum(:price) %></td>
+            <td><%= link_to "詳細", user_histories_path(shopping.order.id), class: "btn btn-light" %></td>
           </tr>
         <% end %>
         </tbody>
@@ -28,6 +28,6 @@
     </div>
   </div>
   <div class="row justify-content-center">
-    <%= paginate @histories, class: "pagenate" %>
+    <%= paginate @shopping, class: "pagenate" %>
   </div>
 </div>

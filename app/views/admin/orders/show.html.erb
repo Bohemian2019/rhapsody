@@ -38,9 +38,9 @@
   <div class="row">
     <div class="col-lg-3 offset-9">
       <p>ステータス 
-        <% if @order.status == 1 %>受注
-        <% elsif @order.status == 2 %>準備中
-        <% else %>完了
+        <% if @order.status == 1 %>受付中
+        <% elsif @order.status == 2 %>商品準備中
+        <% else %>出荷済み
         <% end %></p>
       <p>合計金額 <%= @total %>円（税込)</p>
     </div>
