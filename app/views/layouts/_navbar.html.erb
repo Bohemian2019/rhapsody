@@ -15,6 +15,7 @@
         </li>
         <!-- User section -->
         <% if user_signed_in? && !administrator_signed_in? then%>
+        <% cart = ShoppingCart.find_by(user_id: current_user.id, is_active: true) %>
           <li class="nav-item">
             <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link' do %>
               <span>Log out</span>
@@ -26,7 +27,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<%= shopping_cart_show_path(current_user.id) %>">
+            <a class="nav-link" href="<%= shopping_cart_show_path(cart.id) %>">
               Cart
             </a>
           </li>
@@ -36,7 +37,7 @@
             </a>
           </li>
           <!-- 管理者 -->
-          <% elsif  administrator_signed_in? %>
+          <% elsif  administrator_signed_in? then %>
           <li class="nav-item">
             <%= link_to destroy_administrator_session_path, method: :delete, class: 'nav-link' do %>
               <span>Log out</span>
@@ -47,8 +48,8 @@
               管理者
             </a>
           </li>
-          <!--  どちらもログインしていない -->
-        <% elsif !user_signed_in? && !administrator_signed_in? %>
+          <!--  未ログイン -->
+        <% else %>
           <li class="nav-item">
             <a class="nav-link" href="<%= new_user_session_path %>">
               Log in
