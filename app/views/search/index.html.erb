@@ -12,31 +12,35 @@
   </div>
 
   <div class="row justify-content-md-center">
-    <div class="col-md-10">
-      <ul>
-        <% @searched.each do |s| %>
-          <% if @table_name == 'Item' %>
-            <!-- Item List -->
-            <li class="row my-lg-5 py-3">
-              <div class="col-sm-2 pr-5 pl-5 mx-1">
-                <% if s.image_id %>
-                  <%= attachment_image_tag s, :image, :fill, 100, 100, :size => "60x60", fallback: "no-item-image.jpg" %>
-                <% elsif s.item_image %>
-                  <%= image_tag(s.item_image, :size => "100x100") %>
-                <% else %>
-                  <%= image_tag('no-item-image.jpg', :size => '100x100') %>
-                <% end %>
-              </div>
-              <div class="col-sm-5 mx-1">
-                <h5>アーティスト名:  <%= @artist.find(s.artist_id).artist_name %></h5><br>
-                <h5>アルバム/シングル名:  <%= s.item_name %></h5><br>
-              </div>
-              <div class="col-sm-3 pl-0">
-                <%= link_to '詳細', item_path(s.id), class: "btn btn-outline-secondary" %>
-              </div>
-            </li>
-          <% elsif @table_name == 'User' %>
-            <!-- User List -->
+    <% @searched.each do |s| %>
+
+      <% if @table_name == 'Item' %>
+        <!-- Item List -->
+        <div class="card col-md-3 mx-3 my-2 shadow-sm" style="width: 18rem;">
+          <%= link_to item_path(s.id) do %>
+            <div class="item-image">
+              <% if s.image_id %>
+                <%= attachment_image_tag s, :image, :fill, 100, 100, :size => "100x100" %>
+              <% elsif s.item_image %>
+                <%= image_tag(s.item_image, class: "card-img-top img-thumbnail") %>
+              <% else %>
+                <%= image_tag('no-item-image.jpg', :size => '100x100') %>
+              <% end %>
+            </div>
+          <% end %>
+
+          <div class="card-body">
+            <a href="<%= item_path(s.id) %>">
+              <h5><%= s.item_name %></h5>
+            </a>
+            <h5><em>-<%= @artist.find(s.artist_id).artist_name %></em></h5>
+          </div>
+        </div>
+
+      <% elsif @table_name == 'User' %>
+        <!-- User List -->
+        <div class="col-md-10">
+          <ul>
             <li class="row my-lg-5 py-3">
               <div class="col-sm-2 pr-0 pl-5">
                 <%= attachment_image_tag s, :image, :fill, 100, 100, :size => "60x60", fallback: "no-user-image.jpg" %>
@@ -49,14 +53,18 @@
                 <%= link_to '詳細', user_path(s.id), class: "btn btn-outline-secondary" %>
               </div>
             </li>
-          <% else %>
-            <!-- Community List -->
+          </ul>
+        </div>
+
+      <% else %>
+        <!-- Community List -->
+        <div class="col-md-10">
+          <ul>
             <li class="row my-lg-5 py-3">
               <div class="col-sm-2 pr-0 pl-5">
                 <%= attachment_image_tag s, :image, :fill, 100, 100, :size => "60x60", fallback: "no-user-image.jpg" %>
               </div>
               <div class="col-sm-5 px-0">
-                <h3><%= s.id %></h3>
                 <h5>コミュニティ名:  <%= s.name %></h5><br>
                 <h5>紹介文:  <%= s.introduction %></h5><br>
               </div>
@@ -64,18 +72,19 @@
                 <%= link_to '詳細', communities_show_path(s.id), class: "btn btn-outline-secondary" %>
               </div>
               <% if user_signed_in? %>
-              <% if current_user.admin == true %>
-              <div class="col-sm-1">
-                <%= link_to '削除', delete_community_path(s.id), method: :delete, class: "btn btn-outline-danger", "data-confirm" => "Are you sure?" %>
-              </div>
-            <% end %>
-            <% end %>
+                <% if current_user.admin == true %>
+                  <div class="col-sm-1">
+                    <%= link_to '削除', delete_community_path(s.id), method: :delete, class: "btn btn-outline-danger", "data-confirm" => "Are you sure?" %>
+                  </div>
+                <% end %>
+              <% end %>
             </li>
-          <% end %>
-        <% end %>
-      </ul>
-    </div>
+          </ul>
+        </div>
+      <% end %>
+    <% end %>
   </div>
+
   <div class="row justify-content-center">
     <%= paginate @searched, class: "pagenate" %>
   </div>

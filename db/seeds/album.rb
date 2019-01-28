@@ -9,18 +9,18 @@ def save_image(url)
   open(url) do |file|
     open(filePath, "w+b") do |output|
       output.write(file.read)
-    end 
+    end
   end
 end
 
 
 # Artist seed data
 mr_children = RSpotify::Artist.search('Mr.Children', market: 'jp').first
-queen = RSpotify::Artist.search('Queen').first
-robert_glasper = RSpotify::Artist.search('Robert Glasper').first
-led_zeppelin = RSpotify::Artist.search('Led Zeppelin').first
-rolling_stones = RSpotify::Artist.search('Rolling Stones').first
-kendrick_lamar = RSpotify::Artist.search('Kendrick Lamar').first
+queen = RSpotify::Artist.search('Queen', market: 'us').first
+robert_glasper = RSpotify::Artist.search('Robert Glasper', market: 'us').first
+led_zeppelin = RSpotify::Artist.search('Led Zeppelin', market: 'us').first
+rolling_stones = RSpotify::Artist.search('Rolling Stones', market: 'us').first
+kendrick_lamar = RSpotify::Artist.search('Kendrick Lamar', market: 'us').first
 
 
 Artist.create(
@@ -62,7 +62,8 @@ queen.albums.each do |album|
   tracks = RSpotify::Track.search(album.name)
   tracks.each.with_index do |track, i|
     Song.create(
-      item_id: Item.find_by(item_name: album.name).id,
+      #item_id: Item.find_by(item_name: album.name).id,
+      item_id: Item.last.id,
       disc_number: 1,
       song_number: i+1,
       name: track.name,
