@@ -2,13 +2,16 @@ Rails.application.routes.draw do
 
   #get 'artists/new'
   #get 'artists/create'
-  mount RailsAdmin::Engine => '/administrator', as: 'rails_admin'
+  mount RailsAdmin::Engine => '/admin_user', as: 'rails_admin'
   # devise
   devise_for :users, :controllers => {
     :registrations => 'users/registrations'
   }
-  get 'admin/sign_in', action: :new, controller: 'devise/sessions'
-  post 'admin/sign_in', action: :create, controller: 'devise/sessions'
+    devise_for :administrators, :controllers => {
+    :sessions => 'administrators/sessions'
+  }
+  # get 'admin/sign_in', action: :new, controller: 'devise/sessions'
+  # post 'admin/sign_in', action: :create, controller: 'devise/sessions'
 
   # 退会ページからlogout用ルーティング
   devise_scope :user do
@@ -22,7 +25,9 @@ Rails.application.routes.draw do
     get 'subscription/artist/:id', to: 'subscriptions#artist', as: :subscription_artist
     post 'subscription/artist/:id', to: 'subscriptions#order_send'
     # communities
-    get 'communities/new'
+    get 'communities/new/:id', to: 'communities#new', as: :communities_new
+    patch 'communities/new/:id', to: 'communities#update'
+
     get 'communities/request_index'
     delete 'communities/destroy', to: 'communities#destroy', as: :destroy_community
     # orders

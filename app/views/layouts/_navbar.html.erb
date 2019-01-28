@@ -14,7 +14,7 @@
           </a>
         </li>
         <!-- User section -->
-        <% if user_signed_in? %>
+        <% if user_signed_in? && !administrator_signed_in? then%>
           <li class="nav-item">
             <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link' do %>
               <span>Log out</span>
@@ -35,7 +35,20 @@
               <%= current_user.name %>
             </a>
           </li>
-        <% else %>
+          <!-- 管理者 -->
+          <% elsif  administrator_signed_in? %>
+          <li class="nav-item">
+            <%= link_to destroy_administrator_session_path, method: :delete, class: 'nav-link' do %>
+              <span>Log out</span>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">
+              管理者
+            </a>
+          </li>
+          <!--  どちらもログインしていない -->
+        <% elsif !user_signed_in? && !administrator_signed_in? %>
           <li class="nav-item">
             <a class="nav-link" href="<%= new_user_session_path %>">
               Log in

@@ -270,5 +270,12 @@ Order.create(
   ]
 )
 
+Administrator.create(
+      :email => 'admin@admin.com',
+      :password => 'administrator',
+      :is_active => 'TRUE',
+      :admin => 'TRUE'
+    )
+
 
 
