@@ -3,11 +3,12 @@ class CommunitiesController < ApplicationController
     @community = Community.find(params[:id])
     @boards = BoardComment.all.where(community_id: @community.id).page(params[:page]).per(10).order(id: "DESC")
     # ページネーションによる番号表示
+    @pages = BoardComment.all.where(community_id: @community.id).count
     @pagenum = params[:page]
     if 2 > @pagenum.to_i
-      @page = 1
+      @page = @pages
     else
-      @page = (10 * @pagenum.to_i) - 9
+      @page = (10 * @pagenum.to_i) + @pages.to_i - 10
     end
     @board = BoardComment.new
   end
