@@ -44,15 +44,19 @@ Label.create(
   ]
 )
 
-# Item data
+# Item Song data
 queen.albums.each do |album|
+  image_url = p album.images.second["url"]
+  save_image(image_url)
+  image_url.slice!("https://i.scdn.co/image/")
   Item.create(
     artist_id: Artist.find_by(artist_name: queen.name).id,
     item_name: album.name,
     price: rand(1000) + 1000,
     label_id: 3,
     genre: queen.genres.first,
-    stock: rand(100) + 100
+    stock: rand(100) + 100,
+    item_image: image_url + '.jpg'
   )
 
   tracks = RSpotify::Track.search(album.name)
@@ -65,6 +69,4 @@ queen.albums.each do |album|
     )
   end
 end
-
-# Song data
 

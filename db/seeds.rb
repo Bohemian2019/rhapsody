@@ -20,8 +20,6 @@ ShoppingCart.create(
   ]
 )
 
-
-
 CartItem.create(
   [
     {:shopping_cart_id => '1',:item_id => '1',:price => '100',:quantity => '1'},

@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 2019_01_12_083355) do
     t.integer "label_id"
     t.string "genre", null: false
     t.integer "stock", default: 0
+    t.string "item_image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

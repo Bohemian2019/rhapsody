@@ -18,10 +18,13 @@
           <% if @table_name == 'Item' %>
             <!-- Item List -->
             <li class="row my-lg-5 py-3">
-              <div class="col-sm-2 pr-0 pl-5">
-                <%= attachment_image_tag s, :image, :fill, 100, 100, :size => "60x60", fallback: "no-item-image.jpg" %>
+              <div class="col-sm-2 pr-5 pl-5 mx-1">
+                <% if false %>
+                  <%= attachment_image_tag s, :image, :fill, 100, 100, :size => "60x60", fallback: "no-item-image.jpg" %>
+                <% end %>
+                <%= image_tag(s.item_image, :size => "100x100") %>
               </div>
-              <div class="col-sm-5 px-0">
+              <div class="col-sm-5 mx-1">
                 <h5>アーティスト名:  <%= @artist.find(s.artist_id).artist_name %></h5><br>
                 <h5>アルバム/シングル名:  <%= s.item_name %></h5><br>
               </div>
