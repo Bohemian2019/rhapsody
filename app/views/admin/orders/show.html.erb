@@ -5,7 +5,7 @@
 <br>
   <div class="row">
     <div class="col">
-    <p>日付 <%= @order.updated_at.strftime('%Y/%m/%d') %></p>
+    <p><strong>購入日 <%= @order.updated_at.strftime('%Y/%m/%d') %></strong></p>
     </div>
   </div>
   <div class="row">
@@ -37,12 +37,12 @@
 
   <div class="row">
     <div class="col-lg-3 offset-9">
-      <p>ステータス 
+      <p><strong>ステータス : 
         <% if @order.status == 1 %>受付中
         <% elsif @order.status == 2 %>商品準備中
         <% else %>出荷済み
-        <% end %></p>
-      <p>合計金額 <%= @total %>円（税込)</p>
+        <% end %></strong></p>
+      <p><strong>合計金額 : <%= @total %>円（税込)</strong></p>
     </div>
   </div>
 
@@ -50,26 +50,35 @@
 <br>
   <div class="row">
     <div class="col">
-      <h4>User名　<%= @shopping.user.name %>さん</h4>
-      <p>住所</p>
-      <p><%= @order.postal_code %></p>
-      <p><%= @order.address %></p>
+      <h5><strong>ご注文者 : <%= @shopping.user.name %> さん</strong></h5>
+<br>
+<br>
+      <h5><strong>ご住所</strong></h5>
+      <div class="col">
+        <p>〒<%= @order.postal_code %></p>
+        <p><%= @order.address %></p>
+      </div>
     </div>
 
     <div class="col">
-
-      <h4>お支払い方法</h4>
+      <h5><strong>お支払い方法</strong></h5>
+      <div class="col">
         <p>
           <% if @order.payment == 1 %>クレジットカード支払い
           <% else %>銀行振込
           <% end %>
         </p>
+      </div>
+<br>
       <% if @order.payment == 1 %>
-        <p>クレジットカード情報</p>
-        <p>カード名義 <%= @credit.name %></p>
-        <p>No. <%= @credit.card_number %></p>
-        <p>有効期限　<%= @credit.month %> / <%= @credit.year %></p>
+      <h5><strong>クレジットカード情報</strong></h5>
+        <div class="col">
+          <p>カード名義 <%= @credit.name %></p>
+          <p>No. <%= @credit.card_number %></p>
+          <p>有効期限　<%= @credit.month %> 月/ <%= @credit.year %>年</p>
       <% end %>
+        </div>
+      </div>
     </div>
   </div>
   <div class="row">
