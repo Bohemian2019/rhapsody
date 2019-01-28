@@ -13,7 +13,7 @@ class User::CreditsController < ApplicationController
   	credit_card = CreditCard.new(credit_card_params)
     credit_card.user_id = current_user.id
     credit_card.save
-    if community.nil? == true
+    if community == "0"
       redirect_to shopping_cart_order_new_path(shopping)
     else
       redirect_to order_subscription_new_path(community_id: community)
