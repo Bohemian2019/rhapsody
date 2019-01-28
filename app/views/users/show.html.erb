@@ -5,70 +5,65 @@
         <!-- 購入履歴リスト -->
         <% if current_user.id == @user.id %>
             <div class="history" style="padding-top: 40px">
-                <h4><strong>購入履歴</strong></h4>
-                <table class="table">
-                    <tbody>
+                <h4>購入履歴</h4>
+                <div class="list-group" style="max-width: 400px;">
                     <% @history.each do |h| %>
-                        <tr>
-                            <th><%= h.item_name %></th>
-                            <th><%= @artist.find(h.artist_id).artist_name %></th>
-                        </tr>
-                        <% end %>
-                    </tbody>
-                </table>
+                     <button type="button" class="list-group-item list-group-item-action"><%= h.item_name %>/<%= @artist.find(h.artist_id).artist_name %>
+                     </button>
+                <% end %>
+                </div><br>
                 <div class="col-sm-3 pl-0">
-                    <%= link_to 'more', user_histories_all_path, class: "histories_all" %> 
+                    <%= link_to "more", user_histories_all_path, class: "btn btn-info" %><br>
                 </div>
             </div>
         <% else %>
         <% end %>
     </div>
 
-    <div class="col-md-8 ">
+    <div class="col-md-8" style="padding: 40px 90px;">
         <!-- 実績ポイント・ランキング -->
         <div class="point_ranking">
             <table>
                 <tbody>
                     <tr>
-                        <th id="ranking"><h3><strong> Point</strong></h3></th>
-                        <th id="point"><h2><strong><%= @user.point %><strong></h2></th>
+                        <th id="ranking"><h3> Point</h3></th>
+                        <th id="point"><h2><%= @user.point %></h2></th>
                             <th><h3> pt</h3></th>
                     </tr>
                     <tr>
                         <th id="ranking">
-                            <h3><strong>
+                            <h3>
                                 <%= link_to "Ranking", users_ranking_path, class: "users_ranking"%>
-                            </strong></h3>
+                            </h3>
                         </th>
                         <th id="ranking"><h4><h4></th>
                         </tr>
                     </tbody>
                 </table>
             </div>
+            </br>
+            </br>
+            </br>
 
             <!-- マイコミュニティ表示 -->
-            <h3><strong>マイコミュニティ</strong></h3>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <% @my_communities.each do |mc| %>
-                        <tr>
-                            <th>
-                                <%= link_to users_my_community_path, class: "histories_all" do %>
-                                <%= @artist.find(mc.artist_id).artist_name %>
-                                <% end %>
-                            </th>
-                        </tr>
+            <h4>マイコミュニティ</h4>
+                <ul class="list-group" style="max-width: 400px;">
+                <% @my_communities.each do |mc| %>
+                    <li class="list-group-item-action"><%= link_to users_my_community_path, class: "histories_all" do %>
+                        <%= @artist.find(mc.artist_id).artist_name %>
                         <% end %>
-                    </tr>
-                </thead>
-            </table>
+                    </li>
+                <% end %>
+                </ul><br>
 
-            <%= link_to "more", users_my_community_path, class: "users_my_community"%><br>
+                <div class="col-sm-3 pl-0">
+                    <%= link_to "more", user_histories_all_path, class: "btn btn-info" %><br>
+                </div>
+            </div>
 
             <!-- 自ユーザーのみ表示 -->
             <% if @user.id == current_user.id %>
-            <%= link_to '退会', users_cancel_show_path, class: "btn btn-light" %>
+            <%= link_to '退会', users_cancel_show_path, class: "btn btn-danger" %>
             <% else %>
             <% end %>
         </div>

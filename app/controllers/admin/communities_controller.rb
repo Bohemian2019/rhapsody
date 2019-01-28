@@ -1,13 +1,14 @@
 class Admin::CommunitiesController < ApplicationController
   def new
-    @community = Community.where(id: params[:id])
+    # @community = Community.where(id: params[:id])
+    @community = Community.find(params[:id])
+    @artist = Artist.find(@community.artist_id)
   end
 
   def update
     community = Community.find(params[:id])
     count = Community.where(artist_id: community.artist_id).where(is_active: true).count
-    # communityをアーティストで検索、②以上であればエラー
-    if count >= 2
+    if count >= 1
       flash[:notice] = "当該アーティストにはすでにコミュニティが存在します"
       @community = Community.where(id: params[:id])
       render :new
