@@ -78,3 +78,7 @@ gem 'devise-i18n'
 gem 'pry-byebug'
 gem 'cocoon'
 gem 'ransack'
+gem 'dotenv-rails', require: 'dotenv/rails-now'
+gem 'rspotify'
+
+

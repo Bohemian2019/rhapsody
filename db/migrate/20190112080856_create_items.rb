@@ -9,6 +9,7 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.integer :label_id
       t.string :genre, null: false
       t.integer :stock, default: 0
+      t.string :item_image
       t.timestamps
     end
   end
