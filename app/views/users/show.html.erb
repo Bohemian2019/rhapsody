@@ -1,72 +1,77 @@
 <div class="container">
-<div class="row justify-content-center my-lg-4">
-    <div  class="col-md-4">
-        <%= render 'layouts/sidebar', user: @user %>
-        <!-- 購入履歴リスト -->
-        <% if current_user.id == @user.id %>
-            <div class="history" style="padding-top: 40px">
-                <h4>購入履歴</h4>
-                <div class="list-group" style="max-width: 400px;">
-                    <% @history.each do |h| %>
-                     <button type="button" class="list-group-item list-group-item-action"><%= h.item_name %>/<%= @artist.find(h.artist_id).artist_name %>
-                     </button>
-                <% end %>
-                </div><br>
-                <div class="col-sm-3 pl-0">
-                    <%= link_to "more", user_histories_all_path, class: "btn btn-info" %><br>
-                </div>
-            </div>
-        <% else %>
+ <div class="row justify-content-center my-lg-4">
+  <div  class="col-md-4">
+   <%= render 'layouts/sidebar', user: @user %>
+    <!-- 購入履歴リスト -->
+     <% if current_user.id == @user.id %>
+      <div class="history" style="padding-top: 40px">
+       <h4>購入履歴</h4>
+       <div class="list-group justify-content-left" style="max-width: 400px;">
+        <% @history.each do |h| %>
+         <% h.cart_items.order('id DESC').first(5).each do |ci| %>
+          <li class="list-group-item list-group-item-action">
+           <%= ci.item.item_name %>/<%= ci.item.artist.artist_name %>
+          </li>
+         <% end %>
         <% end %>
+       </div><br>
+
+       <div class="col-sm-3 pl-0">
+         <%= link_to "more", user_histories_all_path, class: "btn btn-info" %><br>
+       </div>
+      </div>
+     <% else %>
+     <% end %>
     </div>
 
     <div class="col-md-8" style="padding: 40px 90px;">
-        <!-- 実績ポイント・ランキング -->
-        <div class="point_ranking">
-            <table>
-                <tbody>
-                    <tr>
-                        <th id="ranking"><h3> Point</h3></th>
-                        <th id="point"><h2><%= @user.point %></h2></th>
-                            <th><h3> pt</h3></th>
-                    </tr>
-                    <tr>
-                        <th id="ranking">
-                            <h3>
-                                <%= link_to "Ranking", users_ranking_path, class: "users_ranking"%>
-                            </h3>
-                        </th>
-                        <th id="ranking"><h4><h4></th>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            </br>
-            </br>
-            </br>
+     <!-- 実績ポイント・ランキング -->
+     <div class="point_ranking">
+      <table>
+       <tbody>
+        <tr>
+         <th id="ranking"><h3> Point</h3></th>
+         <th id="point"><h2><%= @user.point %></h2></th>
+         <th><h3> pt</h3></th>
+        </tr>
 
-            <!-- マイコミュニティ表示 -->
-            <h4>マイコミュニティ</h4>
-                <ul class="list-group" style="max-width: 400px;">
-                <% @my_communities.each do |mc| %>
-                    <li class="list-group-item-action"><%= link_to users_my_community_path, class: "histories_all" do %>
-                        <%= @artist.find(mc.artist_id).artist_name %>
-                        <% end %>
-                    </li>
-                <% end %>
-                </ul><br>
+        <tr>
+         <th id="ranking">
+         <h3><%= link_to "Ranking", users_ranking_path, class: "users_ranking"%></h3>
+         </th>
+         <th id="ranking"><h4><h4></th>
+        </tr>
+       </tbody>
+      </table>
+     </div>
+     </br>
+     </br>
+     </br>
+     <!-- マイコミュニティ表示 -->
+     <h4>マイコミュニティ</h4>
+      <ul class="list-group" style="max-width: 400px;">
+       <% @my_communities.each do |mc| %>
+        <li class="list-group-item-action"><%= link_to users_my_community_path, class: "histories_all" do %>
+        <%= mc.artists.artist_name %>
+        </li>
+       <% end %>
+      <% end %>
+     </ul><br>
 
-                <div class="col-sm-3 pl-0">
-                    <%= link_to "more", user_histories_all_path, class: "btn btn-info" %><br>
-                </div>
-            </div>
-
-            <!-- 自ユーザーのみ表示 -->
-            <% if @user.id == current_user.id %>
-            <%= link_to '退会', users_cancel_show_path, class: "btn btn-danger" %>
-            <% else %>
-            <% end %>
-        </div>
+     <div class="col-sm-3 pl-0">
+      <%= link_to "more", users_my_community_path(@user.id), class: "btn btn-info" %><br>
+     </div>
     </div>
-</div>
+
+    <!-- 自ユーザーのみ表示 -->
+     <% if @user.id == current_user.id %>
+      <div>
+       <%= link_to '退会', users_cancel_show_path, class: "btn btn-danger" %>
+      </div>
+     <% else %>
+     <% end %>
+
+    </div>
+   </div>
+ </div>
 </div>
