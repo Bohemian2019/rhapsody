@@ -30,18 +30,27 @@
   <div class="col-lg-10 offset-lg-1" style="border-bottom: solid 2px #C0C0C0;"></div>
   <br>
 
-  
-  
+
 
   <!-- 掲示板一覧 -->
   <h4>コミュニティ掲示板</h4>
-
-  <% @boards.each.with_index(@page)	 do |com, i| %>
+  <% idx = -1 %>
+  <% @boards.each.with_index(@page) do |com, i| %>
 
   <div class="row">
+
   	<div class="col-lg-2 comment_index">
-    <p><strong><%= i %>.<%= com.user.name %>.</strong></p>
+
+      <!-- 番号表示機能 -->
+      <% idx += 1 %>
+    <p><strong>
+      <% if 2 > @pagenum.to_i %>
+      <%= i-(2*idx.to_i) %>
+      <% else %>
+      <%= i - ((2 * idx.to_i) +  20 * (@pagenum.to_i - 1)) %>
+      <% end %>.<%= com.user.name %>.</strong></p>
     </div>
+
     <div class="col-lg-9">
     <p><%= com.comment %></p>
     </div>
