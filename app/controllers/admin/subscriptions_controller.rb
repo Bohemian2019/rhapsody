@@ -38,6 +38,15 @@ class Admin::SubscriptionsController < ApplicationController
       order.status = 1
       order.save
     end
+    subscriptions.each do |subscription|
+      subscription.user.point += 100
+      subscription.user.update(user_params)
+    end
     redirect_to admin_index_path,flash: {notice: "定期購買を完了しました"}
+  end
+
+  private
+  def user_params
+    params.permit(:point)
   end
 end
