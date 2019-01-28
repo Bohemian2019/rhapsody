@@ -1,23 +1,12 @@
 <main class="container">
   <br>
-  <div class="row">
+  <div class="row my-lg-3">
     <div class="col-md"></div>
     <div class="col-md-10">
       <h1>User edit</h1>
-      <!-- Error messages -->
-      <% if current_user.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= current_user.errors.count %>のエラーが発生しました。</h2>
-          <ul>
-            <% current_user.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-
       <!-- Form section -->
       <%= form_for(@user) do |f| %>
+        <%= render "layouts/error_messages", model: f.object %>
         <div class="form-group">
           <%= f.label :postal_code %><br>
           <%= f.text_field :postal_code %>

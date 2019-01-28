@@ -18,6 +18,10 @@ class User < ApplicationRecord
   has_many :questions
   has_many :answers
 
+  validates :postal_code, presence: true, length: { is: 7 }, numericality: true
+  validates :phone_number, presence: true, numericality: true
+  validates :email, presence: true
+  validates :introduction, length: { maximum: 200 }
   # Search method
   def self.search(keyword)
     if keyword
