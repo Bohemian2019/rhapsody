@@ -1,5 +1,5 @@
 <div class="profile">
-  <!-- 自ユーザー -->
+  <!-- 管理者,他ユーザー -->
    <% if defined? user %>
     <div class="user_image">
      <%= attachment_image_tag user, :image, :fill, 200, 200, :size => "100x100", fallback: "no-user-image.jpg" %>
@@ -11,7 +11,7 @@
         <%= user.introduction %>
       </div>
     </div><br>
-
+    <!-- 自ユーザー -->
    <% else %>
    <div class="user_image">
     <%= attachment_image_tag current_user, :image, :fill, 200, 200, :size => "100x100", fallback: "no-user-image.jpg" %>

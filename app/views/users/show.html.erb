@@ -3,6 +3,7 @@
   <div  class="col-md-4">
    <%= render 'layouts/sidebar', user: @user %>
     <!-- 購入履歴リスト -->
+    <% unless current_user.nil? %>
      <% if current_user.id == @user.id %>
       <div class="history justify-content-left" style="padding-top: 40px">
        <h4>購入履歴</h4>
@@ -15,6 +16,7 @@
           <% end %>
          <% end %>
         <% end %>
+
        </div>
       </div><br>
 
@@ -23,6 +25,7 @@
        </div>
       </div>
      <% else %>
+     <% end %>
      <% end %>
     </div>
 
@@ -71,6 +74,7 @@
       </div>
 
      <!-- 自ユーザーのみ表示 -->
+     <% unless current_user.nil? %>
      <% if @user.id == current_user.id %>
      <br>
      <br>
@@ -78,7 +82,7 @@
       <div class="float-right" >
        <%= link_to '退会', users_cancel_show_path, class: "btn btn-light" %>
       </div>
-     <% else %>
+     <% end %>
      <% end %>
 　　</div>
 
