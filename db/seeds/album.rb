@@ -1,3 +1,9 @@
+# Setting for spotify-api authentication
+require 'rspotify'
+require 'dotenv'
+Dotenv.load
+RSpotify.authenticate(ENV["SPOTIFY_CLIENT_ID"], ENV["SPOTIFY_CLIENT_SECRET"])
+
 require 'open-uri'
 ############### Album seed data ##############
 
@@ -7,7 +13,7 @@ def save_image(url)
   filePath = dirName + fileName
 
   open(url) do |file|
-    open(filePath, "w+b") do |output|
+    open(filePath, "wb") do |output|
       output.write(file.read)
     end
   end
@@ -15,20 +21,20 @@ end
 
 
 # Artist seed data
-mr_children = RSpotify::Artist.search('Mr.Children', market: 'jp').first
-queen = RSpotify::Artist.search('Queen', market: 'us').first
-robert_glasper = RSpotify::Artist.search('Robert Glasper', market: 'us').first
-anderson_paak= RSpotify::Artist.search('Anderson Paak', market: 'us').first
+#mr_children = RSpotify::Artist.search('Mr.Children', limit: 2, market: 'jp').first
+queen = RSpotify::Artist.search('Queen', limit: 1, market: 'us').first
+#robert_glasper = RSpotify::Artist.search('Robert Glasper', limit: 3, market: 'us').first
+anderson_paak= RSpotify::Artist.search('Anderson Paak', limit: 2, market: 'us').first
 
 
 Artist.create(
   [
-    {artist_name: mr_children.name},
+    {artist_name: 'Mr.Children'},
     {artist_name: queen.name},
-    {artist_name: robert_glasper.name},
-    {artist_name: "led zeppelin"},
+    {artist_name: 'Robert Glasper'},
+    {artist_name: 'Led Zeppelin'},
     {artist_name: anderson_paak.name},
-    {artist_name: "kendrick lamar"},
+    {artist_name: "Kendrick Lamar"},
   ]
 )
 
@@ -44,7 +50,7 @@ Label.create(
 )
 
 # Anderson
-till_its = RSpotify::Album.search("Til it's over").first
+till_its = RSpotify::Album.search("Til it's over", limit:10).first
 iu = p till_its.images.second["url"]
 save_image(iu)
 iu.slice!("https://i.scdn.co/image/")
@@ -79,13 +85,12 @@ queen.albums.each do |album|
     label_id: 3,
     genre: queen.genres.first,
     stock: rand(100) + 100,
-    item_image: image_url + '.jpg'
+    item_image: image_url +  '.jpg'
   )
 
   tracks = album.tracks
   tracks.each do |track|
     Song.create(
-      #item_id: Item.find_by(item_name: album.name).id,
       item_id: Item.last.id,
       disc_number: track.disc_number,
       song_number: track.track_number,
@@ -93,5 +98,5 @@ queen.albums.each do |album|
       preview_url: track.preview_url
     )
   end
+  sleep(1)
 end
-

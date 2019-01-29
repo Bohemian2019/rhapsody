@@ -1,8 +1,8 @@
 # Setting for spotify-api authentication
-require 'rspotify'
-require 'dotenv'
-Dotenv.load
-RSpotify.authenticate(ENV["SPOTIFY_CLIENT_ID"], ENV["SPOTIFY_CLIENT_SECRET"])
+#require 'rspotify'
+#require 'dotenv'
+#Dotenv.load
+#RSpotify.authenticate(ENV["SPOTIFY_CLIENT_ID"], ENV["SPOTIFY_CLIENT_SECRET"])
 
 # Load seed file from seeds/
 require './db/seeds/user.rb'
