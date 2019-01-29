@@ -49,28 +49,3 @@ class UsersController < ApplicationController
     params.permit(:is_active)
   end
 end
-
-
-
-
-
-
-
-
-
-
-# 他ユーザ情報を持っているか
-if defined? user
-
-
-end
-
-
-
-
-
-
-
-
-
-
