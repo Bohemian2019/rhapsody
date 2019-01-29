@@ -110,9 +110,9 @@
           </tr>
         </thead>
         <tbody>
-        <% @songs.each.with_index(1) do |s,i| %>
+        <% @songs.each do |s| %>
           <tr>
-            <th scope="row"><%= "#{i}" %></th>
+            <th scope="row"><%= s.song_number %></th>
             <td></td>
             <td><%= s.name %></td>
           </tr>

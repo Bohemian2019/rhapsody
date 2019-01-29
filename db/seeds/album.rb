@@ -30,7 +30,7 @@ Artist.create(
     {artist_name: robert_glasper.name},
     {artist_name: led_zeppelin.name},
     {artist_name: rolling_stones.name},
-    {artist_name: kendrick_lamar.name},
+    {artist_name: kendrick_lamar},
   ]
 )
 
@@ -40,6 +40,7 @@ Label.create(
   [
     {:label_name => 'Infratop'},
     {:label_name => 'Bluenote'},
+    {:label_name => 'Atlantic record'},
     {:label_name => 'Universal Music'}
   ]
 )
@@ -59,14 +60,15 @@ queen.albums.each do |album|
     item_image: image_url + '.jpg'
   )
 
-  tracks = RSpotify::Track.search(album.name)
-  tracks.each.with_index do |track, i|
+  tracks = album.tracks
+  tracks.each do |track|
     Song.create(
       #item_id: Item.find_by(item_name: album.name).id,
       item_id: Item.last.id,
-      disc_number: 1,
-      song_number: i+1,
+      disc_number: track.disc_number,
+      song_number: track.track_number,
       name: track.name,
+      preview_url: track.preview_url
     )
   end
 end

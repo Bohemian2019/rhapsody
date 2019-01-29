@@ -20,11 +20,11 @@
           <%= link_to item_path(s.id) do %>
             <div class="item-image">
               <% if s.image_id %>
-                <%= attachment_image_tag s, :image, :fill, 100, 100, :size => "100x100" %>
+                <%= attachment_image_tag s, :image, :fill, 200, 200, :size => "200x200" %>
               <% elsif s.item_image %>
                 <%= image_tag(s.item_image, class: "card-img-top img-thumbnail") %>
               <% else %>
-                <%= image_tag('no-item-image.jpg', :size => '100x100') %>
+                <%= image_tag('no-item-image.jpg', :size => '200x200') %>
               <% end %>
             </div>
           <% end %>
@@ -33,7 +33,7 @@
             <a href="<%= item_path(s.id) %>">
               <h5><%= s.item_name %></h5>
             </a>
-            <h5><em>-<%= @artist.find(s.artist_id).artist_name %></em></h5>
+            <h5><em>- <%= @artist.find(s.artist_id).artist_name %></em></h5>
           </div>
         </div>
 

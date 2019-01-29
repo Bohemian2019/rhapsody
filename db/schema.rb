@@ -117,6 +117,7 @@ ActiveRecord::Schema.define(version: 2019_01_12_083355) do
     t.integer "disc_number", null: false
     t.integer "song_number"
     t.string "name", null: false
+    t.string "preview_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
