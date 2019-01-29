@@ -25,15 +25,17 @@
         </thead>
         <tbody>
           <% @searched.each do |s| %>
+              <% s.shopping_cart.cart_items.each do |ci| %>
             <tr>
               <td><%= l s.created_at, format: :long %></td>
               <td><%= s.shopping_cart.user.name %></td>
-              <td><%= s.item.artist.artist_name %></td>
-              <td><%= s.item.item_name %></td>
-              <td><%= s.quantity %></td>
+              <td><%= ci.item.artist.artist_name %></td>
+              <td><%= ci.item.item_name %></td>
+              <td><%= ci.quantity %></td>
               <td><%= link_to "詳細", admin_order_path(s.id), class: "btn btn-light" %></td>
             </tr>
           <% end %>
+      <% end %>
         </tbody>
       </table>
     </div>

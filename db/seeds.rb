@@ -39,9 +39,10 @@ CartItem.create(
 Community.create(:name => 'Mr.Children',:artist_id => '1',:introduction => 'Hello',:is_active => 'TRUE', :artist_name => "")
 Community.create(:name => 'Robert Glasper',:artist_id => '2',:introduction => 'Hi',:is_active => 'TRUE')
 Community.create(:name => 'Queen',:artist_id => '3',:introduction => 'Hey',:is_active => 'TRUE')
-Community.create(:name => 'Led Zeppelin',:artist_id => '4',:introduction => 'Hey',:is_active => 'TRUE')
-Community.create(:name => 'Rolling Stones',:artist_id => '5',:introduction => 'Hey',:is_active => 'TRUE')
-Community.create(:name => 'Kendrick Lamar',:artist_id => '6',:introduction => 'Hey',:is_active => 'TRUE')
+Community.create(:name => 'Anderson Paak',:artist_id => '4',:introduction => 'Hey',:is_active => 'TRUE')
+Community.create(:name => 'Radionhead',:artist_id => '5',:introduction => 'Hey',:is_active => 'TRUE')
+Community.create(:name => 'Imagine Dragons',:artist_id => '6',:introduction => 'Hey',:is_active => 'TRUE')
+Community.create(:name => 'Bruno Mars',:artist_id => '6',:introduction => 'Hey',:is_active => 'TRUE')
 
 Question.create(:community_id => '1',:user_id => '1',:question => 'YES?')
 

@@ -13,7 +13,7 @@ class Admin::OrdersController < ApplicationController
   end
 
   def search
-    @searched = CartItem.search(params[:keyword_artist], params[:keyword_item]).page(params[:page])
+    @searched = Order.search(params[:keyword_artist], params[:keyword_item]).page(params[:page])
     @orders = Order.search(params[:keyword_artist], params[:keyword_item])
   end
 
