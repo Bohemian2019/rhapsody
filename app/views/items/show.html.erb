@@ -107,14 +107,23 @@
             <th scope="col">#</th>
             <th scope="col"></th>
             <th scope="col">タイトル</th>
+            <th scope="col"></th>
           </tr>
         </thead>
-        <tbody>
         <% @songs.each do |s| %>
+        <tbody>
+          <% if s.song_number == 1 %>
+            <tr>
+              <td>Disc: <%= s.disc_number %></td>
+            </tr>
+          <% end %>
           <tr>
             <th scope="row"><%= s.song_number %></th>
             <td></td>
             <td><%= s.name %></td>
+            <% if s.preview_url %>
+              <td><%= link_to "視聴", s.preview_url, class: "btn btn-light" %></td>
+            <% end %>
           </tr>
         </tbody>
         <% end %>
