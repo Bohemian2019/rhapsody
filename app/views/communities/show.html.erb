@@ -9,9 +9,19 @@
     <div class="col-lg-1">
     <%= link_to "Q&A", community_question_index_path(@community.id), class: "btn btn-light" %>
     </div>
-    <div class="col-lg-3">
-    <%= link_to "定期購買", order_subscription_new_path(community_id: @community.id), class: "btn btn-light" %>
-    </div>
+
+
+    <% if administrator_signed_in? %>
+    <!-- 定期購買表示しない -->
+    <% else %>
+    <!-- 定期購買表示 -->
+    <% if @subscription.exists?(:artist_id => @community.id)== false %>
+      <div class="col-lg-3">
+      <%= link_to "定期購買", order_subscription_new_path(community_id: @community.id), class: "btn btn-light" %>
+      </div>
+    <% end %>
+    <% end %>
+
   </div>
 
   <div class="row">
@@ -47,18 +57,26 @@
       <%= i-(2*idx.to_i) %>
       <% else %>
       <%= i - ((2 * idx.to_i) +  20 * (@pagenum.to_i - 1)) %>
-      <% end %>.<%= com.user.name %>.</strong></p>
+      <% end %>.<%= com.user.name %>.</strong>
+    </p>
     </div>
 
     <div class="col-lg-9">
     <p><%= com.comment %></p>
     </div>
     <!-- 投稿削除　管理者・投稿者のみ表示 -->
-    <% if com.user.id == current_user.id || current_user.admin == true %>
+    <% if administrator_signed_in?  %>
+      <div class="col-lg-1">
+      <%= link_to '削除', community_path(@community.id, :board_comment_id => com.id), method: :delete, class: 'btn btn-link', "data-confirm" => "Are you sure?" %>
+      </div>
+    <% else %>
+    <% if com.user.id == current_user.id %>
       <div class="col-lg-1">
       <%= link_to '削除', community_path(@community.id, :board_comment_id => com.id), method: :delete, class: 'btn btn-link', "data-confirm" => "Are you sure?" %>
       </div>
     <% end %>
+    <% end %>
+
   </div>
 
   <% end %>

@@ -1,6 +1,11 @@
 class CommunitiesController < ApplicationController
+  before_action :authenticate_admin
+
   def show
     @community = Community.find(params[:id])
+    if administrator_signed_in? == false
+    @subscription = Subscription.where(user_id: current_user.id).select(:artist_id)
+    end
     @boards = BoardComment.all.where(community_id: @community.id).page(params[:page]).per(10).order(id: "DESC")
     # ページネーションによる番号表示
     @pages = BoardComment.all.where(community_id: @community.id).count
