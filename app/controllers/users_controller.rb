@@ -1,13 +1,12 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_admin
 
   def show
     @user = User.find(params[:id])
     # 購入履歴リスト
     @history = ShoppingCart.includes(:cart_items => {:item => :artist}).where(:user_id => @user.id).where(:is_active => false)
     # マイコミュニティリスト
-    @my_communities = UsersCommunity.includes(:community => :artist)
-                                      .where(:user_id => @user.id)
+    @my_communities = UsersCommunity.includes(:community => :artist).where(:user_id => @user.id)
   end
 
   def edit
