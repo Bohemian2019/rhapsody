@@ -12,10 +12,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
-    @cart_t = ShoppingCart.new
-    @cart_t.user_id = current_user.id
-    @cart_t.is_active = "TRUE"
-    @cart_t.save
+      if current_user.nil?
+        new_user_registration_path and return
+      else
+        @cart_t = ShoppingCart.new
+        @cart_t.user_id = current_user.id
+        @cart_t.is_active = "TRUE"
+        @cart_t.save
+      end
   end
 
   # GET /resource/edit
