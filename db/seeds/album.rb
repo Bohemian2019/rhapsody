@@ -9,7 +9,7 @@ require 'open-uri'
 
 def save_image(url)
   fileName = File.basename(url) + '.jpg'
-  dirName = '/vagrant/rhapsody/app/assets/images/'
+  dirName = '/vagrant/wcp/rhapsody/app/assets/images/'
   filePath = dirName + fileName
 
   open(url) do |file|
