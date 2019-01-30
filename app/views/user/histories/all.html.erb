@@ -19,7 +19,7 @@
           <tr>
             <td><%= shopping.order.created_at.strftime('%Y年%m月%d日') %></td>
             <td><%= shopping.cart_items.sum(:quantity) %> 点</td>
-            <td>¥ <%= shopping.cart_items.sum(:price) %></td>
+            <td>¥ <%= shopping.cart_items.sum(:price) * shopping.cart_items.sum(:quantity) %></td>
             <td><%= link_to "詳細", user_histories_path(shopping.order.id), class: "btn btn-light" %></td>
           </tr>
         <% end %>
