@@ -31,7 +31,7 @@ class ItemsController < ApplicationController
     else
       @item[:label_id] = 0
     end
-    
+
     if @item.save
       redirect_to admin_index_path
       flash[:notice] = "商品を新たに登録しました。"
@@ -52,6 +52,13 @@ class ItemsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @item = Item.find(params[:id])
+    @item.destroy
+    redirect_to root_path
+    flash[:notice] = "Item was successfully destroyed."
   end
 
   def cart_create

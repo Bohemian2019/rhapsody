@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
   def show
-    @order = Order.find(params[:id])
+    @order = ShoppingCart.find(params[:id])
   end
 end
