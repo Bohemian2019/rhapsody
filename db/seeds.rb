@@ -42,7 +42,7 @@ Community.create(:name => 'Queen',:artist_id => '3',:introduction => 'Hey',:is_a
 Community.create(:name => 'Anderson Paak',:artist_id => '4',:introduction => 'Hey',:is_active => 'TRUE')
 Community.create(:name => 'Radionhead',:artist_id => '5',:introduction => 'Hey',:is_active => 'TRUE')
 Community.create(:name => 'Imagine Dragons',:artist_id => '6',:introduction => 'Hey',:is_active => 'TRUE')
-Community.create(:name => 'Bruno Mars',:artist_id => '6',:introduction => 'Hey',:is_active => 'TRUE')
+Community.create(:name => 'Bruno Mars',:artist_id => '7',:introduction => 'Hey',:is_active => 'TRUE')
 
 Question.create(:community_id => '1',:user_id => '1',:question => 'YES?')
 

@@ -33,6 +33,6 @@ class User < ApplicationRecord
 
   # Devise method override
   def active_for_authentication?
-    super && !admin?
+    super && self.is_active?
   end
 end

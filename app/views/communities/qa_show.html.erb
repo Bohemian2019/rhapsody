@@ -38,7 +38,7 @@
                     <p><%= post.answer %></p>
                   </div>
                   <!-- 管理者のみ表示 -->
-                  <% if current_user.admin == true %>
+                  <% if administrator_signed_in?  %>
                   <%= link_to '削除', community_question_path(@community, @qa.id, :answer_id => post.id), method: :delete, class: 'btn btn-link', "data-confirm" => "Are you sure?" %>
                   <% end %>
                 </div>

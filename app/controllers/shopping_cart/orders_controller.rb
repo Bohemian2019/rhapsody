@@ -32,7 +32,7 @@ class ShoppingCart::OrdersController < ApplicationController
       @cartitems.each do |f|
         f.price = f.item.price
         # point加算計算(1枚100点)
-        @userpoint += 100
+        @userpoint += 100 * f.quantity
       end
       @cartitems.update(cartitem_params)
       # point合計保存
