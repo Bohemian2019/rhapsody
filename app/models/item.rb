@@ -16,7 +16,7 @@ class Item < ApplicationRecord
   validates :item_name, presence: true
   validates :price, presence: true, numericality: { only_integer: true }
   validates :genre, presence: true
-  validates :stock, numericality: { only_integer: true }
+  validates :stock, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   # Search method
   def self.search(keyword)
