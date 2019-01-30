@@ -28,12 +28,21 @@ class ShoppingCart::OrdersController < ApplicationController
       @order.save
       # cartitemテーブルのprice保存
       @cartitems = CartItem.where(shopping_cart_id: params[:id])
+      # ユーザポイント取得
       @userpoint = current_user.point
+
       @cartitems.each do |f|
+        # 在庫数計算表示
+        @items = f.item
+        @items.stock -= f.quantity
+        # 値段をcartitemsテーブルに移行
         f.price = f.item.price
         # point加算計算(1枚100点)
         @userpoint += 100 * f.quantity
+        # 在庫数更新
+        @items.update(stock_params)
       end
+      # cartitemsテーブルの値段を更新
       @cartitems.update(cartitem_params)
       # point合計保存
       current_user.point = @userpoint
@@ -62,5 +71,8 @@ class ShoppingCart::OrdersController < ApplicationController
   end
   def user_params
     params.permit(:point)
+  end
+  def stock_params
+    params.permit(:stock)
   end
 end
