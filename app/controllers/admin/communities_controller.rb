@@ -1,6 +1,5 @@
 class Admin::CommunitiesController < ApplicationController
   def new
-    # @community = Community.where(id: params[:id])
     @community = Community.find(params[:id])
     @artist = Artist.find(@community.artist_id)
   end
@@ -11,7 +10,7 @@ class Admin::CommunitiesController < ApplicationController
     if count >= 1
       flash[:notice] = "当該アーティストにはすでにコミュニティが存在します"
       @community = Community.where(id: params[:id])
-      render :new
+      redirect_to admin_communities_new_path(params[:id])
     else
       if community.update!(community_params)
         community.update(is_active: true)
@@ -19,7 +18,7 @@ class Admin::CommunitiesController < ApplicationController
         flash[:notice] = "コミュニティの新規登録が完了しました"
       else
         @community = Community.where(id: params[:id])
-        render :new
+        redirect_to admin_communities_new_path(params[:id])
       end
     end
   end
