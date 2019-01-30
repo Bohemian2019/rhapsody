@@ -89,4 +89,4 @@ artist_arr.each do |artist|
     end
   end
   sleep(0.5)
-end 
+end
