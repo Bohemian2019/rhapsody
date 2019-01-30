@@ -18,7 +18,10 @@ class User < ApplicationRecord
   has_many :questions
   has_many :answers
 
+  validates :name, presence: true
+  validates :name_kana, presence: true
   validates :postal_code, presence: true, length: { is: 7 }, numericality: true
+  validates :address, presence: true
   validates :phone_number, presence: true, numericality: true
   validates :email, presence: true
   validates :introduction, length: { maximum: 200 }

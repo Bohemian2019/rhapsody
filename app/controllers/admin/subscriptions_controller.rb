@@ -12,15 +12,17 @@ class Admin::SubscriptionsController < ApplicationController
   	artist = Artist.find(params[:id])
   	subscriptions = Subscription.where(artist_id: artist.id)
     subs = Subscription.where(artist_id: artist.id).pluck(:user_id)
+    t_user = User.where(id: subs).where(is_active: true)
+    tt_user = User.where(id: subs).where(is_active: true).pluck(:id)
     item = Item.where(artist_id: artist.id).order(created_at: :asc).last
-    subscriptions.each do |subscription|
+    t_user.each do |t_user|
   	 shopping = ShoppingCart.new
-  	 shopping.user_id = subscription.user_id
+  	 shopping.user_id = t_user.id
   	 shopping.is_active = false
   	 shopping.save
     end
     count = subs.count
-    shopping_carts = ShoppingCart.where(user_id: subs).where(is_active: false).order(created_at: :asc)
+    shopping_carts = ShoppingCart.where(user_id: tt_user).where(is_active: false).order(created_at: :asc)
     shopping_carts.last(count).each do |shopping|
      cart_item = CartItem.new
      cart_item.shopping_cart_id = shopping.id
