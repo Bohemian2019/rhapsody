@@ -29,6 +29,7 @@ class UsersController < ApplicationController
   def cancel_update
     @user = User.find(current_user.id)
     @user.is_active = false
+    @user.point = 0
     @user.update(users_params)
     redirect_to logout_path
   end
@@ -47,6 +48,6 @@ class UsersController < ApplicationController
     params.require(:user).permit(:postal_code, :address, :phone_number, :email, :password, :image, :introduction)
   end
   def users_params
-    params.permit(:is_active)
+    params.permit(:is_active, :point)
   end
 end
