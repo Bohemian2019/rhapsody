@@ -10,14 +10,17 @@
        <h4>購入履歴</h4>
        <div class="list-group" style="max-width: 400px;">
         <div class="list-group-item">
-         <% @history.each do |h| %>
-          <% h.cart_items.order('id DESC').first(5).each do |ci| %>
-           <%= link_to item_path(ci.item_id), class: "list-group-item list-group-item-action" do %>
-           <%= ci.item.item_name %>/<%= ci.item.artist.artist_name %>
+         <% if !@history.empty?  %>
+          <% @history.each do |h| %>
+           <%= link_to item_path(h.item_id), class: "list-group-item list-group-item-action" do %>
+           <%= h.item.item_name %>/<%= h.item.artist.artist_name %>
           <% end %>
          <% end %>
+        <% else %>
+         <div>
+          購入した商品はありません
+         </div>
         <% end %>
-
        </div>
       </div><br>
 
@@ -57,9 +60,10 @@
      <div class="list-group" style="max-width: 400px;">
       <ul class="list-group-item">
        <% if !@my_communities.empty?  %>
-        <% @my_communities.first(5).each do |mc| %>
+        <% @my_communities.each do |mc| %>
          <%= link_to communities_show_path(mc.community.artist_id), class: "list-group-item list-group-item-action" do %>
-          <%= mc.community.artist.artist_name %>
+          <%= mc.community.artist.artist_name %>/
+          <%= mc.community.name %>
          <% end %>
         <% end %>
        <% else %>
