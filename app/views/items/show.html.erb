@@ -2,12 +2,6 @@
   <div class="row my-3 justify-content-center" >
     <div class="col-md-6">
       <!-- 管理者のみ表示 -->
-  <% if user_signed_in? && current_user.admin == true %>
-    <%= link_to '編集', admin_edit_item_path, class: 'btn btn-light' %>
-    <!-- 商品削除処理後、商品一覧画面へ遷移-->
-    <%= link_to '削除', search_index_path, class: 'btn btn-light' %>
-  <% end %>
-  <!-- 商品画像表示 -->
   <% if @item.image_id %>
     <%= attachment_image_tag @item, :image, :fill, 200, 200, :size => "200x200", fallback: "no-item-image.jpg" %>
   <% elsif @item.item_image %>
@@ -65,6 +59,10 @@
         <% end %>
       </div>
     <%end%>
+    <% if administrator_signed_in? == true %>
+      <%= link_to '編集', admin_edit_item_path, class: 'btn btn-info' %>
+      <%= link_to '削除', delete_item_path(@item.id), method: :delete, class: 'btn btn-danger', 'data-confirm' => 'Are you sure?' %>
+    <% end %>
     </div>
 
     <!-- 曲表示 -->

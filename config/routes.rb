@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => {
     :registrations => 'users/registrations'
   }
-    devise_for :administrators, :controllers => {
+  devise_for :administrators, :controllers => {
     :sessions => 'administrators/sessions'
   }
   # get 'admin/sign_in', action: :new, controller: 'devise/sessions'
@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   # 退会ページからlogout用ルーティング
   devise_scope :user do
-   get '/logout', to: 'devise/sessions#destroy', as: :logout
+    get '/logout', to: 'devise/sessions#destroy', as: :logout
   end
 
   # admin/
@@ -74,7 +74,7 @@ Rails.application.routes.draw do
   # search
   get 'search', to: 'search#index', as: :search_index
 
-   # community/
+  # community/
   namespace :community do
     # comments
     post ':id', to: 'comments#add'
@@ -104,6 +104,7 @@ Rails.application.routes.draw do
 
   # items
   resources :items, only: [:show]
+  delete '/items/:id', to: 'items#destroy', as: :delete_item
   post '/items/:id', to: 'items#update'
   get '/admin/item/new', to: 'items#new', as: :admin_new_item
   post '/admin/item/new', to: 'items#create', as: :admin_create_item
