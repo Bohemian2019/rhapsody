@@ -64,8 +64,10 @@
  <!-- 注文は銀行振込とクレジットで遷移先異なる -->
   <div class="row">
   	<div class="col-lg-4 offset-lg-10">
+      <% if @shoppingcart.is_active == true %>
       <%= link_to '戻る', shopping_cart_show_path, class: 'btn btn-light' %>
       <%= f.submit "注文", class: "col-lg-1　btn btn-light" %>
+      <% end %>
     </div>
   </div>
 
