@@ -10,9 +10,17 @@
 	<% @cart_items.each do |ci| %>
 	<div class="row detail justify-content-md-center">
 		<!-- 左側：商品画像 -->
-		<div class="col-lg-2 text-right">
-			<%= attachment_image_tag ci.item, :image, :fill, 100, 100, :size => "150x150", fallback: "no-item-image.jpg" %>
-		</div>
+  	 <div class="col-lg-2 text-right">
+  	  <% if ci.item.image_id %>
+   	   <%= attachment_image_tag @item, :image, :fill, 200, 200, :size => "200x200", fallback: "no-item-image.jpg" %>
+  	  <% elsif ci.item.item_image %>
+   	   <%= image_tag(ci.item.item_image, class: "rounded img-thumbnail" ) %>
+  	  <% else %>
+   	   <%= image_tag('no-item-image.jpg', :size => '200x200') %>
+  	  <% end %>
+     </div>
+
+
 		<!-- 右側：商品説明 -->
 		<div class="col-lg-7" >
 			<div class="item_detail" >
@@ -45,7 +53,7 @@
 							  <%= link_to '-', shopping_cart_show_path(params[:id], ci_id: ci.id), class:"btn-sm btn-light ", method: :delete, data: { confirm: 'カートから商品を削除しますか？' } %>
 							<% end %>
 						</div>
-							<%= link_to 'Destroy', shopping_cart_show_path(params[:id], ci_id: ci.id), class:"btn-sm btn-danger ", method: :delete, data: { confirm: 'カートから商品を削除しますか？' } %>
+							<%= link_to '削除', shopping_cart_show_path(params[:id], ci_id: ci.id), class:"btn-sm btn-danger ", method: :delete, data: { confirm: 'カートから商品を削除しますか？' } %>
 					</div>
 				</div>
 			</div>
