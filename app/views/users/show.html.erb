@@ -4,6 +4,7 @@
   <div  class="col-md-4">
    <%= render 'layouts/sidebar', user: @user %>
     <!-- 購入履歴リスト -->
+    <% unless administrator_signed_in? %>
     <% unless current_user.nil? %>
      <% if current_user.id == @user.id %>
       <div class="history justify-content-left" style="padding-top: 40px">
@@ -20,6 +21,7 @@
          <div>
           購入した商品はありません
          </div>
+        <% end %>
         <% end %>
        </div>
       </div><br>

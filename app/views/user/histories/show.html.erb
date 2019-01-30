@@ -10,7 +10,13 @@
 
 <!-- ジャケット画像 -->
     <div class="col-lg-4">
-      <%= attachment_image_tag @history.item, :image, :fill, 100, 100, :size => "300x300", fallback: "no-item-image.jpg" %>
+     <% if @history.item.image_id %>
+      <%= attachment_image_tag @item, :image, :fill, 200, 200, :size => "200x200", fallback: "no-item-image.jpg" %>
+     <% elsif @history.item.item_image %>
+      <%= image_tag(@history.item.item_image, class: "rounded img-thumbnail" ) %>
+     <% else %>
+      <%= image_tag('no-item-image.jpg', :size => '200x200') %>
+     <% end %>
     </div>
 
       <!-- ステータス部分は後で変更する -->
