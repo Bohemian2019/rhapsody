@@ -26,7 +26,7 @@ class CommunitiesController < ApplicationController
   end
 
   def delete
-    if current_user.admin == true
+    if administrator_signed_in? == true
       @community = Community.find(params[:id])
       @community.destroy
       redirect_to search_index_path
