@@ -24,10 +24,7 @@ CartItem.create(
   [
     {:shopping_cart_id => '1',:item_id => '1',:price => '100',:quantity => '1'},
     {:shopping_cart_id => '1',:item_id => '2',:price => '200',:quantity => '2'},
-    {:shopping_cart_id => '1',:item_id => '3',:price => '250',:quantity => '3'},
     {:shopping_cart_id => '2',:item_id => '1',:price => '100',:quantity => '2'},
-    {:shopping_cart_id => '2',:item_id => '2',:price => '100',:quantity => '2'},
-    {:shopping_cart_id => '2',:item_id => '3',:price => '100',:quantity => '2'},
     {:shopping_cart_id => '2',:item_id => '4',:price => '100',:quantity => '2'},
     {:shopping_cart_id => '3',:item_id => '6',:price => '300',:quantity => '2'},
     {:shopping_cart_id => '4',:item_id => '2',:price => '300',:quantity => '2'},
@@ -61,7 +58,7 @@ Order.create(
   [
     {
       :shopping_cart_id => '1',
-      :payment => '1',
+      :payment => '2',
       :status => '1',
       :postal_code => '1234567',
       :address => '東京都渋谷区'
@@ -75,7 +72,7 @@ Order.create(
     },
     {
       :shopping_cart_id => '3',
-      :payment => '1',
+      :payment => '2',
       :status => '1',
       :postal_code => '1234567',
       :address => '東京都渋谷区'
@@ -89,14 +86,14 @@ Order.create(
     },
     {
       :shopping_cart_id => '5',
-      :payment => '1',
+      :payment => '2',
       :status => '1',
       :postal_code => '1234567',
       :address => '東京都渋谷区'
     },
     {
       :shopping_cart_id => '6',
-      :payment => '1',
+      :payment => '2',
       :status => '2',
       :postal_code => '1234567',
       :address => '東京都渋谷区'
