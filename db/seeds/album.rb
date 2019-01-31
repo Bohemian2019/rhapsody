@@ -58,6 +58,10 @@ Label.create(
 # artist = artist_arr[1]
 
 artist_arr.each do |artist|
+    artist_image_url = p artist.images.second["url"]
+    save_image(artist_image_url)
+    artist_image_url.slice!("https://i.scdn.co/image/")
+    sleep(0.1)
   artist.albums.each do |album|
     image_url = p album.images.second["url"]
     save_image(image_url)
