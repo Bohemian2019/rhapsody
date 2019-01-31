@@ -7,11 +7,18 @@ body {
 }
 .navbar {
   font-family: 'Roboto', sans-serif;
-  //background: linear-gradient(0deg, #C69E2F, #BF1DD7);
-  background-color: #6200EE;
+  background-color: #3700B3;
+}
+.navbar {
+    .btn-search {
+        background-color: #03DAC5;
+    }
+}
+.homepage {
+    background-color: #6200EE;
+    font-family: 'Noto Sans JP', sans-serif;
 }
 .navbar-brand {
-  //font-weight: 500;
   font-size: 1.75rem;
 }
 .nav-item {

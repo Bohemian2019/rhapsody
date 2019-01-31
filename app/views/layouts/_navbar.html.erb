@@ -70,7 +70,7 @@
       <%= form_with url: search_index_path, method: :get, local: true, class: "form-inline my-2 my-lg-0" do |f| %>
         <%= f.select :table_name, [["商品", "Item"], ["ユーザー", "User"], ["コミュニティ", "Community"]],{}, class: "form-control form-control-sm mr-2" %>
         <%= f.text_field :keyword, palceholder: "search" %>
-        <%= f.submit("検索", class: "btn btn-secondary my-2 my-sm-0 ml-2") %>
+        <%= f.submit("検索", class: "btn btn-search my-2 my-sm-0 ml-2 text-light") %>
       <% end %>
     </div>
   </nav>
