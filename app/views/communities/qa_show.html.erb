@@ -37,9 +37,13 @@
                   <div class="col-lg-9">
                     <p><%= post.answer %></p>
                   </div>
-                  <!-- 管理者のみ表示 -->
+                  <!-- 管理者・Userのみ表示 -->
                   <% if administrator_signed_in?  %>
+                    <%= link_to '削除', community_question_path(@community, @qa.id, :answer_id => post.id), method: :delete, class: 'btn btn-link', "data-confirm" => "Are you sure?" %>
+                  <% else %>
+                  <% if post.user.id == current_user.id %>
                   <%= link_to '削除', community_question_path(@community, @qa.id, :answer_id => post.id), method: :delete, class: 'btn btn-link', "data-confirm" => "Are you sure?" %>
+                  <% end %>
                   <% end %>
                 </div>
               </span>
