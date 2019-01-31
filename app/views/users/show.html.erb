@@ -49,7 +49,11 @@
          <h3><%= link_to "Ranking", users_ranking_path, class: "users_ranking"%></h3>
          </th>
          <th id="ranking"></th>
-         <th id="point"><h2><%= @rank %></h2></th>
+         <% unless @rank == 0 %>
+          <th id="point"><h2><%= @rank %></h2></th>
+         <% else %>
+          <th id="point"><h2></h2></th>
+         <% end %>
          <th><h3> th</h3></th>
         </tr>
        </tbody>

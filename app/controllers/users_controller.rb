@@ -8,7 +8,8 @@ class UsersController < ApplicationController
     @history = CartItem.includes(:item => :artist).where(shopping_cart_id: cart).limit(5).order("id DESC")
     # マイコミュニティリスト
     @my_communities = UsersCommunity.includes(:community => :artist).where(:user_id => @user.id).first(5)
-    users = User.order("point DESC")
+    users = User.where("point IS NOT NULL").order("point DESC")
+    @rank = 0
     users.each.with_index(1) do |u, i|
       if u.id == @user.id
         @rank = i
