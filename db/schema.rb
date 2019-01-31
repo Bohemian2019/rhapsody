@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 2019_01_27_210233) do
     t.text "introduction"
     t.string "image_id"
     t.boolean "is_active", default: false
+    t.string "community_image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

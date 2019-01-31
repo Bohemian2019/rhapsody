@@ -7,6 +7,7 @@ class CreateCommunities < ActiveRecord::Migration[5.2]
       t.text :introduction
       t.string :image_id
       t.boolean :is_active, default: false
+      t.string :community_image
       t.timestamps
     end
   end
