@@ -55,8 +55,16 @@ class ShoppingCart::OrdersController < ApplicationController
         @shoppingcart.save
         redirect_to orders_confirmation_path(params[:id])
         else
-          shopping_cart_order_new_path and return
-      end
+          @shoppingcart = ShoppingCart.find(params[:id])
+          @cartitems = CartItem.where(shopping_cart_id: @shoppingcart.id)
+          # 商品計算合計
+          @pricesums = 0
+          @cartitems.each do |f|
+            @pricesums += (f.item.price*f.quantity)
+          end
+          render :new
+          flash[:stock] = "在庫数が足りません。枚数の変更をお願いします。"
+        end
     end
   end
 
