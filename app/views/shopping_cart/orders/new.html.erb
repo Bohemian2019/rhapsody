@@ -52,15 +52,14 @@
         <% end %>
       </table>
     </div>
-  
-  
+    
   </div>
 
 <!-- 商品合計 -->
 　<div class="col-lg-5 offset-lg-8">
+  <%= flash[:stock] %>
 　  <h3><u>合計¥ <%= @pricesums %>円</u></h3>
   </div>
-
 
  <!-- 注文は銀行振込とクレジットで遷移先異なる -->
   <div class="row">
