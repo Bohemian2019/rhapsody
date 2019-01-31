@@ -33,13 +33,12 @@ CartItem.create(
   ]
 )
 
-Community.create(:name => 'Mr.Children',:artist_id => '1',:introduction => 'Hello',:is_active => 'TRUE', :artist_name => "")
-Community.create(:name => 'Robert Glasper',:artist_id => '2',:introduction => 'Hi',:is_active => 'TRUE')
-Community.create(:name => 'Queen',:artist_id => '3',:introduction => 'Hey',:is_active => 'TRUE')
-Community.create(:name => 'Anderson Paak',:artist_id => '4',:introduction => 'Hey',:is_active => 'TRUE')
-Community.create(:name => 'Radionhead',:artist_id => '5',:introduction => 'Hey',:is_active => 'TRUE')
-Community.create(:name => 'Imagine Dragons',:artist_id => '6',:introduction => 'Hey',:is_active => 'TRUE')
-Community.create(:name => 'Bruno Mars',:artist_id => '7',:introduction => 'Hey',:is_active => 'TRUE')
+Community.create(:name => 'Mr.Children',:artist_id => '1',:introduction => 'Hello',:is_active => 'TRUE', :artist_name => "", :community_image => "no-user-image.jpg")
+Community.create(:name => 'Robert Glasper',:artist_id => '2',:introduction => 'Hi',:is_active => 'TRUE',:community_image => "no-user-image.jpg")
+Community.create(:name => 'Queen',:artist_id => '3',:introduction => 'Hey',:is_active => 'TRUE', :community_image => "af2b8e57f6d7b5d43a616bd1e27ba552cd8bfd42.jpg")
+Community.create(:name => 'Anderson Paak',:artist_id => '4',:introduction => 'Hey',:is_active => 'TRUE', :community_image => "ccaa5c3eb7d08ca020aa964c993bbe314e3a4bf3.jpg")
+Community.create(:name => 'Radiohead',:artist_id => '5',:introduction => 'Hey',:is_active => 'TRUE', :community_image => "no-user-image.jpg")
+Community.create(:name => 'Imagine Dragons',:artist_id => '6',:introduction => 'Hey',:is_active => 'TRUE', :community_image => "ff8d83627cb2a80d4c1fa36fd80a193ca34b7a50.jpg")
 
 Question.create(:community_id => '1',:user_id => '1',:question => 'YES?')
 

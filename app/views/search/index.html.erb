@@ -62,7 +62,13 @@
           <ul>
             <li class="row my-lg-5 py-3">
               <div class="col-sm-2 pr-0 pl-5">
-                <%= attachment_image_tag s, :image, :fill, 100, 100, :size => "60x60", fallback: "no-user-image.jpg" %>
+              <% if s.image_id %>
+                <%= attachment_image_tag s, :image, :fill, 100, 100, :size => "100x100" %>
+              <% elsif s.community_image %>
+                <%= image_tag(s.community_image, class: "card-img-top img-thumbnail") %>
+              <% else %>
+                <%= image_tag('no-user-image.jpg', :size => '80x80') %>
+              <% end %>
               </div>
               <div class="col-sm-5 px-0">
                 <h5>コミュニティ名:  <%= s.name %></h5><br>
