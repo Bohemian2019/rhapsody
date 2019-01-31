@@ -36,7 +36,7 @@ User.create(
       :phone_number => '09012341234',
       :email => 'johnsmith@example.com',
       :password => 'password',
-      :point => '',
+      :point => '0',
       :is_active => 'TRUE',
       :admin => 'TRUE'
     },
