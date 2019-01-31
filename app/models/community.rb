@@ -5,11 +5,8 @@ class Community < ApplicationRecord
   #validates :artist_name, presence: true
   #validates :name, presence: true
   #validates :introduction, presence: true
-  
-  # 修正 'Fixed Association'　20190118 ------------
-  # has_many :users, through: :users_cummunities
-  # ---------------------------------------------
-  has_many :users_communities # 追加 'Fixed Association' 20190118
+
+  has_many :users_communities, dependent: :destroy
   has_many :users, through: :users_communities
   has_many :board_comments, dependent: :destroy
   has_many :questions, dependent: :destroy
