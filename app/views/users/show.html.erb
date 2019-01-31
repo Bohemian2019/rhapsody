@@ -5,35 +5,33 @@
    <%= render 'layouts/sidebar', user: @user %>
     <!-- 購入履歴リスト -->
     <% unless administrator_signed_in? %>
-    <% unless current_user.nil? %>
-     <% if current_user.id == @user.id %>
-      <div class="history justify-content-left" style="padding-top: 40px">
-       <h4>購入履歴</h4>
-       <div class="list-group" style="max-width: 400px;">
-        <div class="list-group-item">
-         <% if !@history.empty?  %>
-          <% @history.each do |h| %>
-           <%= link_to item_path(h.item_id), class: "list-group-item list-group-item-action" do %>
-           <%= h.item.item_name %>/<%= h.item.artist.artist_name %>
+     <% unless current_user.nil? %>
+      <% if current_user.id == @user.id %>
+       <div class="history justify-content-left" style="padding-top: 40px">
+        <h4>購入履歴</h4>
+        <div class="list-group" style="max-width: 400px;">
+         <div class="list-group-item">
+          <% if !@history.empty?  %>
+           <% @history.each do |h| %>
+            <%= link_to item_path(h.item_id), class: "list-group-item list-group-item-action" do %>
+            <%= h.item.item_name %>/<%= h.item.artist.artist_name %>
+           <% end %>
           <% end %>
+         <% else %>
+          <div>
+           購入した商品はありません
+          </div>
          <% end %>
-        <% else %>
-         <div>
-          購入した商品はありません
-         </div>
-        <% end %>
-        <% end %>
+        </div>
        </div>
-      </div><br>
-
        <div class="col-sm-3 pl-0">
-         <%= link_to "more", user_histories_all_path, class: "btn btn-info" %><br>
+        <%= link_to "more", user_histories_all_path, class: "btn btn-info" %><br>
        </div>
       </div>
-     <% else %>
      <% end %>
-     <% end %>
-    </div>
+    <% end %>
+   <% end %>
+  </div>
 
     <div class="col-md-8" style="padding: 35px 80px;">
      <!-- 実績ポイント・ランキング -->
@@ -50,7 +48,9 @@
          <th id="ranking">
          <h3><%= link_to "Ranking", users_ranking_path, class: "users_ranking"%></h3>
          </th>
-         <th id="ranking"><h4><h4></th>
+         <th id="ranking"></th>
+         <th id="point"><h2><%= @rank %></h2></th>
+         <th><h3> th</h3></th>
         </tr>
        </tbody>
       </table>
@@ -63,7 +63,7 @@
       <ul class="list-group-item">
        <% if !@my_communities.empty?  %>
         <% @my_communities.each do |mc| %>
-         <%= link_to communities_show_path(mc.community.artist_id), class: "list-group-item list-group-item-action" do %>
+         <%= link_to communities_show_path(mc.community.id), class: "list-group-item list-group-item-action" do %>
           <%= mc.community.artist.artist_name %>/
           <%= mc.community.name %>
          <% end %>
@@ -92,8 +92,7 @@
      <% end %>
      <% end %>
 　　</div>
-
+  </div>
     </div>
    </div>
- </div>
 </div>
